@@ -9,13 +9,13 @@ namespace Graph_Editor
         int num = 0;
         bool isDragging = false;
         Point startPos = new Point();
-
+        Color defaultColor = Color.Black;
         List<Guna2CircleButton> nodes = new List<Guna2CircleButton>();
 
         Guna2CircleButton firstSelectedNode = null;
         string filePath;
 
-        Dictionary<(int, int), int> edges = new Dictionary<(int, int), int>();
+        Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
         List<List<Guna2CircleButton>> adjList = new List<List<Guna2CircleButton>>();
         public Form1()
         {
@@ -57,7 +57,7 @@ namespace Graph_Editor
             Guna2CircleButton btn = new Guna2CircleButton();
             btn.Size = new Size(60, 60);
 
-            btn.Location = new Point(rd.Next(50, 550), rd.Next(100, 650));
+            btn.Location = new Point(rd.Next(50, 600), rd.Next(100, 600));
             btn.Text = num++.ToString();
             btn.MouseDown += btn_MouseDown;
             btn.MouseMove += btn_MouseMove;
@@ -96,7 +96,7 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Text = edges.ContainsKey((i, j)) ? "1" : "0";
+                    txt.Text = edges.ContainsKey((i, j,defaultColor)) ? "1" : "0";
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
@@ -139,7 +139,7 @@ namespace Graph_Editor
                     }
                     else
                     {
-                        txt.Text = edges.ContainsKey((i, j)) ? edges[(i, j)].ToString() : "\u221E";
+                        txt.Text = edges.ContainsKey((i, j, defaultColor)) ? edges[(i, j, defaultColor)].ToString() : "\u221E";
                     }
                     txt.FillColor = Color.Turquoise;
                     if (i == j) txt.Enabled = false;
@@ -191,29 +191,29 @@ namespace Graph_Editor
                 {
                     adjList[row].Add(nodes[column]);
                     adjList[column].Add(nodes[row]);
-                    edges[(row, column)] = 1;
+                    edges[(row, column, defaultColor)] = 1;
                 }
                 else
                 {
-                    if (edges.ContainsKey((row, column)))
+                    if (edges.ContainsKey((row, column, defaultColor)))
                     {
-                        ++edges[(row, column)];
+                        ++edges[(row, column, defaultColor)];
                     }
                     else
                     {
-                        ++edges[(column, row)];
+                        ++edges[(column, row, defaultColor)];
                     }
 
                 }
-                if (edges.ContainsKey((row, column)))
+                if (edges.ContainsKey((row, column, defaultColor)))
                 {
-                    txt.Text = edges[(row, column)].ToString();
-                    txt1.Text = edges[(row, column)].ToString();
+                    txt.Text = edges[(row, column, defaultColor)].ToString();
+                    txt1.Text = edges[(row, column, defaultColor)].ToString();
                 }
                 else
                 {
-                    txt.Text = edges[(column, row)].ToString();
-                    txt1.Text = edges[(column, row)].ToString();
+                    txt.Text = edges[(column, row, defaultColor)].ToString();
+                    txt1.Text = edges[(column, row, defaultColor)].ToString();
                 }
 
             }
@@ -227,13 +227,13 @@ namespace Graph_Editor
                 {
                     adjList[row].RemoveAt(column);
                     adjList[column].RemoveAt(row);
-                    edges.Remove((row, column));
+                    edges.Remove((row, column, defaultColor));
                     txt.Text = "0";
                 }
                 else
                 {
-                    edges[(row, column)]--;
-                    txt.Text = edges[(row, column)].ToString();
+                    edges[(row, column, defaultColor)]--;
+                    txt.Text = edges[(row, column, defaultColor)].ToString();
                 }
             }
             Board.Invalidate(); 
@@ -252,14 +252,14 @@ namespace Graph_Editor
 
             if (txt.Text == "1")
             {
-                edges.Remove((row, column));
-                txt.Text = "\u221E";
-                txt1.Text = "\u221E";
+                edges.Remove((row, column, defaultColor));
+                txt.Text = "0";
+                txt1.Text = "0";
             }
 
             else
             {
-                edges[(row, column)] = 1;
+                edges[(row, column, defaultColor)] = 1;
                 txt.Text = "1";
                 txt1.Text = "1";
             }
@@ -321,7 +321,7 @@ namespace Graph_Editor
                         txt1 = weiMatrixPanel.Controls.OfType<Guna2TextBox>().ElementAt(j * num + i);
                         txt1.Text = "1";
                         txt.Text = "1";
-                        edges[(i, j)] = 1;
+                        edges[(i, j, defaultColor)] = 1;
                         firstSelectedNode = null;
                         Board.Invalidate(); ;
                     }
@@ -382,7 +382,7 @@ namespace Graph_Editor
                                 MessageBox.Show($"Giá trị không hợp lệ tại dòng {i + 2}, cột {j + 1}.", "Error");
                                 return;
                             }
-                            if (value != 0) edges[(i, j)] = value;
+                            if (value != 0) edges[(i, j, defaultColor)] = value;
                         }
                         CreateNodeRandom();
                     }
@@ -453,7 +453,7 @@ namespace Graph_Editor
                 Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
 
 
-                using (Pen pen = new Pen(Color.Black, 2))
+                using (Pen pen = new Pen(edge.Item3, 2))
                 {
                     pen.StartCap = LineCap.Round;
                     pen.EndCap = LineCap.Round;
@@ -463,7 +463,7 @@ namespace Graph_Editor
                 Point midpoint = new Point((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2);
 
 
-                string edgeWeight = edges[(edge.Item1, edge.Item2)].ToString();
+                string edgeWeight = edges[(edge.Item1, edge.Item2, defaultColor)].ToString();
                 using (System.Drawing.Font font = new System.Drawing.Font("Arial", 10, FontStyle.Bold))
                 {
                     e.Graphics.DrawString(edgeWeight, font, Brushes.Black, midpoint);

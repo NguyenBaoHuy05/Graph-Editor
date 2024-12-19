@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel2 = new Panel();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
@@ -51,6 +51,8 @@
             addEdges = new RadioButton();
             addNodes = new RadioButton();
             panel1 = new Panel();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             loadFile = new ToolStripMenuItem();
@@ -63,8 +65,6 @@
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -109,11 +109,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges7;
+            adjMatrixPanel.CustomizableEdges = customizableEdges1;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -130,11 +130,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges9;
+            weiMatrixPanel.CustomizableEdges = customizableEdges3;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -253,6 +253,28 @@
             panel1.Size = new Size(697, 40);
             panel1.TabIndex = 5;
             // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(525, 9);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(96, 24);
+            radioButton2.TabIndex = 7;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "End Node";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(400, 9);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(102, 24);
+            radioButton1.TabIndex = 6;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Start Node";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveFile, loadFile });
@@ -288,37 +310,37 @@
             // dFSToolStripMenuItem1
             // 
             dFSToolStripMenuItem1.Name = "dFSToolStripMenuItem1";
-            dFSToolStripMenuItem1.Size = new Size(224, 30);
+            dFSToolStripMenuItem1.Size = new Size(171, 30);
             dFSToolStripMenuItem1.Text = "DFS";
             // 
             // bFSToolStripMenuItem
             // 
             bFSToolStripMenuItem.Name = "bFSToolStripMenuItem";
-            bFSToolStripMenuItem.Size = new Size(224, 30);
+            bFSToolStripMenuItem.Size = new Size(171, 30);
             bFSToolStripMenuItem.Text = "BFS";
             // 
             // dijkstraToolStripMenuItem
             // 
             dijkstraToolStripMenuItem.Name = "dijkstraToolStripMenuItem";
-            dijkstraToolStripMenuItem.Size = new Size(224, 30);
+            dijkstraToolStripMenuItem.Size = new Size(171, 30);
             dijkstraToolStripMenuItem.Text = "Dijkstra";
             // 
             // aToolStripMenuItem
             // 
             aToolStripMenuItem.Name = "aToolStripMenuItem";
-            aToolStripMenuItem.Size = new Size(224, 30);
+            aToolStripMenuItem.Size = new Size(171, 30);
             aToolStripMenuItem.Text = "A*";
             // 
             // primToolStripMenuItem
             // 
             primToolStripMenuItem.Name = "primToolStripMenuItem";
-            primToolStripMenuItem.Size = new Size(224, 30);
+            primToolStripMenuItem.Size = new Size(171, 30);
             primToolStripMenuItem.Text = "Prim";
             // 
             // kruscalToolStripMenuItem
             // 
             kruscalToolStripMenuItem.Name = "kruscalToolStripMenuItem";
-            kruscalToolStripMenuItem.Size = new Size(224, 30);
+            kruscalToolStripMenuItem.Size = new Size(171, 30);
             kruscalToolStripMenuItem.Text = "Kruscal";
             // 
             // menuStrip1
@@ -335,39 +357,17 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges11;
+            Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
             Board.Size = new Size(684, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
             Board.MouseDown += Board_MouseDown;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(400, 9);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(102, 24);
-            radioButton1.TabIndex = 6;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Start Node";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(525, 9);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(96, 24);
-            radioButton2.TabIndex = 7;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "End Node";
-            radioButton2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -381,6 +381,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
