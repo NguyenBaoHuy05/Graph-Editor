@@ -87,6 +87,7 @@ namespace Graph_Editor
 
             }
         }
+
         private void CreateWeiMatrix()
         {
             weiMatrixPanel.Controls.Clear();
@@ -106,7 +107,14 @@ namespace Graph_Editor
                         txt.Location = new Point(j * (int)(weiMatrixPanel.Width / num), i * (int)(weiMatrixPanel.Width / num));
                     }
                     txt.Tag = (i, j);
-                    txt.Text = edges.ContainsKey((i, j)) ? edges[(i, j)].ToString() : "0";
+                    if(i == j)
+                    {
+                        txt.Text = "0";
+                    }
+                    else
+                    {
+                        txt.Text = edges.ContainsKey((i, j)) ? edges[(i, j)].ToString() : "\u221E";
+                    }
                     txt.FillColor = Color.Turquoise;
                     if (i == j) txt.Enabled = false;
                     txt.ForeColor = Color.White;
@@ -131,7 +139,7 @@ namespace Graph_Editor
                 {
                     adjList[i].Add(nodes[j]);
                     adjList[j].Add(nodes[i]);
-                    Board.Invalidate();;
+                    Board.Invalidate(); ;
                 }
             }
             else
@@ -140,7 +148,7 @@ namespace Graph_Editor
                 {
                     adjList[i].Remove(nodes[j]);
                     adjList[j].Remove(nodes[i]);
-                    Board.Invalidate();;
+                    Board.Invalidate(); 
                 }
             }
         }
@@ -154,7 +162,7 @@ namespace Graph_Editor
             if (e.Button == MouseButtons.Left)
             {
 
-                if (txt.Text == "0")
+                if (txt.Text == "\u221E")
                 {
                     adjList[row].Add(nodes[column]);
                     adjList[column].Add(nodes[row]);
@@ -186,7 +194,7 @@ namespace Graph_Editor
             }
             else
             {
-                if (txt.Text == "0")
+                if (txt.Text == "\u221E")
                 {
                     return;
                 }
@@ -203,7 +211,7 @@ namespace Graph_Editor
                     txt.Text = edges[(row, column)].ToString();
                 }
             }
-            Board.Invalidate();;
+            Board.Invalidate(); 
         }
 
 
@@ -220,8 +228,8 @@ namespace Graph_Editor
             if (txt.Text == "1")
             {
                 edges.Remove((row, column));
-                txt.Text = "0";
-                txt1.Text = "0";
+                txt.Text = "\u221E";
+                txt1.Text = "\u221E";
             }
 
             else
@@ -231,7 +239,7 @@ namespace Graph_Editor
                 txt1.Text = "1";
             }
 
-            Board.Invalidate();;
+            Board.Invalidate(); 
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
@@ -253,7 +261,7 @@ namespace Graph_Editor
                 );
 
                 btn.Location = newLocation;
-                Board.Invalidate();;
+                Board.Invalidate(); ;
             }
         }
 
@@ -290,7 +298,7 @@ namespace Graph_Editor
                         txt.Text = "1";
                         edges[(i, j)] = 1;
                         firstSelectedNode = null;
-                        Board.Invalidate();;
+                        Board.Invalidate(); ;
                     }
                 }
             }
@@ -355,16 +363,16 @@ namespace Graph_Editor
                     }
 
                     MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
-                    // Tiếp tục xử lý với ma trận `edges` nếu cần
+                    Board.Invalidate();
+                    CreateAdjMatrix();
+                    CreateWeiMatrix();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Error");
                 }
             }
-            Board.Invalidate();;
-            CreateAdjMatrix();
-            CreateWeiMatrix();
+
         }
 
         private void CreateNodeRandom()
@@ -379,12 +387,19 @@ namespace Graph_Editor
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
 
+            // Thiết lập vùng hiển thị hình tròn
+            GraphicsPath path = new GraphicsPath();
+            path.AddEllipse(0, 0, btn.Width, btn.Height);
+            btn.Region = new Region(path);
+
+
             Board.Controls.Add(btn);
             nodes.Add(btn);
 
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
             guna2Buttons.Add(btn);
             adjList.Add(guna2Buttons);
+
         }
 
         private void saveFiles(object sender, EventArgs e)

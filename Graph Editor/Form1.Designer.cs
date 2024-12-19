@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel2 = new Panel();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
@@ -39,6 +41,7 @@
             tabPage7 = new TabPage();
             weiMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage8 = new TabPage();
+            tabPage9 = new TabPage();
             tabPage1 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
@@ -59,13 +62,14 @@
             primToolStripMenuItem = new ToolStripMenuItem();
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
-            Board = new Panel();
+            Board = new Guna.UI2.WinForms.Guna2PictureBox();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -83,11 +87,11 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage8);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Controls.Add(tabPage9);
+            tabControl1.Location = new Point(0, 58);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(471, 739);
+            tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
             // 
             // tabPage2
@@ -97,16 +101,17 @@
             tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(463, 703);
+            tabPage2.Size = new Size(456, 456);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Adjacency Matrix";
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges1;
-            adjMatrixPanel.Location = new Point(6, 79);
+            adjMatrixPanel.CustomizableEdges = customizableEdges13;
+            adjMatrixPanel.Dock = DockStyle.Fill;
+            adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges14;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -117,16 +122,17 @@
             tabPage7.Location = new Point(4, 32);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(463, 703);
+            tabPage7.Size = new Size(456, 456);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "Weighted Matrix";
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges3;
-            weiMatrixPanel.Location = new Point(6, 79);
+            weiMatrixPanel.CustomizableEdges = customizableEdges15;
+            weiMatrixPanel.Dock = DockStyle.Fill;
+            weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges16;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -135,9 +141,19 @@
             tabPage8.BackColor = Color.DarkGray;
             tabPage8.Location = new Point(4, 32);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(463, 703);
+            tabPage8.Size = new Size(456, 456);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "Adjacency List";
+            // 
+            // tabPage9
+            // 
+            tabPage9.Location = new Point(4, 32);
+            tabPage9.Name = "tabPage9";
+            tabPage9.Padding = new Padding(3);
+            tabPage9.Size = new Size(456, 456);
+            tabPage9.TabIndex = 3;
+            tabPage9.Text = "Log";
+            tabPage9.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -268,37 +284,37 @@
             // dFSToolStripMenuItem1
             // 
             dFSToolStripMenuItem1.Name = "dFSToolStripMenuItem1";
-            dFSToolStripMenuItem1.Size = new Size(171, 30);
+            dFSToolStripMenuItem1.Size = new Size(224, 30);
             dFSToolStripMenuItem1.Text = "DFS";
             // 
             // bFSToolStripMenuItem
             // 
             bFSToolStripMenuItem.Name = "bFSToolStripMenuItem";
-            bFSToolStripMenuItem.Size = new Size(171, 30);
+            bFSToolStripMenuItem.Size = new Size(224, 30);
             bFSToolStripMenuItem.Text = "BFS";
             // 
             // dijkstraToolStripMenuItem
             // 
             dijkstraToolStripMenuItem.Name = "dijkstraToolStripMenuItem";
-            dijkstraToolStripMenuItem.Size = new Size(171, 30);
+            dijkstraToolStripMenuItem.Size = new Size(224, 30);
             dijkstraToolStripMenuItem.Text = "Dijkstra";
             // 
             // aToolStripMenuItem
             // 
             aToolStripMenuItem.Name = "aToolStripMenuItem";
-            aToolStripMenuItem.Size = new Size(171, 30);
+            aToolStripMenuItem.Size = new Size(224, 30);
             aToolStripMenuItem.Text = "A*";
             // 
             // primToolStripMenuItem
             // 
             primToolStripMenuItem.Name = "primToolStripMenuItem";
-            primToolStripMenuItem.Size = new Size(171, 30);
+            primToolStripMenuItem.Size = new Size(224, 30);
             primToolStripMenuItem.Text = "Prim";
             // 
             // kruscalToolStripMenuItem
             // 
             kruscalToolStripMenuItem.Name = "kruscalToolStripMenuItem";
-            kruscalToolStripMenuItem.Size = new Size(171, 30);
+            kruscalToolStripMenuItem.Size = new Size(224, 30);
             kruscalToolStripMenuItem.Text = "Kruscal";
             // 
             // menuStrip1
@@ -314,11 +330,16 @@
             // 
             // Board
             // 
-            Board.BackColor = Color.FromArgb(255, 255, 230);
-            Board.Location = new Point(12, 95);
+            Board.BackColor = Color.PeachPuff;
+            Board.CustomizableEdges = customizableEdges17;
+            Board.FillColor = Color.Bisque;
+            Board.ImageRotate = 0F;
+            Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.Size = new Size(668, 665);
-            Board.TabIndex = 6;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            Board.Size = new Size(684, 660);
+            Board.TabIndex = 0;
+            Board.TabStop = false;
             Board.Paint += Board_Paint;
             Board.MouseDown += Board_MouseDown;
             // 
@@ -343,6 +364,7 @@
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Board).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -375,6 +397,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem saveFile;
         private ToolStripMenuItem loadFile;
-        private Panel Board;
+        private Guna.UI2.WinForms.Guna2PictureBox Board;
+        private TabPage tabPage9;
     }
 }
