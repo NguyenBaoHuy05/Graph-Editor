@@ -20,6 +20,7 @@ namespace Graph_Editor
         public Form1()
         {
             InitializeComponent();
+            Board.Paint += new PaintEventHandler(this.Board_Paint);
         }
 
         private void CreateNode(Point point)
@@ -40,7 +41,7 @@ namespace Graph_Editor
                 btn.Region = new Region(path);
 
 
-                Controls.Add(btn);
+                Board.Controls.Add(btn);
                 nodes.Add(btn);
 
                 List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
@@ -69,7 +70,7 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Text = edges.ContainsKey((i, j)) ? "1": "0";
+                    txt.Text = edges.ContainsKey((i, j)) ? "1" : "0";
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
@@ -130,7 +131,7 @@ namespace Graph_Editor
                 {
                     adjList[i].Add(nodes[j]);
                     adjList[j].Add(nodes[i]);
-                    Invalidate();
+                    Board.Invalidate();;
                 }
             }
             else
@@ -139,7 +140,7 @@ namespace Graph_Editor
                 {
                     adjList[i].Remove(nodes[j]);
                     adjList[j].Remove(nodes[i]);
-                    Invalidate();
+                    Board.Invalidate();;
                 }
             }
         }
@@ -202,7 +203,7 @@ namespace Graph_Editor
                     txt.Text = edges[(row, column)].ToString();
                 }
             }
-            Invalidate();
+            Board.Invalidate();;
         }
 
 
@@ -230,7 +231,7 @@ namespace Graph_Editor
                 txt1.Text = "1";
             }
 
-            Invalidate();
+            Board.Invalidate();;
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
@@ -252,7 +253,7 @@ namespace Graph_Editor
                 );
 
                 btn.Location = newLocation;
-                Invalidate();
+                Board.Invalidate();;
             }
         }
 
@@ -289,59 +290,8 @@ namespace Graph_Editor
                         txt.Text = "1";
                         edges[(i, j)] = 1;
                         firstSelectedNode = null;
-                        Invalidate();
+                        Board.Invalidate();;
                     }
-                }
-            }
-        }
-
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
-        {
-            CreateNode(e.Location);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            //for (int i = 0; i < adjList.Count; ++i)
-            //{
-            //    Guna2CircleButton node1 = nodes[i];
-            //    for (int j = 0; j < adjList[i].Count; ++j)
-            //    {
-            //        Guna2CircleButton node2 = adjList[i][j];
-            //        Point point1 = new Point(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
-            //        Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
-            //        using (Pen pen = new Pen(Color.Black, 2))
-            //        {
-            //            pen.StartCap = LineCap.Round;
-            //            pen.EndCap = LineCap.Round;
-            //            e.Graphics.DrawLine(pen, point1, point2);
-            //        }
-            //    }
-            //}
-            foreach (var edge in edges.Keys)
-            {
-                var node1 = nodes[edge.Item1];
-                var node2 = nodes[edge.Item2];
-                Point point1 = new Point(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
-                Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
-
-
-                using (Pen pen = new Pen(Color.Black, 2))
-                {
-                    pen.StartCap = LineCap.Round;
-                    pen.EndCap = LineCap.Round;
-                    e.Graphics.DrawLine(pen, point1, point2);
-                }
-                //Them canh
-                Point midpoint = new Point((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2);
-
-
-                string edgeWeight = edges[(edge.Item1, edge.Item2)].ToString();
-                using (System.Drawing.Font font = new System.Drawing.Font("Arial", 10, FontStyle.Bold))
-                {
-                    e.Graphics.DrawString(edgeWeight, font, Brushes.Black, midpoint);
                 }
             }
         }
@@ -412,7 +362,7 @@ namespace Graph_Editor
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Error");
                 }
             }
-            Invalidate();
+            Board.Invalidate();;
             CreateAdjMatrix();
             CreateWeiMatrix();
         }
@@ -429,7 +379,7 @@ namespace Graph_Editor
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
 
-            Controls.Add(btn);
+            Board.Controls.Add(btn);
             nodes.Add(btn);
 
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
@@ -445,7 +395,7 @@ namespace Graph_Editor
                 // Ghi kích thước ma trận
                 writer.WriteLine(num);
 
-                foreach(Guna2TextBox txt in weiMatrixPanel.Controls)
+                foreach (Guna2TextBox txt in weiMatrixPanel.Controls)
                 {
                     var indices = (ValueTuple<int, int>)txt.Tag;
                     writer.Write(txt.Text);
@@ -475,6 +425,41 @@ namespace Graph_Editor
                     MessageBox.Show($"Đã xảy ra lỗi khi lưu file: {ex.Message}");
                 }
             }
+        }
+
+        private void Board_Paint(object sender, PaintEventArgs e)
+        {
+            //Board.OnPaint(e);
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            foreach (var edge in edges.Keys)
+            {
+                var node1 = nodes[edge.Item1];
+                var node2 = nodes[edge.Item2];
+                Point point1 = new Point(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
+                Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
+
+
+                using (Pen pen = new Pen(Color.Black, 2))
+                {
+                    pen.StartCap = LineCap.Round;
+                    pen.EndCap = LineCap.Round;
+                    e.Graphics.DrawLine(pen, point1, point2);
+                }
+                //Them canh
+                Point midpoint = new Point((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2);
+
+
+                string edgeWeight = edges[(edge.Item1, edge.Item2)].ToString();
+                using (System.Drawing.Font font = new System.Drawing.Font("Arial", 10, FontStyle.Bold))
+                {
+                    e.Graphics.DrawString(edgeWeight, font, Brushes.Black, midpoint);
+                }
+            }
+        }
+
+        private void Board_MouseDown(object sender, MouseEventArgs e)
+        {
+            CreateNode(e.Location);
         }
     }
 }

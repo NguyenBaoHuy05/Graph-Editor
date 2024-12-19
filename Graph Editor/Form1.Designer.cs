@@ -59,6 +59,7 @@
             primToolStripMenuItem = new ToolStripMenuItem();
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
+            Board = new Panel();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -244,14 +245,14 @@
             // saveFile
             // 
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(224, 30);
+            saveFile.Size = new Size(148, 30);
             saveFile.Text = "&Save";
             saveFile.Click += saveFiles;
             // 
             // loadFile
             // 
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(224, 30);
+            loadFile.Size = new Size(148, 30);
             loadFile.Text = "&Load";
             loadFile.Click += loadFile_Click;
             // 
@@ -311,19 +312,29 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
+            // Board
+            // 
+            Board.BackColor = Color.FromArgb(255, 255, 230);
+            Board.Location = new Point(12, 95);
+            Board.Name = "Board";
+            Board.Size = new Size(668, 665);
+            Board.TabIndex = 6;
+            Board.Paint += Board_Paint;
+            Board.MouseDown += Board_MouseDown;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1168, 772);
+            Controls.Add(Board);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Graph Editor";
-            MouseUp += Form1_MouseUp;
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
@@ -364,5 +375,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem saveFile;
         private ToolStripMenuItem loadFile;
+        private Panel Board;
     }
 }
