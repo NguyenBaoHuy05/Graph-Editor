@@ -49,6 +49,8 @@
             addNodes = new RadioButton();
             panel1 = new Panel();
             saveToolStripMenuItem = new ToolStripMenuItem();
+            saveFile = new ToolStripMenuItem();
+            loadFile = new ToolStripMenuItem();
             dFSToolStripMenuItem = new ToolStripMenuItem();
             dFSToolStripMenuItem1 = new ToolStripMenuItem();
             bFSToolStripMenuItem = new ToolStripMenuItem();
@@ -57,8 +59,6 @@
             primToolStripMenuItem = new ToolStripMenuItem();
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
-            saveToolStripMenuItem1 = new ToolStripMenuItem();
-            loadToolStripMenuItem = new ToolStripMenuItem();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -71,9 +71,9 @@
             // 
             panel2.Controls.Add(tabControl1);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(697, 32);
+            panel2.Location = new Point(697, 33);
             panel2.Name = "panel2";
-            panel2.Size = new Size(471, 740);
+            panel2.Size = new Size(471, 739);
             panel2.TabIndex = 2;
             // 
             // tabControl1
@@ -86,7 +86,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(471, 740);
+            tabControl1.Size = new Size(471, 739);
             tabControl1.TabIndex = 0;
             // 
             // tabPage2
@@ -96,7 +96,7 @@
             tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(463, 704);
+            tabPage2.Size = new Size(463, 703);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Adjacency Matrix";
             // 
@@ -116,7 +116,7 @@
             tabPage7.Location = new Point(4, 32);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(463, 704);
+            tabPage7.Size = new Size(463, 703);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "Weighted Matrix";
             // 
@@ -134,7 +134,7 @@
             tabPage8.BackColor = Color.DarkGray;
             tabPage8.Location = new Point(4, 32);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(463, 704);
+            tabPage8.Size = new Size(463, 703);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "Adjacency List";
             // 
@@ -227,63 +227,77 @@
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 32);
+            panel1.Location = new Point(0, 33);
             panel1.Name = "panel1";
             panel1.Size = new Size(697, 40);
             panel1.TabIndex = 5;
             // 
             // saveToolStripMenuItem
             // 
-            saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveToolStripMenuItem1, loadToolStripMenuItem });
-            saveToolStripMenuItem.Font = new Font("Roboto Black", 12F, FontStyle.Bold);
+            saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveFile, loadFile });
+            saveToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             saveToolStripMenuItem.ForeColor = Color.Black;
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(58, 28);
+            saveToolStripMenuItem.Size = new Size(61, 29);
             saveToolStripMenuItem.Text = "&File";
+            // 
+            // saveFile
+            // 
+            saveFile.Name = "saveFile";
+            saveFile.Size = new Size(224, 30);
+            saveFile.Text = "&Save";
+            saveFile.Click += saveFiles;
+            // 
+            // loadFile
+            // 
+            loadFile.Name = "loadFile";
+            loadFile.Size = new Size(224, 30);
+            loadFile.Text = "&Load";
+            loadFile.Click += loadFile_Click;
             // 
             // dFSToolStripMenuItem
             // 
             dFSToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dFSToolStripMenuItem1, bFSToolStripMenuItem, dijkstraToolStripMenuItem, aToolStripMenuItem, primToolStripMenuItem, kruscalToolStripMenuItem });
-            dFSToolStripMenuItem.Font = new Font("Roboto Black", 12F, FontStyle.Bold);
+            dFSToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             dFSToolStripMenuItem.ForeColor = Color.Black;
             dFSToolStripMenuItem.Name = "dFSToolStripMenuItem";
-            dFSToolStripMenuItem.Size = new Size(126, 28);
+            dFSToolStripMenuItem.Size = new Size(128, 29);
             dFSToolStripMenuItem.Text = "&Algorithms";
             // 
             // dFSToolStripMenuItem1
             // 
             dFSToolStripMenuItem1.Name = "dFSToolStripMenuItem1";
-            dFSToolStripMenuItem1.Size = new Size(165, 28);
+            dFSToolStripMenuItem1.Size = new Size(171, 30);
             dFSToolStripMenuItem1.Text = "DFS";
             // 
             // bFSToolStripMenuItem
             // 
             bFSToolStripMenuItem.Name = "bFSToolStripMenuItem";
-            bFSToolStripMenuItem.Size = new Size(165, 28);
+            bFSToolStripMenuItem.Size = new Size(171, 30);
             bFSToolStripMenuItem.Text = "BFS";
             // 
             // dijkstraToolStripMenuItem
             // 
             dijkstraToolStripMenuItem.Name = "dijkstraToolStripMenuItem";
-            dijkstraToolStripMenuItem.Size = new Size(165, 28);
+            dijkstraToolStripMenuItem.Size = new Size(171, 30);
             dijkstraToolStripMenuItem.Text = "Dijkstra";
             // 
             // aToolStripMenuItem
             // 
             aToolStripMenuItem.Name = "aToolStripMenuItem";
-            aToolStripMenuItem.Size = new Size(165, 28);
+            aToolStripMenuItem.Size = new Size(171, 30);
             aToolStripMenuItem.Text = "A*";
             // 
             // primToolStripMenuItem
             // 
             primToolStripMenuItem.Name = "primToolStripMenuItem";
-            primToolStripMenuItem.Size = new Size(165, 28);
+            primToolStripMenuItem.Size = new Size(171, 30);
             primToolStripMenuItem.Text = "Prim";
             // 
             // kruscalToolStripMenuItem
             // 
             kruscalToolStripMenuItem.Name = "kruscalToolStripMenuItem";
-            kruscalToolStripMenuItem.Size = new Size(165, 28);
+            kruscalToolStripMenuItem.Size = new Size(171, 30);
             kruscalToolStripMenuItem.Text = "Kruscal";
             // 
             // menuStrip1
@@ -293,21 +307,9 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, dFSToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1168, 32);
+            menuStrip1.Size = new Size(1168, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // saveToolStripMenuItem1
-            // 
-            saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            saveToolStripMenuItem1.Size = new Size(224, 28);
-            saveToolStripMenuItem1.Text = "&Save";
-            // 
-            // loadToolStripMenuItem
-            // 
-            loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            loadToolStripMenuItem.Size = new Size(224, 28);
-            loadToolStripMenuItem.Text = "&Load";
             // 
             // Form1
             // 
@@ -360,7 +362,7 @@
         private ToolStripMenuItem primToolStripMenuItem;
         private ToolStripMenuItem kruscalToolStripMenuItem;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem saveToolStripMenuItem1;
-        private ToolStripMenuItem loadToolStripMenuItem;
+        private ToolStripMenuItem saveFile;
+        private ToolStripMenuItem loadFile;
     }
 }

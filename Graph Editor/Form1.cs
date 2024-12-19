@@ -1,4 +1,4 @@
-using Guna.UI2.WinForms;
+﻿using Guna.UI2.WinForms;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
@@ -13,6 +13,7 @@ namespace Graph_Editor
         List<Guna2CircleButton> nodes = new List<Guna2CircleButton>();
 
         Guna2CircleButton firstSelectedNode = null;
+        string filePath;
 
         Dictionary<(int, int), int> edges = new Dictionary<(int, int), int>();
         List<List<Guna2CircleButton>> adjList = new List<List<Guna2CircleButton>>();
@@ -32,6 +33,12 @@ namespace Graph_Editor
                 btn.MouseDown += btn_MouseDown;
                 btn.MouseMove += btn_MouseMove;
                 btn.MouseUp += btn_MouseUp;
+
+                // Thiết lập vùng hiển thị hình tròn
+                GraphicsPath path = new GraphicsPath();
+                path.AddEllipse(0, 0, btn.Width, btn.Height);
+                btn.Region = new Region(path);
+
 
                 Controls.Add(btn);
                 nodes.Add(btn);
@@ -62,7 +69,7 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Text = "0";
+                    txt.Text = edges.ContainsKey((i, j)) ? "1": "0";
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
@@ -335,6 +342,137 @@ namespace Graph_Editor
                 using (System.Drawing.Font font = new System.Drawing.Font("Arial", 10, FontStyle.Bold))
                 {
                     e.Graphics.DrawString(edgeWeight, font, Brushes.Black, midpoint);
+                }
+            }
+        }
+
+        private void loadFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Text Files|*.txt|All Files|*.*",
+                Title = "Select a File"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+
+                try
+                {
+                    var fileContent = File.ReadAllLines(filePath); // Đọc từng dòng trong file
+                    if (fileContent.Length < 1)
+                    {
+                        MessageBox.Show("File trống hoặc không hợp lệ.", "Error");
+                        return;
+                    }
+
+                    // Lấy chiều dài ma trận từ dòng đầu tiên
+                    if (!int.TryParse(fileContent[0], out int length) || length < 1)
+                    {
+                        MessageBox.Show("Dữ liệu file không đúng định dạng. Chiều dài ma trận phải là số nguyên dương.", "Error");
+                        return;
+                    }
+
+                    // Kiểm tra tổng số dòng file đủ để chứa ma trận
+                    if (fileContent.Length < 1 + length)
+                    {
+                        MessageBox.Show("File không đủ dữ liệu để tạo ma trận.", "Error");
+                        return;
+                    }
+
+                    // Tạo ma trận từ dữ liệu file
+                    //int[,] edgesFile = new int[length, length];
+                    for (int i = 0; i < length; i++)
+                    {
+                        var line = fileContent[i + 1].Split(' '); // Tách từng giá trị bằng dấu cách
+                        if (line.Length != length)
+                        {
+                            MessageBox.Show($"Dòng {i + 2} không có đủ giá trị ({length} cột).", "Error");
+                            return;
+                        }
+
+                        for (int j = 0; j < length; j++)
+                        {
+                            if (!int.TryParse(line[j], out int value))
+                            {
+                                MessageBox.Show($"Giá trị không hợp lệ tại dòng {i + 2}, cột {j + 1}.", "Error");
+                                return;
+                            }
+                            if (value != 0) edges[(i, j)] = value;
+                        }
+                        CreateNodeRandom();
+                    }
+
+                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
+                    // Tiếp tục xử lý với ma trận `edges` nếu cần
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Error");
+                }
+            }
+            Invalidate();
+            CreateAdjMatrix();
+            CreateWeiMatrix();
+        }
+
+        private void CreateNodeRandom()
+        {
+            Random rd = new Random();
+            Guna2CircleButton btn = new Guna2CircleButton();
+            btn.Size = new Size(60, 60);
+
+            btn.Location = new Point(rd.Next(50, 550), rd.Next(100, 650));
+            btn.Text = num++.ToString();
+            btn.MouseDown += btn_MouseDown;
+            btn.MouseMove += btn_MouseMove;
+            btn.MouseUp += btn_MouseUp;
+
+            Controls.Add(btn);
+            nodes.Add(btn);
+
+            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
+            guna2Buttons.Add(btn);
+            adjList.Add(guna2Buttons);
+        }
+
+        private void saveFiles(object sender, EventArgs e)
+        {
+            filePath = "Graph" + num.ToString();
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Ghi kích thước ma trận
+                writer.WriteLine(num);
+
+                foreach(Guna2TextBox txt in weiMatrixPanel.Controls)
+                {
+                    var indices = (ValueTuple<int, int>)txt.Tag;
+                    writer.Write(txt.Text);
+                    if (indices.Item2 == num - 1) writer.WriteLine();
+                    if (indices.Item2 < num - 1) writer.Write(" ");
+                }
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = Path.GetFileName(filePath), // Đặt tên mặc định là tên file gốc
+                Filter = "Text Files|*.txt|All Files|*.*",
+                Title = "Save File To"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string savePath = saveFileDialog.FileName;
+
+                try
+                {
+                    File.Copy(filePath, savePath, true);
+                    MessageBox.Show($"File đã được lưu tại: {savePath}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi khi lưu file: {ex.Message}");
                 }
             }
         }
