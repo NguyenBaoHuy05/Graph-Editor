@@ -51,6 +51,32 @@ namespace Graph_Editor
                 CreateWeiMatrix();
             }
         }
+        private void CreateNodeRandom()
+        {
+            Random rd = new Random();
+            Guna2CircleButton btn = new Guna2CircleButton();
+            btn.Size = new Size(60, 60);
+
+            btn.Location = new Point(rd.Next(50, 550), rd.Next(100, 650));
+            btn.Text = num++.ToString();
+            btn.MouseDown += btn_MouseDown;
+            btn.MouseMove += btn_MouseMove;
+            btn.MouseUp += btn_MouseUp;
+
+            // Thiết lập vùng hiển thị hình tròn
+            GraphicsPath path = new GraphicsPath();
+            path.AddEllipse(0, 0, btn.Width, btn.Height);
+            btn.Region = new Region(path);
+
+
+            Board.Controls.Add(btn);
+            nodes.Add(btn);
+
+            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
+            guna2Buttons.Add(btn);
+            adjList.Add(guna2Buttons);
+
+        }
 
         private void CreateAdjMatrix()
         {
@@ -125,7 +151,6 @@ namespace Graph_Editor
                 }
             }
         }
-
 
         private void txt_TextChanged(object sender, EventArgs e)
         {
@@ -375,33 +400,7 @@ namespace Graph_Editor
 
         }
 
-        private void CreateNodeRandom()
-        {
-            Random rd = new Random();
-            Guna2CircleButton btn = new Guna2CircleButton();
-            btn.Size = new Size(60, 60);
-
-            btn.Location = new Point(rd.Next(50, 550), rd.Next(100, 650));
-            btn.Text = num++.ToString();
-            btn.MouseDown += btn_MouseDown;
-            btn.MouseMove += btn_MouseMove;
-            btn.MouseUp += btn_MouseUp;
-
-            // Thiết lập vùng hiển thị hình tròn
-            GraphicsPath path = new GraphicsPath();
-            path.AddEllipse(0, 0, btn.Width, btn.Height);
-            btn.Region = new Region(path);
-
-
-            Board.Controls.Add(btn);
-            nodes.Add(btn);
-
-            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-            guna2Buttons.Add(btn);
-            adjList.Add(guna2Buttons);
-
-        }
-
+      
         private void saveFiles(object sender, EventArgs e)
         {
             filePath = "Graph" + num.ToString();

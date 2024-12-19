@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel2 = new Panel();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
@@ -63,6 +63,8 @@
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -107,11 +109,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges13;
+            adjMatrixPanel.CustomizableEdges = customizableEdges7;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -128,11 +130,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges15;
+            weiMatrixPanel.CustomizableEdges = customizableEdges9;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges10;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -208,7 +210,7 @@
             // selectNode
             // 
             selectNode.AutoSize = true;
-            selectNode.Location = new Point(142, 9);
+            selectNode.Location = new Point(138, 9);
             selectNode.Name = "selectNode";
             selectNode.Size = new Size(114, 24);
             selectNode.TabIndex = 3;
@@ -230,7 +232,7 @@
             // addNodes
             // 
             addNodes.AutoSize = true;
-            addNodes.Location = new Point(280, 9);
+            addNodes.Location = new Point(275, 9);
             addNodes.Name = "addNodes";
             addNodes.Size = new Size(102, 24);
             addNodes.TabIndex = 4;
@@ -240,6 +242,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(radioButton2);
+            panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
@@ -331,17 +335,39 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges17;
+            Board.CustomizableEdges = customizableEdges11;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges12;
             Board.Size = new Size(684, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
             Board.MouseDown += Board_MouseDown;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(400, 9);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(102, 24);
+            radioButton1.TabIndex = 6;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Start Node";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(525, 9);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(96, 24);
+            radioButton2.TabIndex = 7;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "End Node";
+            radioButton2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -399,5 +425,7 @@
         private ToolStripMenuItem loadFile;
         private Guna.UI2.WinForms.Guna2PictureBox Board;
         private TabPage tabPage9;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }
