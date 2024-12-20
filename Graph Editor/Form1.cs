@@ -649,7 +649,7 @@ namespace Graph_Editor
 
         async private void Run_Click(object sender, EventArgs e)
         {
-            int time = int.Parse(timeRun.Text.TrimEnd('s')) * 1000;
+            int time = TrackBar.Value * 1000;
             Color color = Color.FromArgb(94, 148, 255);
             await Dijkstra.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, defaultColor, Color.Yellow, Color.Gray, time,Log);
         }
