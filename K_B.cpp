@@ -72,13 +72,13 @@ namespace Kruscal_BFS
             weight = _weight;
         }
 
-        // S?p x?p c?nh theo tr?ng s?
+        // Sắp xếp cạnh theo trọng số
         public static Comparison<Edge> CompareByWeight = (e1, e2) => e1.weight.CompareTo(e2.weight);
     }
 
     class Program
     {
-        // H�m nh?p d? th?
+        // Hàm nhập đồ thị
         static void InputGraph(ref Graph g)
         {
             g.dinh = int.Parse(Console.ReadLine());
@@ -92,7 +92,7 @@ namespace Kruscal_BFS
             }
         }
 
-        // H�m BFS
+        // Hàm BFS
         static void BFS(Graph g, int startVertex)
         {
             bool[] visited = new bool[g.dinh];
@@ -119,15 +119,15 @@ namespace Kruscal_BFS
         }
 
 
-        // H�m Kruskal
+        // Hàm Kruskal
         static void Kruskal(Graph g)
         {
             List<Edge> edges = new List<Edge>();
 
-            // �?c t?t c? c�c c?nh t? ma tr?n k?
+            // Đọc tất cả các cạnh từ ma trận kề
             for (int i = 0; i < g.dinh; i++)
             {
-                for (int j = i + 1; j < g.dinh; j++) // Ch? l?y n?a tr�n c?a ma tr?n k? (do d? th? v� hu?ng)
+                for (int j = i + 1; j < g.dinh; j++) // Chỉ lấy nửa trên của ma trận kề (do đồ thị vô hướng)
                 {
                     if (g.a[i, j] != 0)
                     {
@@ -136,17 +136,17 @@ namespace Kruscal_BFS
                 }
             }
 
-            // S?p x?p c�c c?nh theo tr?ng s?
+            // Sắp xếp các cạnh theo trọng số
             edges.Sort(Edge.CompareByWeight);
 
-            // S? d?ng Union-Find d? t?o c�y khung nh? nh?t
+            // Sử dụng Union-Find để tạo cây khung nhỏ nhất
             UnionFind uf = new UnionFind(g.dinh);
             int mstWeight = 0;
             Console.WriteLine("Edges in the MST:");
 
             foreach (var edge in edges)
             {
-                // N?u 2 d?nh c?a c?nh chua thu?c c�ng m?t t?p h?p, th�m c?nh v�o MST
+                // Nếu 2 đỉnh của cạnh chưa thuộc cùng một tập hợp, thêm cạnh vào MST
                 if (uf.Find(edge.u) != uf.Find(edge.v))
                 {
                     uf.UnionSets(edge.u, edge.v);
@@ -175,5 +175,4 @@ namespace Kruscal_BFS
     }
 
 }
-
 
