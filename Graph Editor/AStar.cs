@@ -11,8 +11,9 @@ namespace Graph_Editor
 {
     class AStar
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
         {
+            Log.Clear();
             int[] g = new int[n];
             double[] f = new double[n];
             double[] h = new double[n];
@@ -52,26 +53,17 @@ namespace Graph_Editor
                     nodes[node].FillColor = bestNodeColor;
                 }
 
-                await Task.Delay(delayMilliseconds); 
-
-                foreach (Guna2CircleButton button in adjList[node])
+                foreach(int neighbor in adjList[node])
                 {
-                    int neighbor = int.Parse(button.Text);
                     if (vis[neighbor]) continue;
                     if(neighbor != end)
                     {
                         nodes[neighbor].FillColor = visColor;
                     }
-                    int weight;
-                    if (edges.ContainsKey((node, neighbor, Color.Black)))
-                    {
-                        weight = edges[(node, neighbor, Color.Black)];
-                    }
-                    else
-                    {
-                        weight = edges[(neighbor, node, Color.Black)];
-                    }
+                    int max = Math.Max(neighbor, node);
+                    int min = Math.Min(neighbor, node);
 
+                    int weight = edges[(min, max, Color.Black)];
                     int dist = weight + g[node];
                     if (dist < g[neighbor])
                     {
