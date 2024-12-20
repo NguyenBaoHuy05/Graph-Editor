@@ -306,9 +306,9 @@
             timeRun.BackColor = Color.Transparent;
             timeRun.Location = new Point(618, 9);
             timeRun.Name = "timeRun";
-            timeRun.Size = new Size(28, 22);
+            timeRun.Size = new Size(17, 22);
             timeRun.TabIndex = 11;
-            timeRun.Text = "1.5s";
+            timeRun.Text = "1s";
             // 
             // Run
             // 
@@ -319,14 +319,17 @@
             Run.TabIndex = 10;
             Run.Text = "Run";
             Run.UseVisualStyleBackColor = false;
+            Run.Click += Run_Click;
             // 
             // TrackBar
             // 
             TrackBar.Location = new Point(480, 5);
+            TrackBar.Maximum = 10;
             TrackBar.Name = "TrackBar";
             TrackBar.Size = new Size(132, 29);
             TrackBar.TabIndex = 8;
             TrackBar.ThumbColor = Color.FromArgb(160, 113, 255);
+            TrackBar.Value = 10;
             TrackBar.ValueChanged += TrackBar_Value;
             // 
             // guna2vSeparator1

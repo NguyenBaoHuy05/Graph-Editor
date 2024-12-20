@@ -48,7 +48,6 @@ namespace Graph_Editor
                 EndNode.Maximum = num - 1;
 
                 List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-                guna2Buttons.Add(btn);
                 adjList.Add(guna2Buttons);
                 CreateAdjMatrix();
                 CreateWeiMatrix();
@@ -79,7 +78,6 @@ namespace Graph_Editor
             EndNode.Maximum = num - 1;
 
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-            guna2Buttons.Add(btn);
             adjList.Add(guna2Buttons);
 
         }
@@ -105,9 +103,7 @@ namespace Graph_Editor
 
             StartNode.Maximum = num - 1;
             EndNode.Maximum = num - 1;
-
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-            guna2Buttons.Add(btn);
             adjList.Add(guna2Buttons);
             CreateAdjMatrix();
             CreateWeiMatrix();
@@ -629,7 +625,7 @@ namespace Graph_Editor
 
         private void TrackBar_Value(object sender, EventArgs e)
         {
-            timeRun.Text = ((float)TrackBar.Value / 10).ToString() + "s";
+            timeRun.Text = (TrackBar.Value).ToString() + "s";
         }
 
         private void ChoseAlgorithm(object sender, EventArgs e)
@@ -649,6 +645,13 @@ namespace Graph_Editor
                     btn.FillColor = colorDialog.Color; // Đổi màu nền của Form
                 }
             }
+        }
+
+        async private void Run_Click(object sender, EventArgs e)
+        {
+            int time = int.Parse(timeRun.Text.TrimEnd('s')) * 1000;
+            Color color = Color.FromArgb(94, 148, 255);
+            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, color, Color.Yellow, Color.Gray, time);
         }
     }
 }
