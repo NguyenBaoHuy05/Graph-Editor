@@ -285,7 +285,7 @@ namespace Graph_Editor
                 int max = Math.Max(row, column);
                 int min = Math.Min(row, column);
                 if (edges.ContainsKey((min, max, defaultColor))) txt.Text = edges[(min, max, defaultColor)].ToString();
-                else txt.Text = "0";
+                else txt.Text = "\u221E";
             }
         }
 

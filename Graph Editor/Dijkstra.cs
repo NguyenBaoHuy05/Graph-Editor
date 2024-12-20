@@ -45,7 +45,6 @@ namespace Graph_Editor
                 {
                     if (completed[neighbor]) continue;
                     if(neighbor != end) nodes[neighbor].FillColor = visColor;
-                    await Task.Delay(delayMilliseconds);
 
                     int min = Math.Min(neighbor, current);
                     int max = Math.Max(neighbor, current);
@@ -56,11 +55,10 @@ namespace Graph_Editor
                         save[neighbor] = current; 
                         pq.Enqueue(neighbor, distances[neighbor]); 
                     }
-
+                    await Task.Delay(delayMilliseconds);
                     if (neighbor != end) nodes[neighbor].FillColor = defaultColor; 
                 }
 
-                await Task.Delay(delayMilliseconds);
             }
             if (distances[end] == int.MaxValue)
             {
