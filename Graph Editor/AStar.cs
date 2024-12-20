@@ -1,7 +1,9 @@
 ﻿using Guna.UI2.WinForms;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace Graph_Editor
 {
     class AStar
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds)
+        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
         {
             int[] g = new int[n];
             double[] f = new double[n];
@@ -41,8 +43,8 @@ namespace Graph_Editor
                 int node = pq.Dequeue();
                 if (node == end)
                 {
-                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds);
-                    break;
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, g);
+                    return;
                 }
 
                 if (node != start && node != end)
@@ -88,10 +90,13 @@ namespace Graph_Editor
 
                 vis[node] = true;
             }
+            Log.AppendText($"Không có đường đi từ {start} đến {end}\n");
         }
-        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds)
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, int[] g)
         {
-            for(int i = 0; i < n; ++i)
+            Log.AppendText($"Khoảng cách ngắn nhất từ {start} đến {end}: {g[end]}\n");
+            Log.AppendText("Đường đi: ");
+            for (int i = 0; i < n; ++i)
             {
                 nodes[i].FillColor = defaultColor;
             }
@@ -104,7 +109,8 @@ namespace Graph_Editor
                 S.Push(save[j]);
                 j = save[j];
             }
-            while(S.Count > 0)
+            Log.AppendText(string.Join(" -> ", S) + "\n");
+            while (S.Count > 0)
             {
                 int node = S.Pop();
                 nodes[node].FillColor = completedColor;

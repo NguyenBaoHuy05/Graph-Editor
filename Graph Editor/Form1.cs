@@ -16,7 +16,6 @@ namespace Graph_Editor
         string filePath;
 
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
-        List<List<Guna2CircleButton>> adjList = new List<List<Guna2CircleButton>>();
         public Form1()
         {
             InitializeComponent();
@@ -47,8 +46,7 @@ namespace Graph_Editor
                 StartNode.Maximum = num - 1;
                 EndNode.Maximum = num - 1;
 
-                List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-                adjList.Add(guna2Buttons);
+                
                 CreateAdjMatrix();
                 CreateWeiMatrix();
             }
@@ -77,8 +75,6 @@ namespace Graph_Editor
             StartNode.Maximum = num - 1;
             EndNode.Maximum = num - 1;
 
-            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-            adjList.Add(guna2Buttons);
 
         }
 
@@ -103,12 +99,10 @@ namespace Graph_Editor
 
             StartNode.Maximum = num - 1;
             EndNode.Maximum = num - 1;
-            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
-            adjList.Add(guna2Buttons);
             CreateAdjMatrix();
             CreateWeiMatrix();
         }
-        private void CreateAdjMatrix()
+        private void CreateAdjMatrix()      
         {
             adjMatrixPanel.Controls.Clear();
             for (int i = 0; i < num; ++i)
@@ -126,12 +120,14 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Text = edges.ContainsKey((i, j, defaultColor)) ? "1" : "0";
+                    int max = Math.Max(i, j);
+                    txt.Text = edges.ContainsKey((i != max ? i : j, max, defaultColor)) ? "1" : "0";
+
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
                     txt.BorderColor = Color.White;
-                    txt.BorderThickness = 1;
+                    txt.BorderThickness = 1; 
                     txt.Click += txt_Click;
                     txt.TextChanged += txt_TextChanged;
                     if (i == j)
@@ -163,14 +159,6 @@ namespace Graph_Editor
                         txt.Location = new Point(j * (int)(weiMatrixPanel.Width / num), i * (int)(weiMatrixPanel.Width / num));
                     }
                     txt.Tag = (i, j);
-                    if (i == j)
-                    {
-                        txt.Text = "0";
-                    }
-                    else
-                    {
-                        txt.Text = edges.ContainsKey((i, j, defaultColor)) ? edges[(i, j, defaultColor)].ToString() : "\u221E";
-                    }
                     txt.FillColor = Color.Turquoise;
                     if (i == j) txt.Enabled = false;
                     txt.ForeColor = Color.White;
@@ -181,28 +169,28 @@ namespace Graph_Editor
                 }
             }
         }
-
         private void txt_TextChanged(object sender, EventArgs e)
         {
             Guna2TextBox txt = (Guna2TextBox)sender;
-            int i = adjMatrixPanel.Controls.GetChildIndex(txt) / num;
-            int j = adjMatrixPanel.Controls.GetChildIndex(txt) % num;
+            var indices = (ValueTuple<int, int>)txt.Tag;
+            int row = indices.Item1;
+            int column = indices.Item2;
 
+            int max = Math.Max(row, column);
+            int min = Math.Min(row, column);
             if (txt.Text == "1")
             {
-                if (!adjList[i].Contains(nodes[j]))
+                if (!edges.ContainsKey((min, max, defaultColor)))
                 {
-                    adjList[i].Add(nodes[j]);
-                    adjList[j].Add(nodes[i]);
-                    Board.Invalidate(); ;
+                    edges[(min, max, defaultColor)] = 1;
+                    Board.Invalidate();
                 }
             }
             else
             {
-                if (adjList[i].Contains(nodes[j]))
+                if (!edges.ContainsKey((min, max, defaultColor)))
                 {
-                    adjList[i].Remove(nodes[j]);
-                    adjList[j].Remove(nodes[i]);
+                    edges.Remove((min, max, defaultColor));
                     Board.Invalidate();
                 }
             }
@@ -213,37 +201,20 @@ namespace Graph_Editor
             var indices = (ValueTuple<int, int>)txt.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
-            Guna2TextBox txt1 = weiMatrixPanel.Controls[column * num + row] as Guna2TextBox;
+            int max = Math.Max(row, column);
+            int min = Math.Min(row, column);
             if (e.Button == MouseButtons.Left)
             {
 
                 if (txt.Text == "\u221E")
                 {
-                    adjList[row].Add(nodes[column]);
-                    adjList[column].Add(nodes[row]);
-                    edges[(row, column, defaultColor)] = 1;
+ 
+                    edges[(min, max, defaultColor)] = 1;
                 }
                 else
                 {
-                    if (edges.ContainsKey((row, column, defaultColor)))
-                    {
-                        ++edges[(row, column, defaultColor)];
-                    }
-                    else
-                    {
-                        ++edges[(column, row, defaultColor)];
-                    }
+                    ++edges[(min, max, defaultColor)];
 
-                }
-                if (edges.ContainsKey((row, column, defaultColor)))
-                {
-                    txt.Text = edges[(row, column, defaultColor)].ToString();
-                    txt1.Text = edges[(row, column, defaultColor)].ToString();
-                }
-                else
-                {
-                    txt.Text = edges[(column, row, defaultColor)].ToString();
-                    txt1.Text = edges[(column, row, defaultColor)].ToString();
                 }
 
             }
@@ -255,20 +226,15 @@ namespace Graph_Editor
                 }
                 else if (txt.Text == "1")
                 {
-                    adjList[row].RemoveAt(column);
-                    adjList[column].RemoveAt(row);
-                    edges.Remove((row, column, defaultColor));
-                    txt.Text = "0";
+                    edges.Remove((min, max, defaultColor));
                 }
                 else
                 {
-                    edges[(row, column, defaultColor)]--;
-                    txt.Text = edges[(row, column, defaultColor)].ToString();
+                    --edges[(min, max, defaultColor)];
                 }
             }
             Board.Invalidate();
         }
-
 
         private void txt_Click(object sender, EventArgs e)
         {
@@ -277,21 +243,17 @@ namespace Graph_Editor
             var indices = (ValueTuple<int, int>)txt.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
-
-            Guna2TextBox txt1 = adjMatrixPanel.Controls[column * num + row] as Guna2TextBox;
+            int max = Math.Max(row, column);
+            int min = Math.Min(row, column);
 
             if (txt.Text == "1")
             {
-                edges.Remove((row, column, defaultColor));
-                txt.Text = "0";
-                txt1.Text = "0";
+                edges.Remove((min, max, defaultColor));
             }
 
             else
             {
-                edges[(row, column, defaultColor)] = 1;
-                txt.Text = "1";
-                txt1.Text = "1";
+                edges[(min, max, defaultColor)] = 1;
             }
 
             Board.Invalidate();
@@ -340,19 +302,11 @@ namespace Graph_Editor
                     {
                         int i = int.Parse(firstSelectedNode.Text);
                         int j = int.Parse(clickedNode.Text);
-                        adjList[i].Add(clickedNode);
-                        adjList[j].Add(firstSelectedNode);
-                        Guna2TextBox txt = adjMatrixPanel.Controls.OfType<Guna2TextBox>().ElementAt(i * num + j);
-                        Guna2TextBox txt1 = weiMatrixPanel.Controls.OfType<Guna2TextBox>().ElementAt(i * num + j);
-                        txt.Text = "1";
-                        txt1.Text = "1";
-                        txt = adjMatrixPanel.Controls.OfType<Guna2TextBox>().ElementAt(j * num + i);
-                        txt1 = weiMatrixPanel.Controls.OfType<Guna2TextBox>().ElementAt(j * num + i);
-                        txt1.Text = "1";
-                        txt.Text = "1";
-                        edges[(i, j, defaultColor)] = 1;
+                        int max = Math.Max(i, j);
+                        int min = Math.Min(i, j);
+                        edges[(min, max, defaultColor)] = 1;
                         firstSelectedNode = null;
-                        Board.Invalidate(); ;
+                        Board.Invalidate(); 
                     }
                 }
             }
@@ -409,7 +363,9 @@ namespace Graph_Editor
                                 MessageBox.Show($"Giá trị không hợp lệ tại dòng {i + 2}, cột {j + 1}.", "Error");
                                 return;
                             }
-                            if (value != 0) edges[(i, j, defaultColor)] = value;
+                            int max = Math.Max(i,j);
+                            int min = Math.Min(i,j);
+                            if (value != 0) edges[(min, max, defaultColor)] = value; // cai nay no load full cai ma tran 
                         }
                         CreateNodeRandom();
                     }
@@ -654,7 +610,7 @@ namespace Graph_Editor
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time);
+            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
         }
     }
 }
