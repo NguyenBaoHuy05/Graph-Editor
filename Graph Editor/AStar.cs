@@ -9,7 +9,7 @@ namespace Graph_Editor
 {
     class AStar
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color underVisColor, int delayMilliseconds)
+        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, int delayMilliseconds)
         {
             int[] g = new int[n];
             double[] f = new double[n];
@@ -42,6 +42,7 @@ namespace Graph_Editor
                 if (node == end)
                 {
                     nodes[end].FillColor = Color.Green;
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, delayMilliseconds);
                     break;
                 }
 
@@ -57,8 +58,11 @@ namespace Graph_Editor
                 {
                     int neighbor = int.Parse(button.Text);
                     if (vis[neighbor]) continue;
-                    nodes[neighbor].FillColor = visColor;
-                    nodes[neighbor].ForeColor = Color.Black;    
+                    if(neighbor != end)
+                    {
+                        nodes[neighbor].FillColor = visColor;
+                        nodes[neighbor].ForeColor = Color.Black;
+                    }
                     int weight;
                     if (edges.ContainsKey((node, neighbor, Color.Black)))
                     {
@@ -79,14 +83,39 @@ namespace Graph_Editor
                         pq.Enqueue(neighbor, f[neighbor]);
                     }
                     await Task.Delay(delayMilliseconds);
-                    nodes[neighbor].FillColor = defaultColor;
-                    nodes[neighbor].ForeColor = Color.White;
+                    if(neighbor != end)
+                    {
+                        nodes[neighbor].FillColor = defaultColor;
+                        nodes[neighbor].ForeColor = Color.White;
+                    }
                 }
 
                 vis[node] = true;
             }
         }
-
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, int delayMilliseconds)
+        {
+            for(int i = 0; i < n; ++i)
+            {
+                nodes[i].FillColor = defaultColor;
+                nodes[i].ForeColor = Color.White;
+            }
+            nodes[start].FillColor = Color.Red;
+            nodes[end].FillColor = Color.Green;
+            int j = end;
+            Stack<int> S = new Stack<int>();
+            while(save[j] != start)
+            {
+                S.Push(save[j]);
+                j = save[j];
+            }
+            while(S.Count > 0)
+            {
+                int node = S.Pop();
+                nodes[node].FillColor = Color.Orange;
+                await Task.Delay(delayMilliseconds);
+            }
+        }
         private static double Dist(Guna2CircleButton node1, Guna2CircleButton node2)
         {
             double x1 = node1.Location.X;
