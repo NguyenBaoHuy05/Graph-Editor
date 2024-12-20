@@ -365,7 +365,7 @@ namespace Graph_Editor
                             }
                             int max = Math.Max(i,j);
                             int min = Math.Min(i,j);
-                            if (value != 0) edges[(min, max, defaultColor)] = value; // cai nay no load full cai ma tran 
+                            if (value != 0) edges[(min, max, defaultColor)] = value;
                         }
                         CreateNodeRandom();
                     }
