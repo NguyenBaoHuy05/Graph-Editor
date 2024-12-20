@@ -44,6 +44,9 @@ namespace Graph_Editor
                 Board.Controls.Add(btn);
                 nodes.Add(btn);
 
+                StartNode.Maximum = num - 1;
+                EndNode.Maximum = num - 1;
+
                 List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
                 guna2Buttons.Add(btn);
                 adjList.Add(guna2Buttons);
@@ -72,6 +75,9 @@ namespace Graph_Editor
             Board.Controls.Add(btn);
             nodes.Add(btn);
 
+            StartNode.Maximum = num - 1;
+            EndNode.Maximum = num - 1;
+
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
             guna2Buttons.Add(btn);
             adjList.Add(guna2Buttons);
@@ -96,6 +102,9 @@ namespace Graph_Editor
 
             Board.Controls.Add(btn);
             nodes.Add(btn);
+
+            StartNode.Maximum = num - 1;
+            EndNode.Maximum = num - 1;
 
             List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
             guna2Buttons.Add(btn);
@@ -616,6 +625,30 @@ namespace Graph_Editor
             adjMatrixPanel.Controls.Clear();
             weiMatrixPanel.Controls.Clear();
             num = 0;
+        }
+
+        private void TrackBar_Value(object sender, EventArgs e)
+        {
+            timeRun.Text = ((float)TrackBar.Value / 10).ToString() + "s";
+        }
+
+        private void ChoseAlgorithm(object sender, EventArgs e)
+        {
+            Algo.Text = sender.ToString();
+        }
+
+        private void btnColor(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                // Hiển thị hộp thoại
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Sử dụng màu được chọn
+                    btn.FillColor = colorDialog.Color; // Đổi màu nền của Form
+                }
+            }
         }
     }
 }

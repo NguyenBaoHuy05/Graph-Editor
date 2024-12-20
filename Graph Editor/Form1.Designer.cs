@@ -34,6 +34,16 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -52,9 +62,11 @@
             addEdges = new RadioButton();
             addNodes = new RadioButton();
             panel1 = new Panel();
+            timeRun = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            Run = new Button();
+            TrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
+            guna2vSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
             Reset = new Button();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             saveGph = new ToolStripMenuItem();
@@ -63,21 +75,27 @@
             loadgph = new ToolStripMenuItem();
             loadtxtToolStripMenuItem = new ToolStripMenuItem();
             dFSToolStripMenuItem = new ToolStripMenuItem();
-            dFSToolStripMenuItem1 = new ToolStripMenuItem();
-            bFSToolStripMenuItem = new ToolStripMenuItem();
-            dijkstraToolStripMenuItem = new ToolStripMenuItem();
-            aToolStripMenuItem = new ToolStripMenuItem();
-            primToolStripMenuItem = new ToolStripMenuItem();
-            kruscalToolStripMenuItem = new ToolStripMenuItem();
+            dFS = new ToolStripMenuItem();
+            bFS = new ToolStripMenuItem();
+            dijkstra = new ToolStripMenuItem();
+            aStar = new ToolStripMenuItem();
+            Prim = new ToolStripMenuItem();
+            Kruscal = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
-            tabControl2 = new TabControl();
-            tabPage10 = new TabPage();
-            tabPage11 = new TabPage();
-            tabPage12 = new TabPage();
-            tabPage13 = new TabPage();
-            tabPage14 = new TabPage();
-            tabPage15 = new TabPage();
+            groupBox1 = new GroupBox();
+            Color3 = new Guna.UI2.WinForms.Guna2Button();
+            Color2 = new Guna.UI2.WinForms.Guna2Button();
+            Color1 = new Guna.UI2.WinForms.Guna2Button();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            Algo = new Label();
+            EndNode = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            StartNode = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
@@ -86,7 +104,9 @@
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
-            tabControl2.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)EndNode).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StartNode).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -268,9 +288,11 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(timeRun);
+            panel1.Controls.Add(Run);
+            panel1.Controls.Add(TrackBar);
+            panel1.Controls.Add(guna2vSeparator1);
             panel1.Controls.Add(Reset);
-            panel1.Controls.Add(radioButton2);
-            panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
@@ -279,38 +301,51 @@
             panel1.Size = new Size(733, 40);
             panel1.TabIndex = 5;
             // 
+            // timeRun
+            // 
+            timeRun.BackColor = Color.Transparent;
+            timeRun.Location = new Point(618, 9);
+            timeRun.Name = "timeRun";
+            timeRun.Size = new Size(28, 22);
+            timeRun.TabIndex = 11;
+            timeRun.Text = "1.5s";
+            // 
+            // Run
+            // 
+            Run.BackColor = Color.Cyan;
+            Run.Location = new Point(661, 6);
+            Run.Name = "Run";
+            Run.Size = new Size(69, 28);
+            Run.TabIndex = 10;
+            Run.Text = "Run";
+            Run.UseVisualStyleBackColor = false;
+            // 
+            // TrackBar
+            // 
+            TrackBar.Location = new Point(480, 5);
+            TrackBar.Name = "TrackBar";
+            TrackBar.Size = new Size(132, 29);
+            TrackBar.TabIndex = 8;
+            TrackBar.ThumbColor = Color.FromArgb(160, 113, 255);
+            TrackBar.ValueChanged += TrackBar_Value;
+            // 
+            // guna2vSeparator1
+            // 
+            guna2vSeparator1.Location = new Point(458, 3);
+            guna2vSeparator1.Name = "guna2vSeparator1";
+            guna2vSeparator1.Size = new Size(25, 34);
+            guna2vSeparator1.TabIndex = 9;
+            // 
             // Reset
             // 
             Reset.BackColor = Color.Cyan;
-            Reset.Location = new Point(624, 7);
+            Reset.Location = new Point(383, 7);
             Reset.Name = "Reset";
-            Reset.Size = new Size(70, 28);
+            Reset.Size = new Size(69, 28);
             Reset.TabIndex = 8;
             Reset.Text = "Reset";
             Reset.UseVisualStyleBackColor = false;
             Reset.Click += Reset_Click;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(525, 9);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(96, 24);
-            radioButton2.TabIndex = 7;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "End Node";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(400, 9);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(102, 24);
-            radioButton1.TabIndex = 6;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Start Node";
-            radioButton1.UseVisualStyleBackColor = true;
             // 
             // saveToolStripMenuItem
             // 
@@ -365,48 +400,54 @@
             // 
             // dFSToolStripMenuItem
             // 
-            dFSToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dFSToolStripMenuItem1, bFSToolStripMenuItem, dijkstraToolStripMenuItem, aToolStripMenuItem, primToolStripMenuItem, kruscalToolStripMenuItem });
+            dFSToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dFS, bFS, dijkstra, aStar, Prim, Kruscal });
             dFSToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             dFSToolStripMenuItem.ForeColor = Color.Black;
             dFSToolStripMenuItem.Name = "dFSToolStripMenuItem";
             dFSToolStripMenuItem.Size = new Size(128, 29);
             dFSToolStripMenuItem.Text = "&Algorithms";
             // 
-            // dFSToolStripMenuItem1
+            // dFS
             // 
-            dFSToolStripMenuItem1.Name = "dFSToolStripMenuItem1";
-            dFSToolStripMenuItem1.Size = new Size(171, 30);
-            dFSToolStripMenuItem1.Text = "DFS";
+            dFS.Name = "dFS";
+            dFS.Size = new Size(171, 30);
+            dFS.Text = "DFS";
+            dFS.Click += ChoseAlgorithm;
             // 
-            // bFSToolStripMenuItem
+            // bFS
             // 
-            bFSToolStripMenuItem.Name = "bFSToolStripMenuItem";
-            bFSToolStripMenuItem.Size = new Size(171, 30);
-            bFSToolStripMenuItem.Text = "BFS";
+            bFS.Name = "bFS";
+            bFS.Size = new Size(171, 30);
+            bFS.Text = "BFS";
+            bFS.Click += ChoseAlgorithm;
             // 
-            // dijkstraToolStripMenuItem
+            // dijkstra
             // 
-            dijkstraToolStripMenuItem.Name = "dijkstraToolStripMenuItem";
-            dijkstraToolStripMenuItem.Size = new Size(171, 30);
-            dijkstraToolStripMenuItem.Text = "Dijkstra";
+            dijkstra.Name = "dijkstra";
+            dijkstra.Size = new Size(171, 30);
+            dijkstra.Text = "Dijkstra";
+            dijkstra.Click += ChoseAlgorithm;
             // 
-            // aToolStripMenuItem
+            // aStar
             // 
-            aToolStripMenuItem.Name = "aToolStripMenuItem";
-            aToolStripMenuItem.Size = new Size(171, 30);
-            aToolStripMenuItem.Text = "A*";
+            aStar.Name = "aStar";
+            aStar.Size = new Size(171, 30);
+            aStar.Text = "A*";
+            aStar.Click += ChoseAlgorithm;
             // 
-            // primToolStripMenuItem
+            // Prim
             // 
-            primToolStripMenuItem.Name = "primToolStripMenuItem";
-            primToolStripMenuItem.Size = new Size(171, 30);
-            primToolStripMenuItem.Text = "Prim";
+            Prim.Name = "Prim";
+            Prim.Size = new Size(171, 30);
+            Prim.Text = "Prim";
+            Prim.Click += ChoseAlgorithm;
             // 
-            // kruscalToolStripMenuItem
+            // Kruscal
             // 
-            kruscalToolStripMenuItem.Name = "kruscalToolStripMenuItem";
-            kruscalToolStripMenuItem.Size = new Size(171, 30);
-            kruscalToolStripMenuItem.Text = "Kruscal";
+            Kruscal.Name = "Kruscal";
+            Kruscal.Size = new Size(171, 30);
+            Kruscal.Text = "Kruscal";
+            Kruscal.Click += ChoseAlgorithm;
             // 
             // menuStrip1
             // 
@@ -434,73 +475,170 @@
             Board.Paint += Board_Paint;
             Board.MouseDown += Board_MouseDown;
             // 
-            // tabControl2
+            // groupBox1
             // 
-            tabControl2.Controls.Add(tabPage10);
-            tabControl2.Controls.Add(tabPage11);
-            tabControl2.Controls.Add(tabPage12);
-            tabControl2.Controls.Add(tabPage13);
-            tabControl2.Controls.Add(tabPage14);
-            tabControl2.Controls.Add(tabPage15);
-            tabControl2.Location = new Point(743, 46);
-            tabControl2.Name = "tabControl2";
-            tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(464, 207);
-            tabControl2.TabIndex = 6;
+            groupBox1.Controls.Add(Color3);
+            groupBox1.Controls.Add(Color2);
+            groupBox1.Controls.Add(Color1);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(Algo);
+            groupBox1.Controls.Add(EndNode);
+            groupBox1.Controls.Add(StartNode);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new Point(739, 38);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(468, 189);
+            groupBox1.TabIndex = 8;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Algorithms ";
             // 
-            // tabPage10
+            // Color3
             // 
-            tabPage10.Location = new Point(4, 29);
-            tabPage10.Name = "tabPage10";
-            tabPage10.Size = new Size(456, 174);
-            tabPage10.TabIndex = 0;
-            tabPage10.Text = "DFS";
-            tabPage10.UseVisualStyleBackColor = true;
+            Color3.BorderRadius = 10;
+            Color3.CustomizableEdges = customizableEdges7;
+            Color3.DisabledState.BorderColor = Color.DarkGray;
+            Color3.DisabledState.CustomBorderColor = Color.DarkGray;
+            Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            Color3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            Color3.FillColor = Color.FromArgb(192, 255, 192);
+            Color3.Font = new Font("Segoe UI", 9F);
+            Color3.ForeColor = Color.White;
+            Color3.Location = new Point(320, 122);
+            Color3.Name = "Color3";
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            Color3.Size = new Size(51, 30);
+            Color3.TabIndex = 11;
+            Color3.Click += btnColor;
             // 
-            // tabPage11
+            // Color2
             // 
-            tabPage11.Location = new Point(4, 29);
-            tabPage11.Name = "tabPage11";
-            tabPage11.Size = new Size(242, 92);
-            tabPage11.TabIndex = 1;
-            tabPage11.Text = "BFS";
-            tabPage11.UseVisualStyleBackColor = true;
+            Color2.BorderRadius = 10;
+            Color2.CustomizableEdges = customizableEdges9;
+            Color2.DisabledState.BorderColor = Color.DarkGray;
+            Color2.DisabledState.CustomBorderColor = Color.DarkGray;
+            Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            Color2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            Color2.FillColor = Color.FromArgb(192, 255, 192);
+            Color2.Font = new Font("Segoe UI", 9F);
+            Color2.ForeColor = Color.White;
+            Color2.Location = new Point(320, 73);
+            Color2.Name = "Color2";
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            Color2.Size = new Size(51, 30);
+            Color2.TabIndex = 10;
+            Color2.Click += btnColor;
             // 
-            // tabPage12
+            // Color1
             // 
-            tabPage12.Location = new Point(4, 29);
-            tabPage12.Name = "tabPage12";
-            tabPage12.Size = new Size(242, 92);
-            tabPage12.TabIndex = 2;
-            tabPage12.Text = "Dijkstra";
-            tabPage12.UseVisualStyleBackColor = true;
+            Color1.BorderRadius = 10;
+            Color1.CustomizableEdges = customizableEdges11;
+            Color1.DisabledState.BorderColor = Color.DarkGray;
+            Color1.DisabledState.CustomBorderColor = Color.DarkGray;
+            Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            Color1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            Color1.FillColor = Color.FromArgb(192, 255, 192);
+            Color1.Font = new Font("Segoe UI", 9F);
+            Color1.ForeColor = Color.White;
+            Color1.Location = new Point(320, 26);
+            Color1.Name = "Color1";
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Color1.Size = new Size(51, 30);
+            Color1.TabIndex = 9;
+            Color1.Click += btnColor;
             // 
-            // tabPage13
+            // label6
             // 
-            tabPage13.Location = new Point(4, 29);
-            tabPage13.Name = "tabPage13";
-            tabPage13.Size = new Size(242, 92);
-            tabPage13.TabIndex = 3;
-            tabPage13.Text = "A*";
-            tabPage13.UseVisualStyleBackColor = true;
+            label6.Location = new Point(198, 125);
+            label6.Name = "label6";
+            label6.Size = new Size(107, 34);
+            label6.TabIndex = 8;
+            label6.Text = "ColorViewed:";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tabPage14
+            // label5
             // 
-            tabPage14.Location = new Point(4, 29);
-            tabPage14.Name = "tabPage14";
-            tabPage14.Size = new Size(242, 92);
-            tabPage14.TabIndex = 4;
-            tabPage14.Text = "Kruscal";
-            tabPage14.UseVisualStyleBackColor = true;
+            label5.Location = new Point(198, 73);
+            label5.Name = "label5";
+            label5.Size = new Size(125, 34);
+            label5.TabIndex = 7;
+            label5.Text = "ColorUnderView:";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tabPage15
+            // label4
             // 
-            tabPage15.Location = new Point(4, 29);
-            tabPage15.Name = "tabPage15";
-            tabPage15.Size = new Size(242, 92);
-            tabPage15.TabIndex = 5;
-            tabPage15.Text = "Prim";
-            tabPage15.UseVisualStyleBackColor = true;
+            label4.Location = new Point(198, 23);
+            label4.Name = "label4";
+            label4.Size = new Size(107, 34);
+            label4.TabIndex = 6;
+            label4.Text = "ColorNotView:";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Algo
+            // 
+            Algo.AutoSize = true;
+            Algo.Location = new Point(115, 132);
+            Algo.Name = "Algo";
+            Algo.Size = new Size(45, 20);
+            Algo.TabIndex = 5;
+            Algo.Text = "None";
+            Algo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // EndNode
+            // 
+            EndNode.BackColor = Color.Transparent;
+            EndNode.CustomizableEdges = customizableEdges13;
+            EndNode.Font = new Font("Segoe UI", 9F);
+            EndNode.Location = new Point(115, 77);
+            EndNode.Margin = new Padding(3, 4, 3, 4);
+            EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            EndNode.Name = "EndNode";
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            EndNode.Size = new Size(43, 30);
+            EndNode.TabIndex = 4;
+            // 
+            // StartNode
+            // 
+            StartNode.BackColor = Color.Transparent;
+            StartNode.CustomizableEdges = customizableEdges15;
+            StartNode.Font = new Font("Segoe UI", 9F);
+            StartNode.Location = new Point(115, 27);
+            StartNode.Margin = new Padding(3, 4, 3, 4);
+            StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            StartNode.Name = "StartNode";
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            StartNode.Size = new Size(43, 30);
+            StartNode.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.Location = new Point(16, 125);
+            label3.Name = "label3";
+            label3.Size = new Size(93, 34);
+            label3.TabIndex = 2;
+            label3.Text = "Algorithm:";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(16, 73);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 34);
+            label2.TabIndex = 1;
+            label2.Text = "End Node:";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(16, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(93, 34);
+            label1.TabIndex = 0;
+            label1.Text = "Start Node:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -508,7 +646,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1214, 772);
-            Controls.Add(tabControl2);
+            Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(Board);
             Controls.Add(panel1);
@@ -527,7 +665,10 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Board).EndInit();
-            tabControl2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)EndNode).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StartNode).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -550,19 +691,17 @@
         private Panel panel1;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem dFSToolStripMenuItem;
-        private ToolStripMenuItem dFSToolStripMenuItem1;
-        private ToolStripMenuItem bFSToolStripMenuItem;
-        private ToolStripMenuItem dijkstraToolStripMenuItem;
-        private ToolStripMenuItem aToolStripMenuItem;
-        private ToolStripMenuItem primToolStripMenuItem;
-        private ToolStripMenuItem kruscalToolStripMenuItem;
+        private ToolStripMenuItem dFS;
+        private ToolStripMenuItem bFS;
+        private ToolStripMenuItem dijkstra;
+        private ToolStripMenuItem aStar;
+        private ToolStripMenuItem Prim;
+        private ToolStripMenuItem Kruscal;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem saveFile;
         private ToolStripMenuItem loadFile;
         private Guna.UI2.WinForms.Guna2PictureBox Board;
         private TabPage tabPage9;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
         private Button Reset;
         private RichTextBox richTextBox1;
         private RichTextBox richTextBox2;
@@ -570,12 +709,22 @@
         private ToolStripMenuItem loadgph;
         private ToolStripMenuItem savetxtToolStripMenuItem;
         private ToolStripMenuItem loadtxtToolStripMenuItem;
-        private TabControl tabControl2;
-        private TabPage tabPage10;
-        private TabPage tabPage11;
-        private TabPage tabPage12;
-        private TabPage tabPage13;
-        private TabPage tabPage14;
-        private TabPage tabPage15;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2vSeparator1;
+        private Button Run;
+        private Guna.UI2.WinForms.Guna2TrackBar TrackBar;
+        private Guna.UI2.WinForms.Guna2HtmlLabel timeRun;
+        private GroupBox groupBox1;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Guna.UI2.WinForms.Guna2NumericUpDown StartNode;
+        private Label Algo;
+        private Guna.UI2.WinForms.Guna2NumericUpDown EndNode;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Guna.UI2.WinForms.Guna2Button Color3;
+        private Guna.UI2.WinForms.Guna2Button Color2;
+        private Guna.UI2.WinForms.Guna2Button Color1;
     }
 }
