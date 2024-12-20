@@ -11,32 +11,26 @@ namespace Graph_Editor
     {
         public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
         {
-            int[] distances = new int[n]; // Khoảng cách từ nguồn đến các đỉnh
-            bool[] completed = new bool[n]; // Đỉnh đã được duyệt
-            int[] save = new int[n]; // Lưu vết đường đi
+            int[] distances = new int[n];
+            bool[] completed = new bool[n]; 
+            int[] save = new int[n];
 
-            // Khởi tạo khoảng cách ban đầu
             for (int i = 0; i < n; i++)
             {
-                distances[i] = int.MaxValue; // Ban đầu khoảng cách là vô cực
-                completed[i] = false; // Chưa có đỉnh nào được thăm
-                save[i] = -1; // Không có lưu vết
+                distances[i] = int.MaxValue;
+                completed[i] = false; 
+                save[i] = -1;
             }
-
-            // Đặt khoảng cách từ start đến chính nó là 0
             distances[start] = 0;
 
-            // Tạo hàng đợi ưu tiên
             var pq = new PriorityQueue<int, int>();
             pq.Enqueue(start, 0);
-
-            // Đổi màu các đỉnh nguồn và đích
             nodes[start].FillColor = Color.Red;
             nodes[end].FillColor = Color.Green;
 
-            while (pq.Count > 0 && !completed[end]) // Khi chưa duyệt hết hoặc chưa tìm được đường đi
+            while (pq.Count > 0 && !completed[end])
             {
-                int current = pq.Dequeue(); // Lấy đỉnh có khoảng cách nhỏ nhất
+                int current = pq.Dequeue(); 
                 if(current == end)
                 {
                     await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, distances);
@@ -44,11 +38,9 @@ namespace Graph_Editor
                 }
                 if (current != start && current != end) nodes[current].FillColor = bestNodeColor;
 
-                // Nếu đỉnh đã hoàn tất, bỏ qua
+      
                 if (completed[current]) continue;
                 completed[current] = true;
-
-                // Duyệt các đỉnh kề
                 foreach(int neighbor in adjList[current])
                 {
                     if (completed[neighbor]) continue;
@@ -61,16 +53,15 @@ namespace Graph_Editor
                        distances[current] + edges[(min, max, Color.Black)] < distances[neighbor])
                     {
                         distances[neighbor] = distances[current] + edges[(min, max, Color.Black)];
-                        save[neighbor] = current; // Lưu vết
-                        pq.Enqueue(neighbor, distances[neighbor]); // Thêm vào hàng đợi
+                        save[neighbor] = current; 
+                        pq.Enqueue(neighbor, distances[neighbor]); 
                     }
 
-                    if (neighbor != end) nodes[neighbor].FillColor = defaultColor; // Trả lại màu sau khi duyệt
+                    if (neighbor != end) nodes[neighbor].FillColor = defaultColor; 
                 }
 
                 await Task.Delay(delayMilliseconds);
             }
-            // Hiển thị kết quả
             if (distances[end] == int.MaxValue)
             {
                 Log.AppendText($"Không có đường đi từ {start} đến {end}\n");
