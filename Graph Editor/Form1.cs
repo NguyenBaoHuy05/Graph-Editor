@@ -78,6 +78,31 @@ namespace Graph_Editor
 
         }
 
+        private void CreateNodeGph(Point point)
+        {
+            Guna2CircleButton btn = new Guna2CircleButton();
+            btn.Size = new Size(60, 60);
+            btn.Location = point;
+            btn.Text = num++.ToString();
+            btn.MouseDown += btn_MouseDown;
+            btn.MouseMove += btn_MouseMove;
+            btn.MouseUp += btn_MouseUp;
+
+            // Thiết lập vùng hiển thị hình tròn
+            GraphicsPath path = new GraphicsPath();
+            path.AddEllipse(0, 0, btn.Width, btn.Height);
+            btn.Region = new Region(path);
+
+
+            Board.Controls.Add(btn);
+            nodes.Add(btn);
+
+            List<Guna2CircleButton> guna2Buttons = new List<Guna2CircleButton>();
+            guna2Buttons.Add(btn);
+            adjList.Add(guna2Buttons);
+            CreateAdjMatrix();
+            CreateWeiMatrix();
+        }
         private void CreateAdjMatrix()
         {
             adjMatrixPanel.Controls.Clear();
@@ -96,7 +121,7 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Text = edges.ContainsKey((i, j,defaultColor)) ? "1" : "0";
+                    txt.Text = edges.ContainsKey((i, j, defaultColor)) ? "1" : "0";
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
@@ -133,7 +158,7 @@ namespace Graph_Editor
                         txt.Location = new Point(j * (int)(weiMatrixPanel.Width / num), i * (int)(weiMatrixPanel.Width / num));
                     }
                     txt.Tag = (i, j);
-                    if(i == j)
+                    if (i == j)
                     {
                         txt.Text = "0";
                     }
@@ -173,7 +198,7 @@ namespace Graph_Editor
                 {
                     adjList[i].Remove(nodes[j]);
                     adjList[j].Remove(nodes[i]);
-                    Board.Invalidate(); 
+                    Board.Invalidate();
                 }
             }
         }
@@ -236,7 +261,7 @@ namespace Graph_Editor
                     txt.Text = edges[(row, column, defaultColor)].ToString();
                 }
             }
-            Board.Invalidate(); 
+            Board.Invalidate();
         }
 
 
@@ -264,7 +289,7 @@ namespace Graph_Editor
                 txt1.Text = "1";
             }
 
-            Board.Invalidate(); 
+            Board.Invalidate();
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
@@ -284,7 +309,6 @@ namespace Graph_Editor
                     btn.Left + e.X - startPos.X,
                     btn.Top + e.Y - startPos.Y
                 );
-
                 btn.Location = newLocation;
                 Board.Invalidate(); ;
             }
@@ -336,11 +360,9 @@ namespace Graph_Editor
                 Filter = "Text Files|*.txt|All Files|*.*",
                 Title = "Select a File"
             };
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-
                 try
                 {
                     var fileContent = File.ReadAllLines(filePath); // Đọc từng dòng trong file
@@ -360,7 +382,7 @@ namespace Graph_Editor
                     // Kiểm tra tổng số dòng file đủ để chứa ma trận
                     if (fileContent.Length < 1 + length)
                     {
-                        MessageBox.Show("File không đủ dữ liệu để tạo ma trận.", "Error");
+                        MessageBox.Show("File không đủ dữ liệu để tạo graph.", "Error");
                         return;
                     }
 
@@ -400,7 +422,7 @@ namespace Graph_Editor
 
         }
 
-      
+
         private void saveFiles(object sender, EventArgs e)
         {
             filePath = "Graph" + num.ToString();
@@ -440,7 +462,116 @@ namespace Graph_Editor
                 }
             }
         }
+        private void saveGph_Click(object sender, EventArgs e)
+        {
+            filePath = "Graph" + num.ToString();
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Ghi kích thước ma trận
+                writer.WriteLine(num);
 
+                for (int i = 0; i < nodes.Count; i++)
+                {
+                    writer.Write(nodes[i].Location.X + " " + nodes[i].Location.Y);
+                    writer.WriteLine();
+                }
+                writer.WriteLine(edges.Count);
+                foreach (var edge in edges)
+                {
+                    writer.Write(edge.Key.Item1 + " " + edge.Key.Item2 + " " + edge.Value);
+                    writer.WriteLine();
+                }
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = Path.GetFileName(filePath), // Đặt tên mặc định là tên file gốc
+                Filter = "Text Files|*.gph|All Files|*.*",
+                Title = "Save File To"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string savePath = saveFileDialog.FileName;
+
+                try
+                {
+                    File.Copy(filePath, savePath, true);
+                    MessageBox.Show($"File đã được lưu tại: {savePath}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi khi lưu file: {ex.Message}");
+                }
+            }
+        }
+
+        private void loadgph_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Text Files|*.gph|All Files|*.*",
+                Title = "Select a File"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+
+                try
+                {
+                    var fileContent = File.ReadAllLines(filePath); // Đọc từng dòng trong file
+                    if (fileContent.Length < 1)
+                    {
+                        MessageBox.Show("File trống hoặc không hợp lệ.", "Error");
+                        return;
+                    }
+
+                    // Lấy chiều dài ma trận từ dòng đầu tiên
+                    if (!int.TryParse(fileContent[0], out int length) || length < 1)
+                    {
+                        MessageBox.Show($"Dữ liệu file không đúng định dạng. Chiều dài ma trận phải là số nguyên dương.s", "Error");
+                        return;
+                    }
+
+                    // Kiểm tra tổng số dòng file đủ để chứa ma trận
+                    if (fileContent.Length < 1 + length)
+                    {
+                        MessageBox.Show("File không đủ dữ liệu để tạo ma trận.", "Error");
+                        return;
+                    }
+
+                    // Tạo ma trận từ dữ liệu files
+                    for (int i = 0; i < length; i++)
+                    {
+                        var line = fileContent[i + 1].Split(' '); // Tách từng giá trị bằng dấu cách
+                        int x = int.Parse(line[0]);
+                        int y = int.Parse(line[1]);
+                        CreateNodeGph(new Point(x, y));
+                    }
+
+                    int length1 = int.Parse(fileContent[1 + length]);
+
+                    for (int i = 0; i < length1; i++)
+                    {
+                        var line = fileContent[i + 2 + length].Split(' '); // Tách từng giá trị bằng dấu cách
+                        int x = int.Parse(line[0]);
+                        int y = int.Parse(line[1]);
+                        int z = int.Parse(line[2]);
+                        edges[(x, y, defaultColor)] = z;
+                    }
+
+                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
+                    CreateAdjMatrix();
+                    CreateWeiMatrix();
+                    Board.Invalidate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Error");
+                }
+            }
+        }
         private void Board_Paint(object sender, PaintEventArgs e)
         {
             //Board.OnPaint(e);
@@ -474,6 +605,17 @@ namespace Graph_Editor
         private void Board_MouseDown(object sender, MouseEventArgs e)
         {
             CreateNode(e.Location);
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            Board.Controls.Clear();
+            edges.Clear();
+            nodes.Clear();
+            Board.Invalidate();
+            adjMatrixPanel.Controls.Clear();
+            weiMatrixPanel.Controls.Clear();
+            num = 0;
         }
     }
 }

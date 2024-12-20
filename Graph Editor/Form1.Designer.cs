@@ -34,14 +34,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            panel2 = new Panel();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage7 = new TabPage();
             weiMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage8 = new TabPage();
+            richTextBox1 = new RichTextBox();
             tabPage9 = new TabPage();
+            richTextBox2 = new RichTextBox();
             tabPage1 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
@@ -51,11 +52,16 @@
             addEdges = new RadioButton();
             addNodes = new RadioButton();
             panel1 = new Panel();
+            Reset = new Button();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
+            saveGph = new ToolStripMenuItem();
+            savetxtToolStripMenuItem = new ToolStripMenuItem();
             loadFile = new ToolStripMenuItem();
+            loadgph = new ToolStripMenuItem();
+            loadtxtToolStripMenuItem = new ToolStripMenuItem();
             dFSToolStripMenuItem = new ToolStripMenuItem();
             dFSToolStripMenuItem1 = new ToolStripMenuItem();
             bFSToolStripMenuItem = new ToolStripMenuItem();
@@ -65,23 +71,23 @@
             kruscalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
-            panel2.SuspendLayout();
+            tabControl2 = new TabControl();
+            tabPage10 = new TabPage();
+            tabPage11 = new TabPage();
+            tabPage12 = new TabPage();
+            tabPage13 = new TabPage();
+            tabPage14 = new TabPage();
+            tabPage15 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
+            tabPage8.SuspendLayout();
+            tabPage9.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
+            tabControl2.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(tabControl1);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(697, 33);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(471, 739);
-            panel2.TabIndex = 2;
             // 
             // tabControl1
             // 
@@ -90,7 +96,7 @@
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage8);
             tabControl1.Controls.Add(tabPage9);
-            tabControl1.Location = new Point(0, 58);
+            tabControl1.Location = new Point(743, 259);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
@@ -140,15 +146,26 @@
             // 
             // tabPage8
             // 
-            tabPage8.BackColor = Color.DarkGray;
+            tabPage8.BackColor = Color.White;
+            tabPage8.Controls.Add(richTextBox1);
             tabPage8.Location = new Point(4, 32);
             tabPage8.Name = "tabPage8";
             tabPage8.Size = new Size(456, 456);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "Adjacency List";
             // 
+            // richTextBox1
+            // 
+            richTextBox1.Dock = DockStyle.Fill;
+            richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(456, 456);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "";
+            // 
             // tabPage9
             // 
+            tabPage9.Controls.Add(richTextBox2);
             tabPage9.Location = new Point(4, 32);
             tabPage9.Name = "tabPage9";
             tabPage9.Padding = new Padding(3);
@@ -156,6 +173,15 @@
             tabPage9.TabIndex = 3;
             tabPage9.Text = "Log";
             tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.Dock = DockStyle.Fill;
+            richTextBox2.Location = new Point(3, 3);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(450, 450);
+            richTextBox2.TabIndex = 0;
+            richTextBox2.Text = "";
             // 
             // tabPage1
             // 
@@ -242,16 +268,27 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(Reset);
             panel1.Controls.Add(radioButton2);
             panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 33);
             panel1.Name = "panel1";
-            panel1.Size = new Size(697, 40);
+            panel1.Size = new Size(733, 40);
             panel1.TabIndex = 5;
+            // 
+            // Reset
+            // 
+            Reset.BackColor = Color.Cyan;
+            Reset.Location = new Point(624, 7);
+            Reset.Name = "Reset";
+            Reset.Size = new Size(70, 28);
+            Reset.TabIndex = 8;
+            Reset.Text = "Reset";
+            Reset.UseVisualStyleBackColor = false;
+            Reset.Click += Reset_Click;
             // 
             // radioButton2
             // 
@@ -286,17 +323,45 @@
             // 
             // saveFile
             // 
+            saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
             saveFile.Name = "saveFile";
             saveFile.Size = new Size(148, 30);
             saveFile.Text = "&Save";
-            saveFile.Click += saveFiles;
+            // 
+            // saveGph
+            // 
+            saveGph.Name = "saveGph";
+            saveGph.Size = new Size(196, 30);
+            saveGph.Text = "Save .gph";
+            saveGph.Click += saveGph_Click;
+            // 
+            // savetxtToolStripMenuItem
+            // 
+            savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
+            savetxtToolStripMenuItem.Size = new Size(196, 30);
+            savetxtToolStripMenuItem.Text = "Save .txt";
+            savetxtToolStripMenuItem.Click += saveFiles;
             // 
             // loadFile
             // 
+            loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
             loadFile.Size = new Size(148, 30);
             loadFile.Text = "&Load";
-            loadFile.Click += loadFile_Click;
+            // 
+            // loadgph
+            // 
+            loadgph.Name = "loadgph";
+            loadgph.Size = new Size(194, 30);
+            loadgph.Text = "Load .gph";
+            loadgph.Click += loadgph_Click;
+            // 
+            // loadtxtToolStripMenuItem
+            // 
+            loadtxtToolStripMenuItem.Name = "loadtxtToolStripMenuItem";
+            loadtxtToolStripMenuItem.Size = new Size(194, 30);
+            loadtxtToolStripMenuItem.Text = "Load .txt";
+            loadtxtToolStripMenuItem.Click += loadFile_Click;
             // 
             // dFSToolStripMenuItem
             // 
@@ -350,7 +415,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, dFSToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1168, 33);
+            menuStrip1.Size = new Size(1214, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -363,41 +428,111 @@
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
             Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Board.Size = new Size(684, 660);
+            Board.Size = new Size(726, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
             Board.MouseDown += Board_MouseDown;
+            // 
+            // tabControl2
+            // 
+            tabControl2.Controls.Add(tabPage10);
+            tabControl2.Controls.Add(tabPage11);
+            tabControl2.Controls.Add(tabPage12);
+            tabControl2.Controls.Add(tabPage13);
+            tabControl2.Controls.Add(tabPage14);
+            tabControl2.Controls.Add(tabPage15);
+            tabControl2.Location = new Point(743, 46);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new Size(464, 207);
+            tabControl2.TabIndex = 6;
+            // 
+            // tabPage10
+            // 
+            tabPage10.Location = new Point(4, 29);
+            tabPage10.Name = "tabPage10";
+            tabPage10.Size = new Size(456, 174);
+            tabPage10.TabIndex = 0;
+            tabPage10.Text = "DFS";
+            tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabPage11
+            // 
+            tabPage11.Location = new Point(4, 29);
+            tabPage11.Name = "tabPage11";
+            tabPage11.Size = new Size(242, 92);
+            tabPage11.TabIndex = 1;
+            tabPage11.Text = "BFS";
+            tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage12
+            // 
+            tabPage12.Location = new Point(4, 29);
+            tabPage12.Name = "tabPage12";
+            tabPage12.Size = new Size(242, 92);
+            tabPage12.TabIndex = 2;
+            tabPage12.Text = "Dijkstra";
+            tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tabPage13
+            // 
+            tabPage13.Location = new Point(4, 29);
+            tabPage13.Name = "tabPage13";
+            tabPage13.Size = new Size(242, 92);
+            tabPage13.TabIndex = 3;
+            tabPage13.Text = "A*";
+            tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // tabPage14
+            // 
+            tabPage14.Location = new Point(4, 29);
+            tabPage14.Name = "tabPage14";
+            tabPage14.Size = new Size(242, 92);
+            tabPage14.TabIndex = 4;
+            tabPage14.Text = "Kruscal";
+            tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // tabPage15
+            // 
+            tabPage15.Location = new Point(4, 29);
+            tabPage15.Name = "tabPage15";
+            tabPage15.Size = new Size(242, 92);
+            tabPage15.TabIndex = 5;
+            tabPage15.Text = "Prim";
+            tabPage15.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1168, 772);
+            ClientSize = new Size(1214, 772);
+            Controls.Add(tabControl2);
+            Controls.Add(tabControl1);
             Controls.Add(Board);
             Controls.Add(panel1);
-            Controls.Add(panel2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
-            panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
+            tabPage8.ResumeLayout(false);
+            tabPage9.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Board).EndInit();
+            tabControl2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Panel panel2;
         private TabPage tabPage1;
         private TabPage tabPage3;
         private TabPage tabPage4;
@@ -428,5 +563,19 @@
         private TabPage tabPage9;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
+        private Button Reset;
+        private RichTextBox richTextBox1;
+        private RichTextBox richTextBox2;
+        private ToolStripMenuItem saveGph;
+        private ToolStripMenuItem loadgph;
+        private ToolStripMenuItem savetxtToolStripMenuItem;
+        private ToolStripMenuItem loadtxtToolStripMenuItem;
+        private TabControl tabControl2;
+        private TabPage tabPage10;
+        private TabPage tabPage11;
+        private TabPage tabPage12;
+        private TabPage tabPage13;
+        private TabPage tabPage14;
+        private TabPage tabPage15;
     }
 }
