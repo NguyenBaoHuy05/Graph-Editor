@@ -651,7 +651,7 @@ namespace Graph_Editor
         {
             int time = int.Parse(timeRun.Text.TrimEnd('s')) * 1000;
             Color color = Color.FromArgb(94, 148, 255);
-            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, color, Color.Yellow, Color.Gray, time);
+            await Dijkstra.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, defaultColor, Color.Yellow, Color.Gray, time,Log);
         }
     }
 }
