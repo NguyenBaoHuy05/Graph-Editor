@@ -49,8 +49,6 @@
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage7 = new TabPage();
             weiMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
-            tabPage8 = new TabPage();
-            richTextBox1 = new RichTextBox();
             tabPage9 = new TabPage();
             Log = new RichTextBox();
             tabPage1 = new TabPage();
@@ -99,7 +97,6 @@
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
-            tabPage8.SuspendLayout();
             tabPage9.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -114,7 +111,6 @@
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
-            tabControl1.Controls.Add(tabPage8);
             tabControl1.Controls.Add(tabPage9);
             tabControl1.Location = new Point(743, 259);
             tabControl1.Name = "tabControl1";
@@ -163,25 +159,6 @@
             weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
-            // 
-            // tabPage8
-            // 
-            tabPage8.BackColor = Color.White;
-            tabPage8.Controls.Add(richTextBox1);
-            tabPage8.Location = new Point(4, 32);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(456, 456);
-            tabPage8.TabIndex = 2;
-            tabPage8.Text = "Adjacency List";
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Dock = DockStyle.Fill;
-            richTextBox1.Location = new Point(0, 0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(456, 456);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
             // 
             // tabPage9
             // 
@@ -507,7 +484,7 @@
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             Color3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            Color3.FillColor = Color.FromArgb(192, 255, 192);
+            Color3.FillColor = Color.Fuchsia;
             Color3.Font = new Font("Segoe UI", 9F);
             Color3.ForeColor = Color.White;
             Color3.Location = new Point(320, 122);
@@ -525,7 +502,7 @@
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             Color2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            Color2.FillColor = Color.FromArgb(192, 255, 192);
+            Color2.FillColor = Color.FromArgb(192, 192, 0);
             Color2.Font = new Font("Segoe UI", 9F);
             Color2.ForeColor = Color.White;
             Color2.Location = new Point(320, 73);
@@ -661,7 +638,6 @@
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -685,7 +661,6 @@
         private TabControl tabControl1;
         private TabPage tabPage2;
         private TabPage tabPage7;
-        private TabPage tabPage8;
         private Guna.UI2.WinForms.Guna2Panel adjMatrixPanel;
         private Guna.UI2.WinForms.Guna2Panel weiMatrixPanel;
         private RadioButton selectNode;
@@ -706,7 +681,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox Board;
         private TabPage tabPage9;
         private Button Reset;
-        private RichTextBox richTextBox1;
         private RichTextBox Log;
         private ToolStripMenuItem saveGph;
         private ToolStripMenuItem loadgph;

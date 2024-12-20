@@ -16,6 +16,7 @@ namespace Graph_Editor
         string filePath;
 
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
+        List<List<int>> adjList = new List<List<int>>();
         public Form1()
         {
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace Graph_Editor
                 
                 CreateAdjMatrix();
                 CreateWeiMatrix();
+                ChangeText();
             }
         }
         private void CreateNodeRandom()
@@ -75,6 +77,9 @@ namespace Graph_Editor
             StartNode.Maximum = num - 1;
             EndNode.Maximum = num - 1;
 
+            CreateAdjMatrix();
+            CreateWeiMatrix();
+            ChangeText();
 
         }
 
@@ -101,6 +106,7 @@ namespace Graph_Editor
             EndNode.Maximum = num - 1;
             CreateAdjMatrix();
             CreateWeiMatrix();
+            ChangeText();
         }
         private void CreateAdjMatrix()      
         {
@@ -120,9 +126,6 @@ namespace Graph_Editor
                         txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
                         txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    int max = Math.Max(i, j);
-                    txt.Text = edges.ContainsKey((i != max ? i : j, max, defaultColor)) ? "1" : "0";
-
                     txt.Tag = (i, j);
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
@@ -194,6 +197,7 @@ namespace Graph_Editor
                     Board.Invalidate();
                 }
             }
+            ChangeText();
         }
         private void txt_ClickWei(object sender, MouseEventArgs e)
         {
@@ -234,6 +238,7 @@ namespace Graph_Editor
                 }
             }
             Board.Invalidate();
+            ChangeText();
         }
 
         private void txt_Click(object sender, EventArgs e)
@@ -257,6 +262,31 @@ namespace Graph_Editor
             }
 
             Board.Invalidate();
+            ChangeText();
+        }
+
+        private void ChangeText()
+        {
+            foreach (Guna2TextBox txt in adjMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)txt.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                if (edges.ContainsKey((min, max, defaultColor))) txt.Text = "1";
+                else txt.Text = "0";
+            }
+            foreach (Guna2TextBox txt in weiMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)txt.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                if (edges.ContainsKey((min, max, defaultColor))) txt.Text = edges[(min, max, defaultColor)].ToString();
+                else txt.Text = "0";
+            }
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
@@ -310,6 +340,7 @@ namespace Graph_Editor
                     }
                 }
             }
+            ChangeText();
         }
 
         private void loadFile_Click(object sender, EventArgs e)
@@ -374,6 +405,7 @@ namespace Graph_Editor
                     Board.Invalidate();
                     CreateAdjMatrix();
                     CreateWeiMatrix();
+                    ChangeText();
                 }
                 catch (Exception ex)
                 {
@@ -525,6 +557,7 @@ namespace Graph_Editor
                     MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
                     CreateAdjMatrix();
                     CreateWeiMatrix();
+                    ChangeText();
                     Board.Invalidate();
                 }
                 catch (Exception ex)
@@ -539,6 +572,8 @@ namespace Graph_Editor
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             foreach (var edge in edges.Keys)
             {
+
+                if (edge.Item1 > edge.Item2) continue;
                 var node1 = nodes[edge.Item1];
                 var node2 = nodes[edge.Item2];
                 Point point1 = new Point(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
@@ -603,14 +638,28 @@ namespace Graph_Editor
             }
         }
 
+        private void LoadAdjList()
+        {
+            for(int i = 0; i < num; i++)
+            {
+                List<int> list = new List<int>();
+                adjList.Add(list);
+            }
+            foreach(var edge in edges.Keys)
+            {
+                adjList[edge.Item1].Add(edge.Item2);
+                adjList[edge.Item2].Add(edge.Item1);
+            }
+        }
         async private void Run_Click(object sender, EventArgs e)
         {
+            LoadAdjList();
             int time = TrackBar.Value * 1000;
             Color nodeColor = Color.FromArgb(94, 148, 255);
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+            await Dijkstra.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
         }
     }
 }

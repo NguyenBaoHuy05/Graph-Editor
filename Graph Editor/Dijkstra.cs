@@ -9,14 +9,7 @@ namespace Graph_Editor
 {
     internal class Dijkstra
     {
-    public static async Task Algorithm(
-        int n, int start, int end,
-        List<List<Guna2CircleButton>> adjList,
-        List<Guna2CircleButton> nodes,
-        Dictionary<(int, int, Color), int> edges,
-        Color defaultColor, Color visColor,
-        Color underVisColor,
-        int delayMilliseconds, RichTextBox Log)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
         {
             int[] distances = new int[n]; // Khoảng cách từ nguồn đến các đỉnh
             bool[] completed = new bool[n]; // Đỉnh đã được duyệt
@@ -44,34 +37,39 @@ namespace Graph_Editor
             while (pq.Count > 0 && !completed[end]) // Khi chưa duyệt hết hoặc chưa tìm được đường đi
             {
                 int current = pq.Dequeue(); // Lấy đỉnh có khoảng cách nhỏ nhất
+                if(current == end)
+                {
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, distances);
+                    return;
+                }
+                if (current != start && current != end) nodes[current].FillColor = bestNodeColor;
 
                 // Nếu đỉnh đã hoàn tất, bỏ qua
                 if (completed[current]) continue;
                 completed[current] = true;
-                if (current != start) nodes[current].FillColor = Color.GreenYellow;
+
                 // Duyệt các đỉnh kề
-                for (int neighbor = 0; neighbor < n; neighbor++)
+                foreach(int neighbor in adjList[current])
                 {
-                    if (!edges.ContainsKey((current, neighbor, defaultColor))) continue;
-                    if(completed[neighbor]) continue;
-                    // Đổi màu đỉnh neighbor đang xét
-                    nodes[neighbor].FillColor = Color.Yellow;
+                    if (completed[neighbor]) continue;
+                    if(neighbor != end) nodes[neighbor].FillColor = visColor;
                     await Task.Delay(delayMilliseconds);
 
-                    // Nếu có đường đi và khoảng cách mới nhỏ hơn khoảng cách cũ
-                    if (edges[(current, neighbor, defaultColor)] > 0 &&
-                        distances[current] + edges[(current, neighbor, defaultColor)] < distances[neighbor])
+                    int min = Math.Min(neighbor, current);
+                    int max = Math.Max(neighbor, current);
+                    if (edges[(min, max, Color.Black)] > 0 &&
+                       distances[current] + edges[(min, max, Color.Black)] < distances[neighbor])
                     {
-                        distances[neighbor] = distances[current] + edges[(current, neighbor, defaultColor)];
+                        distances[neighbor] = distances[current] + edges[(min, max, Color.Black)];
                         save[neighbor] = current; // Lưu vết
                         pq.Enqueue(neighbor, distances[neighbor]); // Thêm vào hàng đợi
                     }
 
-                    nodes[neighbor].FillColor = visColor; // Trả lại màu sau khi duyệt
+                    if (neighbor != end) nodes[neighbor].FillColor = defaultColor; // Trả lại màu sau khi duyệt
                 }
+
                 await Task.Delay(delayMilliseconds);
             }
-            nodes[end].FillColor = Color.Green;
             // Hiển thị kết quả
             if (distances[end] == int.MaxValue)
             {
@@ -92,7 +90,31 @@ namespace Graph_Editor
                 Log.AppendText(string.Join(" -> ", path) + "\n");
             }
         }
-
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, int[] g)
+        {
+            Log.AppendText($"Khoảng cách ngắn nhất từ {start} đến {end}: {g[end]}\n");
+            Log.AppendText("Đường đi: ");
+            for (int i = 0; i < n; ++i)
+            {
+                nodes[i].FillColor = defaultColor;
+            }
+            nodes[start].FillColor = Color.Red;
+            nodes[end].FillColor = Color.Green;
+            int j = end;
+            Stack<int> S = new Stack<int>();
+            while (save[j] != start)
+            {
+                S.Push(save[j]);
+                j = save[j];
+            }
+            Log.AppendText(string.Join(" -> ", S) + "\n");
+            while (S.Count > 0)
+            {
+                int node = S.Pop();
+                nodes[node].FillColor = completedColor;
+                await Task.Delay(delayMilliseconds);
+            }
+        }
     }
 }
 
