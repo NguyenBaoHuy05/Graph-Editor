@@ -555,20 +555,20 @@
             // 
             // label6
             // 
-            label6.Location = new Point(198, 125);
+            label6.Location = new Point(198, 118);
             label6.Name = "label6";
-            label6.Size = new Size(107, 34);
+            label6.Size = new Size(113, 34);
             label6.TabIndex = 8;
-            label6.Text = "ColorViewed:";
+            label6.Text = "Completed";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
             label5.Location = new Point(198, 73);
             label5.Name = "label5";
-            label5.Size = new Size(125, 34);
+            label5.Size = new Size(103, 34);
             label5.TabIndex = 7;
-            label5.Text = "ColorUnderView:";
+            label5.Text = "Best node";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -577,7 +577,7 @@
             label4.Name = "label4";
             label4.Size = new Size(107, 34);
             label4.TabIndex = 6;
-            label4.Text = "ColorNotView:";
+            label4.Text = "Visited Node";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Algo

@@ -9,7 +9,7 @@ namespace Graph_Editor
 {
     class AStar
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, int delayMilliseconds)
+        public static async Task Algorithm(int n, int start, int end, List<List<Guna2CircleButton>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds)
         {
             int[] g = new int[n];
             double[] f = new double[n];
@@ -41,15 +41,13 @@ namespace Graph_Editor
                 int node = pq.Dequeue();
                 if (node == end)
                 {
-                    nodes[end].FillColor = Color.Green;
-                    await Reconstruct(n, start, end, save, nodes, defaultColor, delayMilliseconds);
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds);
                     break;
                 }
 
                 if (node != start && node != end)
                 {
-                    nodes[node].FillColor = visColor; 
-                    nodes[node].ForeColor = Color.Black; 
+                    nodes[node].FillColor = bestNodeColor;
                 }
 
                 await Task.Delay(delayMilliseconds); 
@@ -61,7 +59,6 @@ namespace Graph_Editor
                     if(neighbor != end)
                     {
                         nodes[neighbor].FillColor = visColor;
-                        nodes[neighbor].ForeColor = Color.Black;
                     }
                     int weight;
                     if (edges.ContainsKey((node, neighbor, Color.Black)))
@@ -86,19 +83,17 @@ namespace Graph_Editor
                     if(neighbor != end)
                     {
                         nodes[neighbor].FillColor = defaultColor;
-                        nodes[neighbor].ForeColor = Color.White;
                     }
                 }
 
                 vis[node] = true;
             }
         }
-        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, int delayMilliseconds)
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds)
         {
             for(int i = 0; i < n; ++i)
             {
                 nodes[i].FillColor = defaultColor;
-                nodes[i].ForeColor = Color.White;
             }
             nodes[start].FillColor = Color.Red;
             nodes[end].FillColor = Color.Green;
@@ -112,7 +107,7 @@ namespace Graph_Editor
             while(S.Count > 0)
             {
                 int node = S.Pop();
-                nodes[node].FillColor = Color.Orange;
+                nodes[node].FillColor = completedColor;
                 await Task.Delay(delayMilliseconds);
             }
         }

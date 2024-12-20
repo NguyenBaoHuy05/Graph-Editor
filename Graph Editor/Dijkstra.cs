@@ -9,14 +9,14 @@ namespace Graph_Editor
 {
     internal class Dijkstra
     {
-        public static async Task Algorithm(
-    int n, int start, int end,
-    List<List<Guna2CircleButton>> adjList,
-    List<Guna2CircleButton> nodes,
-    Dictionary<(int, int, Color), int> edges,
-    Color defaultColor, Color visColor,
-    Color underVisColor,
-    int delayMilliseconds, RichTextBox Log)
+    public static async Task Algorithm(
+        int n, int start, int end,
+        List<List<Guna2CircleButton>> adjList,
+        List<Guna2CircleButton> nodes,
+        Dictionary<(int, int, Color), int> edges,
+        Color defaultColor, Color visColor,
+        Color underVisColor,
+        int delayMilliseconds, RichTextBox Log)
         {
             int[] distances = new int[n]; // Khoảng cách từ nguồn đến các đỉnh
             bool[] completed = new bool[n]; // Đỉnh đã được duyệt

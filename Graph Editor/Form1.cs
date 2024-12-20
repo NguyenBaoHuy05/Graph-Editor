@@ -650,8 +650,11 @@ namespace Graph_Editor
         async private void Run_Click(object sender, EventArgs e)
         {
             int time = TrackBar.Value * 1000;
-            Color color = Color.FromArgb(94, 148, 255);
-            await Dijkstra.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, defaultColor, Color.Yellow, Color.Gray, time,Log);
+            Color nodeColor = Color.FromArgb(94, 148, 255);
+            Color visNodeColor = Color1.FillColor;
+            Color bestNodeColor = Color2.FillColor;
+            Color completedColor = Color3.FillColor;
+            await AStar.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time);
         }
     }
 }
