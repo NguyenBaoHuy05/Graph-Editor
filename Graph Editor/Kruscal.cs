@@ -8,7 +8,7 @@ namespace Graph_Editor
 {
     internal class Kruscal
     {
-        public static void Algorithm(int n, int start, int end, List<List<int>> adjList)
+        public static void Algorithm(int n, List<List<int>> adjList)
         {
 
         }
