@@ -659,7 +659,7 @@ namespace Graph_Editor
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await Prim.Algorithm(num, adjList, nodes, edges, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
+            await DFS.Algorithm(num, adjList, nodes, edges, visNodeColor, time, Log, Board);
         }
 
         private void Form1_Load(object sender, EventArgs e)
