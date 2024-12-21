@@ -659,7 +659,7 @@ namespace Graph_Editor
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await BFS.Algorithm(num, int.Parse(StartNode.Value.ToString()), int.Parse(EndNode.Value.ToString()), adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+            await Kruscal.Algorithm(num, adjList, nodes, edges,  visNodeColor, bestNodeColor, completedColor, time, Log, Board);
         }
     }
 }
