@@ -1,4 +1,5 @@
 using Guna.UI2.WinForms;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Graph_Editor
 {
-    internal class Kruskal
+    internal class Kruscal
     {
-        
-        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log)
+
+        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log,Guna2PictureBox Board)
         {
             Log.Clear();
 
-            
+
             List<(int, int, int)> edgeList = new List<(int, int, int)>();
             foreach (var edge in edges)
             {
@@ -25,7 +26,7 @@ namespace Graph_Editor
                 edgeList.Add((u, v, weight));
             }
 
-            
+
             edgeList.Sort((x, y) => x.Item3.CompareTo(y.Item3));
 
             // Bước 3: Tạo cấu trúc dữ liệu disjoint-set (union-find)
@@ -37,7 +38,7 @@ namespace Graph_Editor
                 rank[i] = 0;
             }
 
-          
+
             int Find(int x)
             {
                 if (parent[x] != x)
@@ -47,7 +48,7 @@ namespace Graph_Editor
                 return parent[x];
             }
 
-          
+
             void Union(int x, int y)
             {
                 int rootX = Find(x);
@@ -71,7 +72,7 @@ namespace Graph_Editor
                 }
             }
 
-          
+
             List<(int, int)> mstEdges = new List<(int, int)>();
             foreach (var edge in edgeList)
             {
@@ -79,20 +80,19 @@ namespace Graph_Editor
                 int v = edge.Item2;
                 int weight = edge.Item3;
 
-                
+
                 if (Find(u) != Find(v))
                 {
                     Union(u, v);
                     mstEdges.Add((u, v));
 
                     // Hiển thị cạnh đang được thêm vào MST
-                    nodes[u].FillColor = edgeColor;
-                    nodes[v].FillColor = edgeColor;
+                    edges[(u, v, edgeColor)] = edges[(u, v, Color.Black)];
+                    Board.Invalidate();
 
-                  
-                    await Task.Delay(delayMilliseconds);                
-                    nodes[u].FillColor = mstEdgeColor;
-                    nodes[v].FillColor = mstEdgeColor;
+                    await Task.Delay(delayMilliseconds);
+                    edges[(u, v, mstEdgeColor)] = edges[(u, v, Color.Black)];
+                    Board.Invalidate();
                     Log.AppendText($"Cạnh {u} -> {v} với trọng số {weight} đã được thêm vào MST\n");
 
                     await Task.Delay(delayMilliseconds);

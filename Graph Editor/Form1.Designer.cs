@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -72,13 +72,13 @@
             loadFile = new ToolStripMenuItem();
             loadgph = new ToolStripMenuItem();
             loadtxtToolStripMenuItem = new ToolStripMenuItem();
-            dFSToolStripMenuItem = new ToolStripMenuItem();
+            Algorithm = new ToolStripMenuItem();
             dFS = new ToolStripMenuItem();
             bFS = new ToolStripMenuItem();
             dijkstra = new ToolStripMenuItem();
             aStar = new ToolStripMenuItem();
-            Prim = new ToolStripMenuItem();
-            Kruscal = new ToolStripMenuItem();
+            prim = new ToolStripMenuItem();
+            kruscal = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
             groupBox1 = new GroupBox();
@@ -131,11 +131,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges1;
+            adjMatrixPanel.CustomizableEdges = customizableEdges17;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -152,11 +152,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges3;
+            weiMatrixPanel.CustomizableEdges = customizableEdges19;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -340,7 +340,7 @@
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(148, 30);
+            saveFile.Size = new Size(224, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
@@ -361,79 +361,79 @@
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(148, 30);
+            loadFile.Size = new Size(224, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
             // 
             loadgph.Name = "loadgph";
-            loadgph.Size = new Size(194, 30);
+            loadgph.Size = new Size(224, 30);
             loadgph.Text = "Load .gph";
             loadgph.Click += loadgph_Click;
             // 
             // loadtxtToolStripMenuItem
             // 
             loadtxtToolStripMenuItem.Name = "loadtxtToolStripMenuItem";
-            loadtxtToolStripMenuItem.Size = new Size(194, 30);
+            loadtxtToolStripMenuItem.Size = new Size(224, 30);
             loadtxtToolStripMenuItem.Text = "Load .txt";
             loadtxtToolStripMenuItem.Click += loadFile_Click;
             // 
-            // dFSToolStripMenuItem
+            // Algorithm
             // 
-            dFSToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dFS, bFS, dijkstra, aStar, Prim, Kruscal });
-            dFSToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            dFSToolStripMenuItem.ForeColor = Color.Black;
-            dFSToolStripMenuItem.Name = "dFSToolStripMenuItem";
-            dFSToolStripMenuItem.Size = new Size(128, 29);
-            dFSToolStripMenuItem.Text = "&Algorithms";
+            Algorithm.DropDownItems.AddRange(new ToolStripItem[] { dFS, bFS, dijkstra, aStar, prim, kruscal });
+            Algorithm.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            Algorithm.ForeColor = Color.Black;
+            Algorithm.Name = "Algorithm";
+            Algorithm.Size = new Size(128, 29);
+            Algorithm.Text = "&Algorithms";
             // 
             // dFS
             // 
             dFS.Name = "dFS";
-            dFS.Size = new Size(171, 30);
+            dFS.Size = new Size(224, 30);
             dFS.Text = "DFS";
             dFS.Click += ChoseAlgorithm;
             // 
             // bFS
             // 
             bFS.Name = "bFS";
-            bFS.Size = new Size(171, 30);
+            bFS.Size = new Size(224, 30);
             bFS.Text = "BFS";
             bFS.Click += ChoseAlgorithm;
             // 
             // dijkstra
             // 
             dijkstra.Name = "dijkstra";
-            dijkstra.Size = new Size(171, 30);
+            dijkstra.Size = new Size(224, 30);
             dijkstra.Text = "Dijkstra";
             dijkstra.Click += ChoseAlgorithm;
             // 
             // aStar
             // 
             aStar.Name = "aStar";
-            aStar.Size = new Size(171, 30);
+            aStar.Size = new Size(224, 30);
             aStar.Text = "A*";
             aStar.Click += ChoseAlgorithm;
             // 
-            // Prim
+            // prim
             // 
-            Prim.Name = "Prim";
-            Prim.Size = new Size(171, 30);
-            Prim.Text = "Prim";
-            Prim.Click += ChoseAlgorithm;
+            prim.Name = "prim";
+            prim.Size = new Size(224, 30);
+            prim.Text = "Prim";
+            prim.Click += ChoseAlgorithm;
             // 
-            // Kruscal
+            // kruscal
             // 
-            Kruscal.Name = "Kruscal";
-            Kruscal.Size = new Size(171, 30);
-            Kruscal.Text = "Kruscal";
-            Kruscal.Click += ChoseAlgorithm;
+            kruscal.Name = "kruscal";
+            kruscal.Size = new Size(224, 30);
+            kruscal.Text = "Kruscal";
+            kruscal.Click += ChoseAlgorithm;
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.FromArgb(255, 192, 192);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, dFSToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1214, 33);
@@ -443,12 +443,12 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges5;
+            Board.CustomizableEdges = customizableEdges21;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges22;
             Board.Size = new Size(726, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
@@ -479,7 +479,7 @@
             // Color3
             // 
             Color3.BorderRadius = 10;
-            Color3.CustomizableEdges = customizableEdges7;
+            Color3.CustomizableEdges = customizableEdges23;
             Color3.DisabledState.BorderColor = Color.DarkGray;
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -489,7 +489,7 @@
             Color3.ForeColor = Color.White;
             Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
-            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges24;
             Color3.Size = new Size(51, 30);
             Color3.TabIndex = 11;
             Color3.Click += btnColor;
@@ -497,7 +497,7 @@
             // Color2
             // 
             Color2.BorderRadius = 10;
-            Color2.CustomizableEdges = customizableEdges9;
+            Color2.CustomizableEdges = customizableEdges25;
             Color2.DisabledState.BorderColor = Color.DarkGray;
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -507,7 +507,7 @@
             Color2.ForeColor = Color.White;
             Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
-            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges26;
             Color2.Size = new Size(51, 30);
             Color2.TabIndex = 10;
             Color2.Click += btnColor;
@@ -515,7 +515,7 @@
             // Color1
             // 
             Color1.BorderRadius = 10;
-            Color1.CustomizableEdges = customizableEdges11;
+            Color1.CustomizableEdges = customizableEdges27;
             Color1.DisabledState.BorderColor = Color.DarkGray;
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -525,7 +525,7 @@
             Color1.ForeColor = Color.White;
             Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
-            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges28;
             Color1.Size = new Size(51, 30);
             Color1.TabIndex = 9;
             Color1.Click += btnColor;
@@ -570,26 +570,26 @@
             // EndNode
             // 
             EndNode.BackColor = Color.Transparent;
-            EndNode.CustomizableEdges = customizableEdges13;
+            EndNode.CustomizableEdges = customizableEdges29;
             EndNode.Font = new Font("Segoe UI", 9F);
             EndNode.Location = new Point(115, 77);
             EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
-            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges30;
             EndNode.Size = new Size(43, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
             // 
             StartNode.BackColor = Color.Transparent;
-            StartNode.CustomizableEdges = customizableEdges15;
+            StartNode.CustomizableEdges = customizableEdges31;
             StartNode.Font = new Font("Segoe UI", 9F);
             StartNode.Location = new Point(115, 27);
             StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
-            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges32;
             StartNode.Size = new Size(43, 30);
             StartNode.TabIndex = 3;
             // 
@@ -668,13 +668,13 @@
         private RadioButton addNodes;
         private Panel panel1;
         private ToolStripMenuItem saveToolStripMenuItem;
-        private ToolStripMenuItem dFSToolStripMenuItem;
+        private ToolStripMenuItem Algorithm;
         private ToolStripMenuItem dFS;
         private ToolStripMenuItem bFS;
         private ToolStripMenuItem dijkstra;
         private ToolStripMenuItem aStar;
-        private ToolStripMenuItem Prim;
-        private ToolStripMenuItem Kruscal;
+        private ToolStripMenuItem prim;
+        private ToolStripMenuItem kruscal;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem saveFile;
         private ToolStripMenuItem loadFile;
