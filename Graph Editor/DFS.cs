@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,55 +10,75 @@ namespace Graph_Editor
 {
     internal class DFS
     {
-        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color visColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Color defaultColor, Color visColor, Color bestColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
         {
             Log.Clear();
-
-            // Mảng đánh dấu các đỉnh đã được thăm
+            nodes[start].FillColor = Color.Red;
+            nodes[end].FillColor = Color.Green;
             bool[] visited = new bool[n];
-
-            // Hàm đệ quy DFS
-            async Task DfsRecursive(int u)
+            int[] save = new int[n];
+            Array.Fill(save, -1);
+            Array.Fill(visited, false);
+            async Task<bool> DfsRecursive(int u)
             {
-                // Đánh dấu đỉnh u đã thăm
+                if(u == end)
+                {
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log);
+                    return true;
+                }
+                if (u != start)
+                {
+                    nodes[u].FillColor = bestColor;
+                }
                 visited[u] = true;
-                nodes[u].FillColor = visColor; // Hiển thị đỉnh đã thăm
-
-                Log.AppendText($"Đã thăm đỉnh {u}\n");
                 await Task.Delay(delayMilliseconds);
-                Board.Invalidate();
-
-                // Duyệt qua các đỉnh kề của u
                 foreach (int v in adjList[u])
                 {
-                    var edgeKey = (u, v, Color.Black);
-                    if (!edges.ContainsKey(edgeKey))
+                    if (!visited[v])
                     {
-                        edgeKey = (v, u, Color.Black);
-                    }
-
-                    if (edges.TryGetValue(edgeKey, out int weight) && !visited[v])
-                    {
-                        // Vẽ cạnh (u, v) và tiếp tục đệ quy cho v
-                        edges[edgeKey] = weight;
-                        Board.Invalidate();
+                        save[v] = u;
+                        if(v != start && v != end)
+                        {
+                            nodes[v].FillColor = visColor;
+                        }
                         await Task.Delay(delayMilliseconds);
-
-                        Log.AppendText($"Duyệt cạnh {u} -> {v} với trọng số {weight}\n");
-                        await Task.Delay(delayMilliseconds);
-
-                        await DfsRecursive(v);  // Gọi đệ quy cho đỉnh kề
+                        if(await DfsRecursive(v))
+                        {
+                            return true;
+                        } 
                     }
                 }
-
-                // Sau khi thăm xong các đỉnh kề, trả về màu cũ của đỉnh
-                nodes[u].FillColor = Color.Blue; // Trả lại màu cũ
-                 // Để hiển thị màu sắc cũ
-                Board.Invalidate();
+                nodes[u].FillColor = defaultColor;
+                return false;
             }
-
-            // Bắt đầu từ đỉnh 0 (hoặc có thể thay đổi cho đỉnh bất kỳ)
-            await DfsRecursive(0);
+            await DfsRecursive(start);
+        }
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        {
+            Log.AppendText($"Đường đi từ {start} đến {end} đã được tìm thấy.\n");
+            Log.AppendText("Đường đi: ");
+            for (int i = 0; i < n; ++i)
+            {
+                nodes[i].FillColor = defaultColor;
+            }
+            nodes[start].FillColor = Color.Red;
+            nodes[end].FillColor = Color.Green;
+            int j = end;
+            Stack<int> S = new Stack<int>();
+            while (save[j] != start)
+            {
+                S.Push(save[j]);
+                j = save[j];
+            }
+            Log.AppendText($"{start} -> ");
+            Log.AppendText(string.Join(" -> ", S));
+            Log.AppendText($" -> {end} \n");
+            while (S.Count > 0)
+            {
+                int node = S.Pop();
+                nodes[node].FillColor = completedColor;
+                await Task.Delay(delayMilliseconds);
+            }
         }
     }
 }

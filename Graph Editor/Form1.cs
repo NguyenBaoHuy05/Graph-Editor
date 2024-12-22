@@ -659,12 +659,9 @@ namespace Graph_Editor
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await DFS.Algorithm(num, adjList, nodes, edges, visNodeColor, time, Log, Board);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            int start = int.Parse(StartNode.Value.ToString());
+            int end = int.Parse(EndNode.Value.ToString());
+            await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
         }
     }
 }

@@ -112,22 +112,20 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage9);
-            tabControl1.Location = new Point(929, 324);
-            tabControl1.Margin = new Padding(4, 4, 4, 4);
+            tabControl1.Location = new Point(743, 259);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(580, 615);
+            tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.DarkGray;
             tabPage2.Controls.Add(adjMatrixPanel);
-            tabPage2.Location = new Point(4, 37);
-            tabPage2.Margin = new Padding(4, 4, 4, 4);
+            tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(4, 4, 4, 4);
-            tabPage2.Size = new Size(572, 574);
+            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Size = new Size(456, 456);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Adjacency Matrix";
             // 
@@ -135,22 +133,20 @@
             // 
             adjMatrixPanel.CustomizableEdges = customizableEdges1;
             adjMatrixPanel.Dock = DockStyle.Fill;
-            adjMatrixPanel.Location = new Point(4, 4);
-            adjMatrixPanel.Margin = new Padding(4, 4, 4, 4);
+            adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
             adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            adjMatrixPanel.Size = new Size(564, 566);
+            adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
             // tabPage7
             // 
             tabPage7.BackColor = Color.DarkGray;
             tabPage7.Controls.Add(weiMatrixPanel);
-            tabPage7.Location = new Point(4, 37);
-            tabPage7.Margin = new Padding(4, 4, 4, 4);
+            tabPage7.Location = new Point(4, 32);
             tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(4, 4, 4, 4);
-            tabPage7.Size = new Size(572, 574);
+            tabPage7.Padding = new Padding(3, 3, 3, 3);
+            tabPage7.Size = new Size(456, 456);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "Weighted Matrix";
             // 
@@ -158,21 +154,19 @@
             // 
             weiMatrixPanel.CustomizableEdges = customizableEdges3;
             weiMatrixPanel.Dock = DockStyle.Fill;
-            weiMatrixPanel.Location = new Point(4, 4);
-            weiMatrixPanel.Margin = new Padding(4, 4, 4, 4);
+            weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
             weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            weiMatrixPanel.Size = new Size(564, 566);
+            weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
             // tabPage9
             // 
             tabPage9.Controls.Add(Log);
-            tabPage9.Location = new Point(4, 37);
-            tabPage9.Margin = new Padding(4, 4, 4, 4);
+            tabPage9.Location = new Point(4, 32);
             tabPage9.Name = "tabPage9";
-            tabPage9.Padding = new Padding(4, 4, 4, 4);
-            tabPage9.Size = new Size(572, 574);
+            tabPage9.Padding = new Padding(3, 3, 3, 3);
+            tabPage9.Size = new Size(456, 456);
             tabPage9.TabIndex = 3;
             tabPage9.Text = "Log";
             tabPage9.UseVisualStyleBackColor = true;
@@ -180,10 +174,9 @@
             // Log
             // 
             Log.Dock = DockStyle.Fill;
-            Log.Location = new Point(4, 4);
-            Log.Margin = new Padding(4, 4, 4, 4);
+            Log.Location = new Point(3, 3);
             Log.Name = "Log";
-            Log.Size = new Size(564, 566);
+            Log.Size = new Size(450, 450);
             Log.TabIndex = 0;
             Log.Text = "";
             // 
@@ -240,10 +233,9 @@
             // selectNode
             // 
             selectNode.AutoSize = true;
-            selectNode.Location = new Point(172, 11);
-            selectNode.Margin = new Padding(4, 4, 4, 4);
+            selectNode.Location = new Point(138, 9);
             selectNode.Name = "selectNode";
-            selectNode.Size = new Size(137, 29);
+            selectNode.Size = new Size(114, 24);
             selectNode.TabIndex = 3;
             selectNode.TabStop = true;
             selectNode.Text = "Select nodes";
@@ -252,10 +244,9 @@
             // addEdges
             // 
             addEdges.AutoSize = true;
-            addEdges.Location = new Point(16, 11);
-            addEdges.Margin = new Padding(4, 4, 4, 4);
+            addEdges.Location = new Point(13, 9);
             addEdges.Name = "addEdges";
-            addEdges.Size = new Size(124, 29);
+            addEdges.Size = new Size(102, 24);
             addEdges.TabIndex = 2;
             addEdges.TabStop = true;
             addEdges.Text = "Add edges";
@@ -264,10 +255,9 @@
             // addNodes
             // 
             addNodes.AutoSize = true;
-            addNodes.Location = new Point(344, 11);
-            addNodes.Margin = new Padding(4, 4, 4, 4);
+            addNodes.Location = new Point(275, 9);
             addNodes.Name = "addNodes";
-            addNodes.Size = new Size(125, 29);
+            addNodes.Size = new Size(102, 24);
             addNodes.TabIndex = 4;
             addNodes.TabStop = true;
             addNodes.Text = "Add nodes";
@@ -283,29 +273,26 @@
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
-            panel1.Location = new Point(0, 41);
-            panel1.Margin = new Padding(4, 4, 4, 4);
+            panel1.Location = new Point(0, 33);
             panel1.Name = "panel1";
-            panel1.Size = new Size(916, 50);
+            panel1.Size = new Size(733, 40);
             panel1.TabIndex = 5;
             // 
             // timeRun
             // 
             timeRun.BackColor = Color.Transparent;
-            timeRun.Location = new Point(772, 11);
-            timeRun.Margin = new Padding(4, 4, 4, 4);
+            timeRun.Location = new Point(618, 9);
             timeRun.Name = "timeRun";
-            timeRun.Size = new Size(21, 27);
+            timeRun.Size = new Size(17, 22);
             timeRun.TabIndex = 11;
             timeRun.Text = "1s";
             // 
             // Run
             // 
             Run.BackColor = Color.Cyan;
-            Run.Location = new Point(826, 8);
-            Run.Margin = new Padding(4, 4, 4, 4);
+            Run.Location = new Point(661, 6);
             Run.Name = "Run";
-            Run.Size = new Size(86, 35);
+            Run.Size = new Size(69, 28);
             Run.TabIndex = 10;
             Run.Text = "Run";
             Run.UseVisualStyleBackColor = false;
@@ -313,11 +300,10 @@
             // 
             // TrackBar
             // 
-            TrackBar.Location = new Point(600, 6);
-            TrackBar.Margin = new Padding(4, 4, 4, 4);
+            TrackBar.Location = new Point(480, 5);
             TrackBar.Maximum = 10;
             TrackBar.Name = "TrackBar";
-            TrackBar.Size = new Size(165, 36);
+            TrackBar.Size = new Size(132, 29);
             TrackBar.TabIndex = 8;
             TrackBar.ThumbColor = Color.FromArgb(160, 113, 255);
             TrackBar.Value = 1;
@@ -325,19 +311,17 @@
             // 
             // guna2vSeparator1
             // 
-            guna2vSeparator1.Location = new Point(572, 4);
-            guna2vSeparator1.Margin = new Padding(4, 4, 4, 4);
+            guna2vSeparator1.Location = new Point(458, 3);
             guna2vSeparator1.Name = "guna2vSeparator1";
-            guna2vSeparator1.Size = new Size(31, 42);
+            guna2vSeparator1.Size = new Size(25, 34);
             guna2vSeparator1.TabIndex = 9;
             // 
             // Reset
             // 
             Reset.BackColor = Color.Cyan;
-            Reset.Location = new Point(479, 9);
-            Reset.Margin = new Padding(4, 4, 4, 4);
+            Reset.Location = new Point(383, 7);
             Reset.Name = "Reset";
-            Reset.Size = new Size(86, 35);
+            Reset.Size = new Size(69, 28);
             Reset.TabIndex = 8;
             Reset.Text = "Reset";
             Reset.UseVisualStyleBackColor = false;
@@ -349,27 +333,27 @@
             saveToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             saveToolStripMenuItem.ForeColor = Color.Black;
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(74, 33);
+            saveToolStripMenuItem.Size = new Size(61, 29);
             saveToolStripMenuItem.Text = "&File";
             // 
             // saveFile
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(174, 38);
+            saveFile.Size = new Size(148, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
             // 
             saveGph.Name = "saveGph";
-            saveGph.Size = new Size(232, 38);
+            saveGph.Size = new Size(196, 30);
             saveGph.Text = "Save .gph";
             saveGph.Click += saveGph_Click;
             // 
             // savetxtToolStripMenuItem
             // 
             savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
-            savetxtToolStripMenuItem.Size = new Size(232, 38);
+            savetxtToolStripMenuItem.Size = new Size(196, 30);
             savetxtToolStripMenuItem.Text = "Save .txt";
             savetxtToolStripMenuItem.Click += saveFiles;
             // 
@@ -377,20 +361,20 @@
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(174, 38);
+            loadFile.Size = new Size(148, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
             // 
             loadgph.Name = "loadgph";
-            loadgph.Size = new Size(232, 38);
+            loadgph.Size = new Size(194, 30);
             loadgph.Text = "Load .gph";
             loadgph.Click += loadgph_Click;
             // 
             // loadtxtToolStripMenuItem
             // 
             loadtxtToolStripMenuItem.Name = "loadtxtToolStripMenuItem";
-            loadtxtToolStripMenuItem.Size = new Size(232, 38);
+            loadtxtToolStripMenuItem.Size = new Size(194, 30);
             loadtxtToolStripMenuItem.Text = "Load .txt";
             loadtxtToolStripMenuItem.Click += loadFile_Click;
             // 
@@ -400,48 +384,48 @@
             Algorithm.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             Algorithm.ForeColor = Color.Black;
             Algorithm.Name = "Algorithm";
-            Algorithm.Size = new Size(153, 33);
+            Algorithm.Size = new Size(128, 29);
             Algorithm.Text = "&Algorithms";
             // 
             // dFS
             // 
             dFS.Name = "dFS";
-            dFS.Size = new Size(204, 38);
+            dFS.Size = new Size(171, 30);
             dFS.Text = "DFS";
             dFS.Click += ChoseAlgorithm;
             // 
             // bFS
             // 
             bFS.Name = "bFS";
-            bFS.Size = new Size(204, 38);
+            bFS.Size = new Size(171, 30);
             bFS.Text = "BFS";
             bFS.Click += ChoseAlgorithm;
             // 
             // dijkstra
             // 
             dijkstra.Name = "dijkstra";
-            dijkstra.Size = new Size(204, 38);
+            dijkstra.Size = new Size(171, 30);
             dijkstra.Text = "Dijkstra";
             dijkstra.Click += ChoseAlgorithm;
             // 
             // aStar
             // 
             aStar.Name = "aStar";
-            aStar.Size = new Size(204, 38);
+            aStar.Size = new Size(171, 30);
             aStar.Text = "A*";
             aStar.Click += ChoseAlgorithm;
             // 
             // prim
             // 
             prim.Name = "prim";
-            prim.Size = new Size(204, 38);
+            prim.Size = new Size(171, 30);
             prim.Text = "Prim";
             prim.Click += ChoseAlgorithm;
             // 
             // kruscal
             // 
             kruscal.Name = "kruscal";
-            kruscal.Size = new Size(204, 38);
+            kruscal.Size = new Size(171, 30);
             kruscal.Text = "Kruscal";
             kruscal.Click += ChoseAlgorithm;
             // 
@@ -452,8 +436,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1518, 37);
+            menuStrip1.Size = new Size(1214, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -463,11 +446,10 @@
             Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
-            Board.Location = new Point(9, 114);
-            Board.Margin = new Padding(4, 4, 4, 4);
+            Board.Location = new Point(7, 91);
             Board.Name = "Board";
             Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Board.Size = new Size(908, 825);
+            Board.Size = new Size(726, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
@@ -487,11 +469,9 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(924, 48);
-            groupBox1.Margin = new Padding(4, 4, 4, 4);
+            groupBox1.Location = new Point(739, 38);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4, 4, 4, 4);
-            groupBox1.Size = new Size(585, 236);
+            groupBox1.Size = new Size(468, 189);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Algorithms ";
@@ -507,11 +487,10 @@
             Color3.FillColor = Color.Fuchsia;
             Color3.Font = new Font("Segoe UI", 9F);
             Color3.ForeColor = Color.White;
-            Color3.Location = new Point(400, 152);
-            Color3.Margin = new Padding(4, 4, 4, 4);
+            Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
             Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            Color3.Size = new Size(64, 38);
+            Color3.Size = new Size(51, 30);
             Color3.TabIndex = 11;
             Color3.Click += btnColor;
             // 
@@ -526,11 +505,10 @@
             Color2.FillColor = Color.FromArgb(192, 192, 0);
             Color2.Font = new Font("Segoe UI", 9F);
             Color2.ForeColor = Color.White;
-            Color2.Location = new Point(400, 91);
-            Color2.Margin = new Padding(4, 4, 4, 4);
+            Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
             Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            Color2.Size = new Size(64, 38);
+            Color2.Size = new Size(51, 30);
             Color2.TabIndex = 10;
             Color2.Click += btnColor;
             // 
@@ -545,40 +523,36 @@
             Color1.FillColor = Color.FromArgb(192, 255, 192);
             Color1.Font = new Font("Segoe UI", 9F);
             Color1.ForeColor = Color.White;
-            Color1.Location = new Point(400, 32);
-            Color1.Margin = new Padding(4, 4, 4, 4);
+            Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
             Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            Color1.Size = new Size(64, 38);
+            Color1.Size = new Size(51, 30);
             Color1.TabIndex = 9;
             Color1.Click += btnColor;
             // 
             // label6
             // 
-            label6.Location = new Point(248, 148);
-            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Location = new Point(198, 118);
             label6.Name = "label6";
-            label6.Size = new Size(141, 42);
+            label6.Size = new Size(113, 34);
             label6.TabIndex = 8;
             label6.Text = "Completed";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            label5.Location = new Point(248, 91);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(198, 73);
             label5.Name = "label5";
-            label5.Size = new Size(129, 42);
+            label5.Size = new Size(103, 34);
             label5.TabIndex = 7;
             label5.Text = "Best node";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            label4.Location = new Point(248, 29);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(198, 23);
             label4.Name = "label4";
-            label4.Size = new Size(134, 42);
+            label4.Size = new Size(107, 34);
             label4.TabIndex = 6;
             label4.Text = "Visited Node";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -586,10 +560,9 @@
             // Algo
             // 
             Algo.AutoSize = true;
-            Algo.Location = new Point(144, 165);
-            Algo.Margin = new Padding(4, 0, 4, 0);
+            Algo.Location = new Point(115, 132);
             Algo.Name = "Algo";
-            Algo.Size = new Size(55, 25);
+            Algo.Size = new Size(45, 20);
             Algo.TabIndex = 5;
             Algo.Text = "None";
             Algo.TextAlign = ContentAlignment.MiddleCenter;
@@ -599,12 +572,12 @@
             EndNode.BackColor = Color.Transparent;
             EndNode.CustomizableEdges = customizableEdges13;
             EndNode.Font = new Font("Segoe UI", 9F);
-            EndNode.Location = new Point(144, 96);
-            EndNode.Margin = new Padding(4, 5, 4, 5);
+            EndNode.Location = new Point(115, 77);
+            EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
             EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            EndNode.Size = new Size(54, 38);
+            EndNode.Size = new Size(43, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
@@ -612,61 +585,56 @@
             StartNode.BackColor = Color.Transparent;
             StartNode.CustomizableEdges = customizableEdges15;
             StartNode.Font = new Font("Segoe UI", 9F);
-            StartNode.Location = new Point(144, 34);
-            StartNode.Margin = new Padding(4, 5, 4, 5);
+            StartNode.Location = new Point(115, 27);
+            StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
             StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            StartNode.Size = new Size(54, 38);
+            StartNode.Size = new Size(43, 30);
             StartNode.TabIndex = 3;
             // 
             // label3
             // 
-            label3.Location = new Point(20, 156);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(16, 125);
             label3.Name = "label3";
-            label3.Size = new Size(116, 42);
+            label3.Size = new Size(93, 34);
             label3.TabIndex = 2;
             label3.Text = "Algorithm:";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            label2.Location = new Point(20, 91);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(16, 73);
             label2.Name = "label2";
-            label2.Size = new Size(116, 42);
+            label2.Size = new Size(93, 34);
             label2.TabIndex = 1;
             label2.Text = "End Node:";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            label1.Location = new Point(20, 29);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(16, 23);
             label1.Name = "label1";
-            label1.Size = new Size(116, 42);
+            label1.Size = new Size(93, 34);
             label1.TabIndex = 0;
             label1.Text = "Start Node:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1518, 965);
+            ClientSize = new Size(1214, 772);
             Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(Board);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(4, 4, 4, 4);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
-            Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage7.ResumeLayout(false);

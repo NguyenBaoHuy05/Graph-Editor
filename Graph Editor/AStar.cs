@@ -101,7 +101,10 @@ namespace Graph_Editor
                 S.Push(save[j]);
                 j = save[j];
             }
-            Log.AppendText(string.Join(" -> ", S) + "\n");
+
+            Log.AppendText($"{start} -> ");
+            Log.AppendText(string.Join(" -> ", S));
+            Log.AppendText($" -> {end} \n");
             while (S.Count > 0)
             {
                 int node = S.Pop();
