@@ -659,7 +659,7 @@ namespace Graph_Editor
             Color completedColor = Color3.FillColor;
             int start = int.Parse(StartNode.Value.ToString());
             int end = int.Parse(EndNode.Value.ToString());
-            if (start == end && Algo.Text != "Kruscal" && Algo.Text != "Prim" && Algo.Text != "None")
+            if (start == end && Algo.Text != "Kruskal" && Algo.Text != "Prim" && Algo.Text != "None")
             {
                 MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
                 return;
@@ -690,8 +690,8 @@ namespace Graph_Editor
                 case "BFS":
                     await BFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
                     break;
-                case "Kruscal":
-                    await Kruscal.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, time, Log, Board);
+                case "Kruskal":
+                    await Kruskal.Algorithm(num, edges, nodeColor, visNodeColor, time, Log, Board);
                     break;
                 case "Prim":
                     await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, time, Log, Board);
@@ -702,8 +702,6 @@ namespace Graph_Editor
             }
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
         }
-
-
 
         private void LoadAdjListBtn_Click(object sender, EventArgs e)
         {
