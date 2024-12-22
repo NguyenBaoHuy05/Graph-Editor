@@ -47,7 +47,7 @@ namespace Graph_Editor
                 StartNode.Maximum = num - 1;
                 EndNode.Maximum = num - 1;
 
-                
+
                 CreateAdjMatrix();
                 CreateWeiMatrix();
                 ChangeText();
@@ -108,7 +108,7 @@ namespace Graph_Editor
             CreateWeiMatrix();
             ChangeText();
         }
-        private void CreateAdjMatrix()      
+        private void CreateAdjMatrix()
         {
             adjMatrixPanel.Controls.Clear();
             for (int i = 0; i < num; ++i)
@@ -130,7 +130,7 @@ namespace Graph_Editor
                     txt.FillColor = Color.Turquoise;
                     txt.ForeColor = Color.White;
                     txt.BorderColor = Color.White;
-                    txt.BorderThickness = 1; 
+                    txt.BorderThickness = 1;
                     txt.Click += txt_Click;
                     txt.TextChanged += txt_TextChanged;
                     if (i == j)
@@ -212,7 +212,7 @@ namespace Graph_Editor
 
                 if (txt.Text == "\u221E")
                 {
- 
+
                     edges[(min, max, defaultColor)] = 1;
                 }
                 else
@@ -336,7 +336,7 @@ namespace Graph_Editor
                         int min = Math.Min(i, j);
                         edges[(min, max, defaultColor)] = 1;
                         firstSelectedNode = null;
-                        Board.Invalidate(); 
+                        Board.Invalidate();
                     }
                 }
             }
@@ -394,8 +394,8 @@ namespace Graph_Editor
                                 MessageBox.Show($"Giá trị không hợp lệ tại dòng {i + 2}, cột {j + 1}.", "Error");
                                 return;
                             }
-                            int max = Math.Max(i,j);
-                            int min = Math.Min(i,j);
+                            int max = Math.Max(i, j);
+                            int min = Math.Min(i, j);
                             if (value != 0) edges[(min, max, defaultColor)] = value;
                         }
                         CreateNodeRandom();
@@ -640,12 +640,12 @@ namespace Graph_Editor
 
         private void LoadAdjList()
         {
-            for(int i = 0; i < num; i++)
+            for (int i = 0; i < num; i++)
             {
                 List<int> list = new List<int>();
                 adjList.Add(list);
             }
-            foreach(var edge in edges.Keys)
+            foreach (var edge in edges.Keys)
             {
                 adjList[edge.Item1].Add(edge.Item2);
                 adjList[edge.Item2].Add(edge.Item1);
@@ -659,7 +659,12 @@ namespace Graph_Editor
             Color visNodeColor = Color1.FillColor;
             Color bestNodeColor = Color2.FillColor;
             Color completedColor = Color3.FillColor;
-            await Kruscal.Algorithm(num, adjList, nodes, edges,  visNodeColor, bestNodeColor, completedColor, time, Log, Board);
+            await DFS.Algorithm(num, adjList, nodes, edges, visNodeColor, time, Log, Board);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
