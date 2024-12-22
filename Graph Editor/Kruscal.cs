@@ -11,7 +11,7 @@ namespace Graph_Editor
     internal class Kruscal
     {
 
-        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log,Guna2PictureBox Board)
+        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             Log.Clear();
 

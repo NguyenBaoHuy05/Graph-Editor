@@ -26,14 +26,7 @@ namespace Graph_Editor
             nodes[start].FillColor = Color.Red; 
             nodes[end].FillColor = Color.Green;
 
-            for (int i = 0; i < n; ++i)
-            {
-                if(i != start && i != end)
-                {
-                    nodes[i].FillColor = defaultColor;
-                }
-                h[i] = Dist(nodes[i], nodes[end]);
-            }
+            
             save[start] = -1;
 
             var pq = new PriorityQueue<int, double>();

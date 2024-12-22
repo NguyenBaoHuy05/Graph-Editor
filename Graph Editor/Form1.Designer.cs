@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
+            tabPage8 = new TabPage();
+            adjListShow = new RichTextBox();
             tabPage2 = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage7 = new TabPage();
@@ -82,6 +84,7 @@
             menuStrip1 = new MenuStrip();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
             groupBox1 = new GroupBox();
+            loadAdjListBtn = new Button();
             Color3 = new Guna.UI2.WinForms.Guna2Button();
             Color2 = new Guna.UI2.WinForms.Guna2Button();
             Color1 = new Guna.UI2.WinForms.Guna2Button();
@@ -95,6 +98,7 @@
             label2 = new Label();
             label1 = new Label();
             tabControl1.SuspendLayout();
+            tabPage8.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage9.SuspendLayout();
@@ -109,6 +113,7 @@
             // tabControl1
             // 
             tabControl1.Appearance = TabAppearance.Buttons;
+            tabControl1.Controls.Add(tabPage8);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage9);
@@ -118,24 +123,43 @@
             tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
             // 
+            // tabPage8
+            // 
+            tabPage8.Controls.Add(loadAdjListBtn);
+            tabPage8.Controls.Add(adjListShow);
+            tabPage8.Location = new Point(4, 32);
+            tabPage8.Name = "tabPage8";
+            tabPage8.Size = new Size(456, 456);
+            tabPage8.TabIndex = 4;
+            tabPage8.Text = "AdjList";
+            tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // adjListShow
+            // 
+            adjListShow.Location = new Point(0, 44);
+            adjListShow.Name = "adjListShow";
+            adjListShow.Size = new Size(456, 412);
+            adjListShow.TabIndex = 0;
+            adjListShow.Text = "";
+            // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.DarkGray;
             tabPage2.Controls.Add(adjMatrixPanel);
             tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(456, 456);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Adjacency Matrix";
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges1;
+            adjMatrixPanel.CustomizableEdges = customizableEdges17;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -145,18 +169,18 @@
             tabPage7.Controls.Add(weiMatrixPanel);
             tabPage7.Location = new Point(4, 32);
             tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(3, 3, 3, 3);
+            tabPage7.Padding = new Padding(3);
             tabPage7.Size = new Size(456, 456);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "Weighted Matrix";
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges3;
+            weiMatrixPanel.CustomizableEdges = customizableEdges19;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -165,7 +189,7 @@
             tabPage9.Controls.Add(Log);
             tabPage9.Location = new Point(4, 32);
             tabPage9.Name = "tabPage9";
-            tabPage9.Padding = new Padding(3, 3, 3, 3);
+            tabPage9.Padding = new Padding(3);
             tabPage9.Size = new Size(456, 456);
             tabPage9.TabIndex = 3;
             tabPage9.Text = "Log";
@@ -182,53 +206,38 @@
             // 
             // tabPage1
             // 
-            tabPage1.Location = new Point(4, 46);
+            tabPage1.Location = new Point(0, 0);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(384, 162);
+            tabPage1.Size = new Size(200, 100);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            tabPage3.Location = new Point(4, 46);
+            tabPage3.Location = new Point(0, 0);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(242, 75);
+            tabPage3.Size = new Size(200, 100);
             tabPage3.TabIndex = 0;
-            tabPage3.Text = "tabPage3";
-            tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
-            tabPage4.Location = new Point(4, 46);
+            tabPage4.Location = new Point(0, 0);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(242, 75);
-            tabPage4.TabIndex = 1;
-            tabPage4.Text = "tabPage4";
-            tabPage4.UseVisualStyleBackColor = true;
+            tabPage4.Size = new Size(200, 100);
+            tabPage4.TabIndex = 0;
             // 
             // tabPage5
             // 
-            tabPage5.Location = new Point(4, 46);
+            tabPage5.Location = new Point(0, 0);
             tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(242, 75);
+            tabPage5.Size = new Size(200, 100);
             tabPage5.TabIndex = 0;
-            tabPage5.Text = "tabPage5";
-            tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
-            tabPage6.Location = new Point(4, 46);
+            tabPage6.Location = new Point(0, 0);
             tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(242, 75);
-            tabPage6.TabIndex = 1;
-            tabPage6.Text = "tabPage6";
-            tabPage6.UseVisualStyleBackColor = true;
+            tabPage6.Size = new Size(200, 100);
+            tabPage6.TabIndex = 0;
             // 
             // selectNode
             // 
@@ -443,12 +452,12 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges5;
+            Board.CustomizableEdges = customizableEdges21;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges22;
             Board.Size = new Size(726, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
@@ -476,10 +485,20 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Algorithms ";
             // 
+            // loadAdjListBtn
+            // 
+            loadAdjListBtn.Location = new Point(180, 6);
+            loadAdjListBtn.Name = "loadAdjListBtn";
+            loadAdjListBtn.Size = new Size(113, 29);
+            loadAdjListBtn.TabIndex = 12;
+            loadAdjListBtn.Text = "Load AdjList";
+            loadAdjListBtn.UseVisualStyleBackColor = true;
+            loadAdjListBtn.Click += LoadAdjListBtn_Click;
+            // 
             // Color3
             // 
             Color3.BorderRadius = 10;
-            Color3.CustomizableEdges = customizableEdges7;
+            Color3.CustomizableEdges = customizableEdges23;
             Color3.DisabledState.BorderColor = Color.DarkGray;
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -489,7 +508,7 @@
             Color3.ForeColor = Color.White;
             Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
-            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges24;
             Color3.Size = new Size(51, 30);
             Color3.TabIndex = 11;
             Color3.Click += btnColor;
@@ -497,7 +516,7 @@
             // Color2
             // 
             Color2.BorderRadius = 10;
-            Color2.CustomizableEdges = customizableEdges9;
+            Color2.CustomizableEdges = customizableEdges25;
             Color2.DisabledState.BorderColor = Color.DarkGray;
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -507,7 +526,7 @@
             Color2.ForeColor = Color.White;
             Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
-            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges26;
             Color2.Size = new Size(51, 30);
             Color2.TabIndex = 10;
             Color2.Click += btnColor;
@@ -515,7 +534,7 @@
             // Color1
             // 
             Color1.BorderRadius = 10;
-            Color1.CustomizableEdges = customizableEdges11;
+            Color1.CustomizableEdges = customizableEdges27;
             Color1.DisabledState.BorderColor = Color.DarkGray;
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -525,7 +544,7 @@
             Color1.ForeColor = Color.White;
             Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
-            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges28;
             Color1.Size = new Size(51, 30);
             Color1.TabIndex = 9;
             Color1.Click += btnColor;
@@ -570,27 +589,27 @@
             // EndNode
             // 
             EndNode.BackColor = Color.Transparent;
-            EndNode.CustomizableEdges = customizableEdges13;
+            EndNode.CustomizableEdges = customizableEdges29;
             EndNode.Font = new Font("Segoe UI", 9F);
             EndNode.Location = new Point(115, 77);
             EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
-            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            EndNode.Size = new Size(43, 30);
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            EndNode.Size = new Size(54, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
             // 
             StartNode.BackColor = Color.Transparent;
-            StartNode.CustomizableEdges = customizableEdges15;
+            StartNode.CustomizableEdges = customizableEdges31;
             StartNode.Font = new Font("Segoe UI", 9F);
             StartNode.Location = new Point(115, 27);
             StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
-            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            StartNode.Size = new Size(43, 30);
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            StartNode.Size = new Size(54, 30);
             StartNode.TabIndex = 3;
             // 
             // label3
@@ -636,6 +655,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
             tabControl1.ResumeLayout(false);
+            tabPage8.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
@@ -703,5 +723,8 @@
         private Guna.UI2.WinForms.Guna2Button Color3;
         private Guna.UI2.WinForms.Guna2Button Color2;
         private Guna.UI2.WinForms.Guna2Button Color1;
+        private TabPage tabPage8;
+        private RichTextBox adjListShow;
+        private Button loadAdjListBtn;
     }
 }

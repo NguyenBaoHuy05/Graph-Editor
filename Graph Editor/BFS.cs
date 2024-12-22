@@ -23,6 +23,13 @@ namespace Graph_Editor
             vis[start] = true;
             nodes[start].FillColor = Color.Red;
             nodes[end].FillColor = Color.Green;
+            for (int i = 0; i < n; ++i)
+            {
+                if (i != start && i != end)
+                {
+                    nodes[i].FillColor = defaultColor;
+                }
+            }
 
             while (queue.Count > 0)
             {

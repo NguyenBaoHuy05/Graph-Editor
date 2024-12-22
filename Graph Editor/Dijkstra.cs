@@ -27,8 +27,14 @@ namespace Graph_Editor
             pq.Enqueue(start, 0);
             nodes[start].FillColor = Color.Red;
             nodes[end].FillColor = Color.Green;
-
-            while (pq.Count > 0 && !completed[end])
+            for (int i = 0; i < n; ++i)
+            {
+                if (i != start && i != end)
+                {
+                    nodes[i].FillColor = defaultColor;
+                }
+            }
+            while (pq.Count > 0)
             {
                 int current = pq.Dequeue(); 
                 if(current == end)
@@ -37,10 +43,7 @@ namespace Graph_Editor
                     return;
                 }
                 if (current != start && current != end) nodes[current].FillColor = bestNodeColor;
-
-      
-                if (completed[current]) continue;
-                completed[current] = true;
+                
                 foreach(int neighbor in adjList[current])
                 {
                     if (completed[neighbor]) continue;
@@ -56,9 +59,9 @@ namespace Graph_Editor
                         pq.Enqueue(neighbor, distances[neighbor]); 
                     }
                     await Task.Delay(delayMilliseconds);
-                    if (neighbor != end) nodes[neighbor].FillColor = defaultColor; 
+                    if (neighbor != end) nodes[neighbor].FillColor = defaultColor;
                 }
-
+                completed[current] = true;
             }
             if (distances[end] == int.MaxValue)
             {
@@ -81,6 +84,7 @@ namespace Graph_Editor
         }
         private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, int[] g)
         {
+            Log.Clear();
             Log.AppendText($"Khoảng cách ngắn nhất từ {start} đến {end}: {g[end]}\n");
             Log.AppendText("Đường đi: ");
             for (int i = 0; i < n; ++i)

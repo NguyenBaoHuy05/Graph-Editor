@@ -91,7 +91,6 @@ namespace Graph_Editor
                 }
             }
 
-            // Hoàn thành cây khung nhỏ nhất
             Log.AppendText("Cây khung nhỏ nhất (MST) đã được tạo:\n");
             for (int i = 1; i < n; i++)
             {

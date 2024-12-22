@@ -34,6 +34,9 @@ namespace Graph_Editor
                 btn.MouseDown += btn_MouseDown;
                 btn.MouseMove += btn_MouseMove;
                 btn.MouseUp += btn_MouseUp;
+                btn.DisabledState.FillColor = Color.Gray;
+                btn.DisabledState.BorderColor = Color.White;
+                btn.DisabledState.ForeColor = Color.White;
 
                 // Thiết lập vùng hiển thị hình tròn
                 GraphicsPath path = new GraphicsPath();
@@ -65,6 +68,10 @@ namespace Graph_Editor
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
 
+            btn.DisabledState.FillColor = Color.Gray;
+            btn.DisabledState.BorderColor = Color.DarkGray;
+            btn.DisabledState.ForeColor = Color.White;
+
             // Thiết lập vùng hiển thị hình tròn
             GraphicsPath path = new GraphicsPath();
             path.AddEllipse(0, 0, btn.Width, btn.Height);
@@ -93,6 +100,10 @@ namespace Graph_Editor
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
 
+            btn.DisabledState.FillColor = Color.Gray;
+            btn.DisabledState.BorderColor = Color.DarkGray;
+            btn.DisabledState.ForeColor = Color.White;
+
             // Thiết lập vùng hiển thị hình tròn
             GraphicsPath path = new GraphicsPath();
             path.AddEllipse(0, 0, btn.Width, btn.Height);
@@ -115,31 +126,32 @@ namespace Graph_Editor
             {
                 for (int j = 0; j < num; ++j)
                 {
-                    Guna2TextBox txt = new Guna2TextBox();
+                    Guna2Button btn = new Guna2Button();
                     if (num < 8)
                     {
-                        txt.Size = new Size(50, 50);
-                        txt.Location = new Point(j * 50, i * 50);
+                        btn.Size = new Size(50, 50);
+                        btn.Location = new Point(j * 50, i * 50);
                     }
                     else
                     {
-                        txt.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
-                        txt.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
+                        btn.Size = new Size(adjMatrixPanel.Width / num, adjMatrixPanel.Height / num);
+                        btn.Location = new Point(j * (adjMatrixPanel.Width / num), i * (adjMatrixPanel.Width / num));
                     }
-                    txt.Tag = (i, j);
-                    txt.FillColor = Color.Turquoise;
-                    txt.ForeColor = Color.White;
-                    txt.BorderColor = Color.White;
-                    txt.BorderThickness = 1;
-                    txt.Click += txt_Click;
-                    txt.TextChanged += txt_TextChanged;
+                    btn.Tag = (i, j);
+                    btn.FillColor = Color.Turquoise;
+                    btn.ForeColor = Color.White;
+                    btn.BorderColor = Color.White;
+                    btn.BorderThickness = 1;
+                    btn.MouseClick += btn_ClickAdj;
+                    btn.DisabledState.FillColor = Color.Gray;
+                    btn.DisabledState.BorderColor = Color.White;
+                    btn.DisabledState.ForeColor = Color.White;
                     if (i == j)
                     {
-                        txt.Enabled = false;
+                        btn.Enabled = false;
                     }
-                    adjMatrixPanel.Controls.Add(txt);
+                    adjMatrixPanel.Controls.Add(btn);
                 }
-
             }
         }
 
@@ -150,59 +162,61 @@ namespace Graph_Editor
             {
                 for (int j = 0; j < num; ++j)
                 {
-                    Guna2TextBox txt = new Guna2TextBox();
+                    Guna2Button btn = new Guna2Button();
                     if (num < 8)
                     {
-                        txt.Size = new Size(50, 50);
-                        txt.Location = new Point(j * 50, i * 50);
+                        btn.Size = new Size(50, 50);
+                        btn.Location = new Point(j * 50, i * 50);
                     }
                     else
                     {
-                        txt.Size = new Size(weiMatrixPanel.Width / num, weiMatrixPanel.Height / num);
-                        txt.Location = new Point(j * (int)(weiMatrixPanel.Width / num), i * (int)(weiMatrixPanel.Width / num));
+                        btn.Size = new Size(weiMatrixPanel.Width / num, weiMatrixPanel.Height / num);
+                        btn.Location = new Point(j * (weiMatrixPanel.Width / num), i * (weiMatrixPanel.Width / num));
                     }
-                    txt.Tag = (i, j);
-                    txt.FillColor = Color.Turquoise;
-                    if (i == j) txt.Enabled = false;
-                    txt.ForeColor = Color.White;
-                    txt.BorderColor = Color.White;
-                    txt.BorderThickness = 1;
-                    txt.MouseClick += txt_ClickWei;
-                    weiMatrixPanel.Controls.Add(txt);
+                    btn.Tag = (i, j);
+                    btn.FillColor = Color.Turquoise;
+                    btn.ForeColor = Color.White;
+                    btn.BorderColor = Color.White;
+                    btn.BorderThickness = 1;
+                    btn.MouseClick += btn_ClickWei;
+                    btn.DisabledState.FillColor = Color.Gray;
+                    btn.DisabledState.BorderColor = Color.White;
+                    btn.DisabledState.ForeColor = Color.White;
+                    if (i == j)
+                    {
+                        btn.Enabled = false;
+                    }
+                    weiMatrixPanel.Controls.Add(btn);
                 }
             }
         }
-        private void txt_TextChanged(object sender, EventArgs e)
+
+        private void btn_ClickAdj(object sender, EventArgs e)
         {
-            Guna2TextBox txt = (Guna2TextBox)sender;
-            var indices = (ValueTuple<int, int>)txt.Tag;
+            Guna2Button btn = (Guna2Button)sender;
+            var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
-
             int max = Math.Max(row, column);
             int min = Math.Min(row, column);
-            if (txt.Text == "1")
+
+            if (btn.Text == "1")
             {
-                if (!edges.ContainsKey((min, max, defaultColor)))
-                {
-                    edges[(min, max, defaultColor)] = 1;
-                    Board.Invalidate();
-                }
+                edges.Remove((min, max, defaultColor));
             }
             else
             {
-                if (!edges.ContainsKey((min, max, defaultColor)))
-                {
-                    edges.Remove((min, max, defaultColor));
-                    Board.Invalidate();
-                }
+                edges[(min, max, defaultColor)] = 1;
             }
+
+            Board.Invalidate();
             ChangeText();
         }
-        private void txt_ClickWei(object sender, MouseEventArgs e)
+
+        private void btn_ClickWei(object sender, MouseEventArgs e)
         {
-            Guna2TextBox txt = (Guna2TextBox)sender;
-            var indices = (ValueTuple<int, int>)txt.Tag;
+            Guna2Button btn = (Guna2Button)sender;
+            var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
             int max = Math.Max(row, column);
@@ -210,7 +224,7 @@ namespace Graph_Editor
             if (e.Button == MouseButtons.Left)
             {
 
-                if (txt.Text == "\u221E")
+                if (btn.Text == "\u221E")
                 {
 
                     edges[(min, max, defaultColor)] = 1;
@@ -224,11 +238,11 @@ namespace Graph_Editor
             }
             else
             {
-                if (txt.Text == "\u221E")
+                if (btn.Text == "\u221E")
                 {
                     return;
                 }
-                else if (txt.Text == "1")
+                else if (btn.Text == "1")
                 {
                     edges.Remove((min, max, defaultColor));
                 }
@@ -241,51 +255,33 @@ namespace Graph_Editor
             ChangeText();
         }
 
-        private void txt_Click(object sender, EventArgs e)
-        {
-            Guna2TextBox txt = (Guna2TextBox)sender;
-
-            var indices = (ValueTuple<int, int>)txt.Tag;
-            int row = indices.Item1;
-            int column = indices.Item2;
-            int max = Math.Max(row, column);
-            int min = Math.Min(row, column);
-
-            if (txt.Text == "1")
-            {
-                edges.Remove((min, max, defaultColor));
-            }
-
-            else
-            {
-                edges[(min, max, defaultColor)] = 1;
-            }
-
-            Board.Invalidate();
-            ChangeText();
-        }
-
         private void ChangeText()
         {
-            foreach (Guna2TextBox txt in adjMatrixPanel.Controls)
+            foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
-                var indices = (ValueTuple<int, int>)txt.Tag;
+                var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
                 int column = indices.Item2;
                 int max = Math.Max(row, column);
                 int min = Math.Min(row, column);
-                if (edges.ContainsKey((min, max, defaultColor))) txt.Text = "1";
-                else txt.Text = "0";
+                btn.Text = edges.ContainsKey((min, max, defaultColor)) ? "1" : "0";
             }
-            foreach (Guna2TextBox txt in weiMatrixPanel.Controls)
+            foreach (Guna2Button btn in weiMatrixPanel.Controls)
             {
-                var indices = (ValueTuple<int, int>)txt.Tag;
+                var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
                 int column = indices.Item2;
                 int max = Math.Max(row, column);
                 int min = Math.Min(row, column);
-                if (edges.ContainsKey((min, max, defaultColor))) txt.Text = edges[(min, max, defaultColor)].ToString();
-                else txt.Text = "\u221E";
+                if (row == column)
+                {
+                    btn.Text = "0";
+                }
+                else
+                {
+                    btn.Text = edges.ContainsKey((min, max, defaultColor)) ? edges[(min, max, defaultColor)].ToString() : "\u221E";
+                }
+
             }
         }
 
@@ -621,7 +617,8 @@ namespace Graph_Editor
 
         private void ChoseAlgorithm(object sender, EventArgs e)
         {
-            Algo.Text = sender.ToString();
+            ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)sender;
+            Algo.Text = toolStripMenuItem.Text.ToString();
         }
 
         private void btnColor(object sender, EventArgs e)
@@ -640,6 +637,7 @@ namespace Graph_Editor
 
         private void LoadAdjList()
         {
+            adjList = new List<List<int>>();
             for (int i = 0; i < num; i++)
             {
                 List<int> list = new List<int>();
@@ -661,7 +659,65 @@ namespace Graph_Editor
             Color completedColor = Color3.FillColor;
             int start = int.Parse(StartNode.Value.ToString());
             int end = int.Parse(EndNode.Value.ToString());
-            await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+            if (start == end && Algo.Text != "Kruscal" && Algo.Text != "Prim" && Algo.Text != "None")
+            {
+                MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
+                return;
+            }
+            for (int i = 0; i < num; ++i)
+            {
+                nodes[i].FillColor = nodeColor;
+            }
+            foreach (var edge in edges.Keys)
+            {
+                if (edge.Item3 != Color.Black)
+                {
+                    edges.Remove(edge);
+                }
+            }
+            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
+            switch (Algo.Text.ToString())
+            {
+                case "A*":
+                    await AStar.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    break;
+                case "Dijkstra":
+                    await Dijkstra.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    break;
+                case "DFS":
+                    await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    break;
+                case "BFS":
+                    await BFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    break;
+                case "Kruscal":
+                    await Kruscal.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, time, Log, Board);
+                    break;
+                case "Prim":
+                    await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, time, Log, Board);
+                    break;
+                default:
+                    MessageBox.Show("Vui lòng chọn thuật toán");
+                    break;
+            }
+            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+        }
+
+
+
+        private void LoadAdjListBtn_Click(object sender, EventArgs e)
+        {
+            LoadAdjList();
+            adjListShow.Clear();
+            for (int i = 0; i < adjList.Count; ++i)
+            {
+                adjListShow.AppendText(i.ToString() + " -> ");
+                foreach (int j in adjList[i])
+                {
+                    adjListShow.AppendText($"[{j} ]");
+                }
+                adjListShow.AppendText("\n");
+            }
         }
     }
 }
