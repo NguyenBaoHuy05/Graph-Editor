@@ -13,7 +13,7 @@ namespace Graph_Editor
         {
             rank = new int[n+1];
             parent = new int[n+1];
-            for(int i = 0; i < n; ++i)
+            for(int i = 0; i <= n; ++i)
             {
                 parent[i] = i;
             }
@@ -28,11 +28,11 @@ namespace Graph_Editor
             int ulp_u = FindUParent(u);
             int ulp_v = FindUParent(v);
             if (ulp_u == ulp_v) return;
-            if(ulp_u > ulp_v)
+            if(rank[ulp_u] > rank[ulp_v])
             {
                 parent[ulp_v] = ulp_u;
             }
-            else if(ulp_u < ulp_v) 
+            else if(rank[ulp_u] < rank[ulp_v]) 
             {
                 parent[ulp_u] = ulp_v;
             }
