@@ -63,6 +63,7 @@
             addEdges = new RadioButton();
             addNodes = new RadioButton();
             panel1 = new Panel();
+            ChoseBtn = new RadioButton();
             timeRun = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Run = new Button();
             TrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
@@ -117,7 +118,7 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage9);
-            tabControl1.Location = new Point(743, 259);
+            tabControl1.Location = new Point(798, 259);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
@@ -252,7 +253,7 @@
             // selectNode
             // 
             selectNode.AutoSize = true;
-            selectNode.Location = new Point(138, 9);
+            selectNode.Location = new Point(115, 10);
             selectNode.Name = "selectNode";
             selectNode.Size = new Size(114, 24);
             selectNode.TabIndex = 3;
@@ -263,7 +264,7 @@
             // addEdges
             // 
             addEdges.AutoSize = true;
-            addEdges.Location = new Point(13, 9);
+            addEdges.Location = new Point(7, 9);
             addEdges.Name = "addEdges";
             addEdges.Size = new Size(102, 24);
             addEdges.TabIndex = 2;
@@ -274,7 +275,7 @@
             // addNodes
             // 
             addNodes.AutoSize = true;
-            addNodes.Location = new Point(275, 9);
+            addNodes.Location = new Point(235, 10);
             addNodes.Name = "addNodes";
             addNodes.Size = new Size(102, 24);
             addNodes.TabIndex = 4;
@@ -284,6 +285,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(ChoseBtn);
             panel1.Controls.Add(timeRun);
             panel1.Controls.Add(Run);
             panel1.Controls.Add(TrackBar);
@@ -292,15 +294,27 @@
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
-            panel1.Location = new Point(0, 33);
+            panel1.Location = new Point(0, 36);
             panel1.Name = "panel1";
-            panel1.Size = new Size(733, 40);
+            panel1.Size = new Size(788, 49);
             panel1.TabIndex = 5;
+            // 
+            // ChoseBtn
+            // 
+            ChoseBtn.AutoSize = true;
+            ChoseBtn.Location = new Point(340, 10);
+            ChoseBtn.Name = "ChoseBtn";
+            ChoseBtn.Size = new Size(120, 24);
+            ChoseBtn.TabIndex = 12;
+            ChoseBtn.TabStop = true;
+            ChoseBtn.Text = "Choose Node";
+            ChoseBtn.UseVisualStyleBackColor = true;
+            ChoseBtn.CheckedChanged += ChangeChoosebtn;
             // 
             // timeRun
             // 
             timeRun.BackColor = Color.Transparent;
-            timeRun.Location = new Point(618, 9);
+            timeRun.Location = new Point(683, 13);
             timeRun.Name = "timeRun";
             timeRun.Size = new Size(17, 22);
             timeRun.TabIndex = 11;
@@ -309,7 +323,7 @@
             // Run
             // 
             Run.BackColor = Color.Cyan;
-            Run.Location = new Point(661, 6);
+            Run.Location = new Point(714, 10);
             Run.Name = "Run";
             Run.Size = new Size(69, 28);
             Run.TabIndex = 10;
@@ -319,7 +333,7 @@
             // 
             // TrackBar
             // 
-            TrackBar.Location = new Point(480, 5);
+            TrackBar.Location = new Point(545, 9);
             TrackBar.Maximum = 10;
             TrackBar.Name = "TrackBar";
             TrackBar.Size = new Size(132, 29);
@@ -330,15 +344,15 @@
             // 
             // guna2vSeparator1
             // 
-            guna2vSeparator1.Location = new Point(458, 3);
+            guna2vSeparator1.Location = new Point(524, 5);
             guna2vSeparator1.Name = "guna2vSeparator1";
-            guna2vSeparator1.Size = new Size(25, 34);
+            guna2vSeparator1.Size = new Size(17, 34);
             guna2vSeparator1.TabIndex = 9;
             // 
             // Reset
             // 
             Reset.BackColor = Color.Cyan;
-            Reset.Location = new Point(383, 7);
+            Reset.Location = new Point(456, 7);
             Reset.Name = "Reset";
             Reset.Size = new Size(69, 28);
             Reset.TabIndex = 8;
@@ -455,7 +469,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1214, 33);
+            menuStrip1.Size = new Size(1274, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -468,7 +482,7 @@
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
             Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Board.Size = new Size(726, 660);
+            Board.Size = new Size(776, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
@@ -488,7 +502,7 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(739, 38);
+            groupBox1.Location = new Point(794, 45);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(468, 189);
             groupBox1.TabIndex = 8;
@@ -644,12 +658,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1214, 772);
+            ClientSize = new Size(1274, 772);
             Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(Board);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -726,5 +741,6 @@
         private TabPage tabPage8;
         private RichTextBox adjListShow;
         private Button loadAdjListBtn;
+        private RadioButton ChoseBtn;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace Graph_Editor
         List<Guna2CircleButton> nodes = new List<Guna2CircleButton>();
 
         Guna2CircleButton firstSelectedNode = null;
+        Guna2CircleButton chosenNode = null;
         string filePath;
 
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
@@ -30,6 +32,7 @@ namespace Graph_Editor
                 Guna2CircleButton btn = new Guna2CircleButton();
                 btn.Size = new Size(60, 60);
                 btn.Location = point;
+                btn.Click += Choosebtn;
                 btn.Text = num++.ToString();
                 btn.MouseDown += btn_MouseDown;
                 btn.MouseMove += btn_MouseMove;
@@ -64,6 +67,7 @@ namespace Graph_Editor
 
             btn.Location = new Point(rd.Next(50, 600), rd.Next(100, 600));
             btn.Text = num++.ToString();
+            btn.Click += Choosebtn;
             btn.MouseDown += btn_MouseDown;
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
@@ -96,6 +100,7 @@ namespace Graph_Editor
             btn.Size = new Size(60, 60);
             btn.Location = point;
             btn.Text = num++.ToString();
+            btn.Click += Choosebtn;
             btn.MouseDown += btn_MouseDown;
             btn.MouseMove += btn_MouseMove;
             btn.MouseUp += btn_MouseUp;
@@ -118,6 +123,90 @@ namespace Graph_Editor
             CreateAdjMatrix();
             CreateWeiMatrix();
             ChangeText();
+        }
+        private void ResetColor()
+        {
+            foreach (var node in nodes)
+            {
+                node.FillColor = Color.FromArgb(94, 148, 255);
+            }
+            foreach (Guna2Button btn in adjMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)btn.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                btn.FillColor = Color.Turquoise;
+            }
+            foreach (Guna2Button btn in weiMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)btn.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                btn.FillColor = Color.Turquoise;
+            }
+        }
+        private void ChangeColor()
+        {
+            if (chosenNode == null) return;
+            chosenNode.FillColor = Color.Gold;
+            foreach (int i in adjList[int.Parse(chosenNode.Text)])
+            {
+                nodes[i].FillColor = Color.GreenYellow;
+            }
+            foreach (Guna2Button btn in adjMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)btn.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                if (row.ToString() == chosenNode.Text && btn.Text != "0") btn.FillColor = Color.GreenYellow;
+                else btn.FillColor = Color.Turquoise;
+            }
+            foreach (Guna2Button btn in weiMatrixPanel.Controls)
+            {
+                var indices = (ValueTuple<int, int>)btn.Tag;
+                int row = indices.Item1;
+                int column = indices.Item2;
+                int max = Math.Max(row, column);
+                int min = Math.Min(row, column);
+                if (row.ToString() == chosenNode.Text && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
+                else btn.FillColor = Color.Turquoise;
+            }
+        }
+        private void ChangeChoosebtn(object sender, EventArgs e)
+        {
+            if (ChoseBtn.Checked)
+            {
+                return;
+            }
+            chosenNode = null;
+            ResetColor();
+        }
+        private void Choosebtn(object sender, EventArgs e)
+        {
+            Guna2CircleButton button = (Guna2CircleButton)sender;
+            foreach (var node in nodes)
+            {
+                node.FillColor = Color.FromArgb(94, 148, 255);
+            }
+
+            if (ChoseBtn.Checked)
+            {
+                chosenNode = button;
+                button.FillColor = Color.Gold;
+                LoadAdjList();
+                ChangeColor();
+            }
+        }
+        private void Chosen()
+        {
+            ResetColor();
+            ChangeColor();
         }
         private void CreateAdjMatrix()
         {
@@ -257,6 +346,7 @@ namespace Graph_Editor
 
         private void ChangeText()
         {
+            LoadAdjList();
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
@@ -283,6 +373,7 @@ namespace Graph_Editor
                 }
 
             }
+            Chosen();
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
@@ -602,6 +693,7 @@ namespace Graph_Editor
         private void Reset_Click(object sender, EventArgs e)
         {
             Board.Controls.Clear();
+            adjList.Clear();
             edges.Clear();
             nodes.Clear();
             Board.Invalidate();
