@@ -39,8 +39,6 @@ namespace Graph_Editor
                 {
                     ds.UnionByRank(u, v);
                     MST.Add((u, v));
-
-                    // Hiển thị cạnh đang được thêm vào MST
                     edges[(u, v, edgeColor)] = edges[(u, v, Color.Black)];
                     sum += edges[(u, v, Color.Black)];
                     Board.Invalidate();

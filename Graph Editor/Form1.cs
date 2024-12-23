@@ -694,7 +694,7 @@ namespace Graph_Editor
                     await Kruskal.Algorithm(num, edges, nodeColor, visNodeColor, time, Log, Board);
                     break;
                 case "Prim":
-                    await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, time, Log, Board);
+                    await Prim.Algorithm(num, adjList, edges, nodeColor, visNodeColor, time, Log, Board);
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");

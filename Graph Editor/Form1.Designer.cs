@@ -182,7 +182,7 @@
             tabPage7.Padding = new Padding(3);
             tabPage7.Size = new Size(456, 456);
             tabPage7.TabIndex = 1;
-            tabPage7.Text = "Weighted Matrix";
+            tabPage7.Text = "Weight Matrix";
             // 
             // weiMatrixPanel
             // 
@@ -409,42 +409,42 @@
             // dFS
             // 
             dFS.Name = "dFS";
-            dFS.Size = new Size(224, 30);
+            dFS.Size = new Size(171, 30);
             dFS.Text = "DFS";
             dFS.Click += ChoseAlgorithm;
             // 
             // bFS
             // 
             bFS.Name = "bFS";
-            bFS.Size = new Size(224, 30);
+            bFS.Size = new Size(171, 30);
             bFS.Text = "BFS";
             bFS.Click += ChoseAlgorithm;
             // 
             // dijkstra
             // 
             dijkstra.Name = "dijkstra";
-            dijkstra.Size = new Size(224, 30);
+            dijkstra.Size = new Size(171, 30);
             dijkstra.Text = "Dijkstra";
             dijkstra.Click += ChoseAlgorithm;
             // 
             // aStar
             // 
             aStar.Name = "aStar";
-            aStar.Size = new Size(224, 30);
+            aStar.Size = new Size(171, 30);
             aStar.Text = "A*";
             aStar.Click += ChoseAlgorithm;
             // 
             // prim
             // 
             prim.Name = "prim";
-            prim.Size = new Size(224, 30);
+            prim.Size = new Size(171, 30);
             prim.Text = "Prim";
             prim.Click += ChoseAlgorithm;
             // 
             // kruscal
             // 
             kruscal.Name = "kruscal";
-            kruscal.Size = new Size(224, 30);
+            kruscal.Size = new Size(171, 30);
             kruscal.Text = "Kruskal";
             kruscal.Click += ChoseAlgorithm;
             // 

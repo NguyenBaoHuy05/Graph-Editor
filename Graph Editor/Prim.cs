@@ -10,92 +10,68 @@ namespace Graph_Editor
     internal class Prim
     {
 
-        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
+        public static async Task Algorithm(int n, List<List<int>> adjList, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             Log.Clear();
-
-            // Mảng đánh dấu các đỉnh đã được thêm vào MST
-            bool[] inMST = new bool[n];
-
-            // Mảng lưu trọng số nhỏ nhất để kết nối một đỉnh với cây hiện tại
-            int[] key = new int[n];
-
-            // Mảng lưu đỉnh cha trong cây MST
-            int[] parent = new int[n];
-
-            // Khởi tạo giá trị ban đầu
-            for (int i = 0; i < n; i++)
+            var pq = new PriorityQueue<(int,int), int>();
+            bool[] vis = new bool[n];
+            Array.Fill(vis, false);
+            pq.Enqueue((-1,0),0);
+            int sum = 0;
+            int cnt = 0;
+            List<(int, int)> MST = new List<(int, int)>();
+            while(pq.Count > 0)
             {
-                key[i] = int.MaxValue;
-                parent[i] = -1;
-                inMST[i] = false;
-            }
-
-            // Bắt đầu từ đỉnh đầu tiên
-            key[0] = 0;
-            parent[0] = -1;
-
-            // Thực hiện n-1 bước để thêm các đỉnh vào MST
-            for (int count = 0; count < n - 1; count++)
-            {
-                // Tìm đỉnh u chưa nằm trong MST và có trọng số nhỏ nhất
-                int u = -1;
-                for (int i = 0; i < n; i++)
+                var node = pq.Dequeue();
+                if (vis[node.Item2]) continue;
+                vis[node.Item2] = true;
+                ++cnt;
+                MST.Add((node.Item1, node.Item2));
+                if (node.Item1 != -1)
                 {
-                    if (!inMST[i] && (u == -1 || key[i] < key[u]))
-                    {
-                        u = i;
-                    }
-                }
-
-                // Đánh dấu đỉnh u đã được thêm vào MST
-                inMST[u] = true;
-
-                // Nếu u có cha (không phải đỉnh đầu tiên), hiển thị cạnh của nó
-                if (parent[u] != -1)
-                {
-                    int v = parent[u];
-
-                    // Đảm bảo vô hướng: chỉ lưu một chiều cho cạnh
-                    var edgeKey = (v, u, Color.Black);
-                    if (!edges.ContainsKey(edgeKey))
-                    {
-                        edgeKey = (u, v, Color.Black);
-                    }
-
-                    edges[edgeKey] = edges[edgeKey];
+                    int min = Math.Min(node.Item1, node.Item2);
+                    int max = Math.Max(node.Item1, node.Item2);
+                    edges[(min, max, mstEdgeColor)] = edges[(min, max, Color.Black)];
+                    int wt = edges[(min, max, Color.Black)];
+                    sum += wt;
                     Board.Invalidate();
-                    await Task.Delay(delayMilliseconds);
-
-                    edges[edgeKey] = edges[edgeKey];
-                    Board.Invalidate();
-                    Log.AppendText($"Cạnh {v} -> {u} với trọng số {key[u]} đã được thêm vào MST\n");
-
+                    Log.AppendText($"Cạnh {node.Item1} -> {node.Item2} với trọng số {wt} đã được thêm vào MST\n");
                     await Task.Delay(delayMilliseconds);
                 }
-
-                // Cập nhật các đỉnh kề của u
-                foreach (int v in adjList[u])
+                foreach(int neighbor in adjList[node.Item2])
                 {
-                    var edgeKey = (u, v, Color.Black);
-                    if (!edges.ContainsKey(edgeKey))
+                    if (!vis[neighbor])
                     {
-                        edgeKey = (v, u, Color.Black);
-                    }
-
-                    if (edges.TryGetValue(edgeKey, out int weight) && !inMST[v] && weight < key[v])
-                    {
-                        key[v] = weight;
-                        parent[v] = u;
+                        int min = Math.Min(node.Item2, neighbor);
+                        int max = Math.Max(node.Item2, neighbor);
+                        int wt = edges[(min, max, Color.Black)];
+                        pq.Enqueue((node.Item2, neighbor), wt);
+                        edges[(min, max, edgeColor)] = edges[(min, max, Color.Black)];
+                        Board.Invalidate();
+                        await Task.Delay(delayMilliseconds);
+                        edges[(min, max, Color.Black)] = edges[(min, max, edgeColor)];
+                        edges.Remove((min, max, edgeColor));
+                        Board.Invalidate();
+                        await Task.Delay(delayMilliseconds);
                     }
                 }
             }
-
-            Log.AppendText("Cây khung nhỏ nhất (MST) đã được tạo:\n");
-            for (int i = 1; i < n; i++)
+            if (cnt < n)
             {
-                Log.AppendText($"{parent[i]} - {i}\n");
+                Log.AppendText("Đồ thị không có cây khung vì không liên thông:\n");
+                return;
             }
+            Log.AppendText($"Cây khung nhỏ nhất (MST) đã được tạo với trọng số là {sum}:\n");
+            foreach (var edge in MST)
+            {
+
+                if(edge.Item1 == -1)
+                {
+                    continue;
+                }
+                Log.AppendText($"{edge.Item1} -> {edge.Item2}\n");
+            }
+
         }
 
 
