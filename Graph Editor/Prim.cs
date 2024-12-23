@@ -20,7 +20,7 @@ namespace Graph_Editor
             int sum = 0;
             int cnt = 0;
             List<(int, int)> MST = new List<(int, int)>();
-            while(pq.Count > 0)
+            while (pq.Count > 0)
             {
                 var node = pq.Dequeue();
                 if (vis[node.Item2]) continue;
@@ -49,10 +49,8 @@ namespace Graph_Editor
                         edges[(min, max, edgeColor)] = edges[(min, max, Color.Black)];
                         Board.Invalidate();
                         await Task.Delay(delayMilliseconds);
-                        edges[(min, max, Color.Black)] = edges[(min, max, edgeColor)];
                         edges.Remove((min, max, edgeColor));
                         Board.Invalidate();
-                        await Task.Delay(delayMilliseconds);
                     }
                 }
             }
