@@ -675,6 +675,7 @@ namespace Graph_Editor
                     edges.Remove(edge);
                 }
             }
+            Board.Invalidate();
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
             switch (Algo.Text.ToString())
             {
@@ -700,6 +701,7 @@ namespace Graph_Editor
                     MessageBox.Show("Vui lòng chọn thuật toán");
                     break;
             }
+            MessageBox.Show("algorithm is completed!", "Success");
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
         }
 
