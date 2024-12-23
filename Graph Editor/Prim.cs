@@ -10,7 +10,7 @@ namespace Graph_Editor
     internal class Prim
     {
 
-        public static async Task Algorithm(int n, List<List<int>> adjList, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
+        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             Log.Clear();
             var pq = new PriorityQueue<(int,int), int>();
@@ -25,6 +25,7 @@ namespace Graph_Editor
                 var node = pq.Dequeue();
                 if (vis[node.Item2]) continue;
                 vis[node.Item2] = true;
+                nodes[node.Item2].FillColor = mstEdgeColor;
                 ++cnt;
                 MST.Add((node.Item1, node.Item2));
                 if (node.Item1 != -1)

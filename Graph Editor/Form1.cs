@@ -691,7 +691,7 @@ namespace Graph_Editor
                     break;
                 case "Prim":
                     edgesCopy = new Dictionary<(int, int, Color), int>(edges);
-                    await Prim.Algorithm(num, adjList, edges, nodeColor, visNodeColor, time, Log, Board);
+                    await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, time, Log, Board);
                     edges = edgesCopy;
                     break;
                 default:
