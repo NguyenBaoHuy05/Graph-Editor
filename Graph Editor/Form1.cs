@@ -696,6 +696,7 @@ namespace Graph_Editor
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
+                    Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
                     return;
                     
             }

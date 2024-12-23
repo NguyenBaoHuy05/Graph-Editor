@@ -540,7 +540,7 @@
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             Color1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            Color1.FillColor = Color.FromArgb(192, 255, 192);
+            Color1.FillColor = Color.FromArgb(255, 128, 0);
             Color1.Font = new Font("Segoe UI", 9F);
             Color1.ForeColor = Color.White;
             Color1.Location = new Point(320, 26);
