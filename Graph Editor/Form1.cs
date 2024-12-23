@@ -675,6 +675,7 @@ namespace Graph_Editor
                     edges.Remove(edge);
                 }
             }
+            Board.Invalidate();
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
             switch (Algo.Text.ToString())
             {
