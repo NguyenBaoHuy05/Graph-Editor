@@ -701,6 +701,7 @@ namespace Graph_Editor
                     MessageBox.Show("Vui lòng chọn thuật toán");
                     break;
             }
+            MessageBox.Show("algorithm is completed!", "Success");
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
         }
 
