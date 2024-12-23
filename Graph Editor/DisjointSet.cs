@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Graph_Editor
 {
-    class DisjoinSet
+    class DisjointSet
     {
         public int[] rank, parent;
-        public DisjoinSet(int n)
+        public DisjointSet(int n)
         {
             rank = new int[n+1];
             parent = new int[n+1];

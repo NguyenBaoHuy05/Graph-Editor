@@ -45,15 +45,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
-            tabPage8 = new TabPage();
-            loadAdjListBtn = new Button();
-            adjListShow = new RichTextBox();
             tabPage2 = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage7 = new TabPage();
             weiMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
             tabPage9 = new TabPage();
             Log = new RichTextBox();
+            tabPage8 = new TabPage();
+            loadAdjListBtn = new Button();
+            adjListShow = new RichTextBox();
             tabPage1 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
@@ -98,10 +98,10 @@
             label2 = new Label();
             label1 = new Label();
             tabControl1.SuspendLayout();
-            tabPage8.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage9.SuspendLayout();
+            tabPage8.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
@@ -113,44 +113,15 @@
             // tabControl1
             // 
             tabControl1.Appearance = TabAppearance.Buttons;
-            tabControl1.Controls.Add(tabPage8);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage9);
+            tabControl1.Controls.Add(tabPage8);
             tabControl1.Location = new Point(743, 259);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
-            // 
-            // tabPage8
-            // 
-            tabPage8.Controls.Add(loadAdjListBtn);
-            tabPage8.Controls.Add(adjListShow);
-            tabPage8.Location = new Point(4, 32);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(456, 456);
-            tabPage8.TabIndex = 4;
-            tabPage8.Text = "AdjList";
-            tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // loadAdjListBtn
-            // 
-            loadAdjListBtn.Location = new Point(180, 6);
-            loadAdjListBtn.Name = "loadAdjListBtn";
-            loadAdjListBtn.Size = new Size(113, 29);
-            loadAdjListBtn.TabIndex = 12;
-            loadAdjListBtn.Text = "Load AdjList";
-            loadAdjListBtn.UseVisualStyleBackColor = true;
-            loadAdjListBtn.Click += LoadAdjListBtn_Click;
-            // 
-            // adjListShow
-            // 
-            adjListShow.Location = new Point(0, 44);
-            adjListShow.Name = "adjListShow";
-            adjListShow.Size = new Size(456, 412);
-            adjListShow.TabIndex = 0;
-            adjListShow.Text = "";
             // 
             // tabPage2
             // 
@@ -213,6 +184,36 @@
             Log.Size = new Size(450, 450);
             Log.TabIndex = 0;
             Log.Text = "";
+            // 
+            // tabPage8
+            // 
+            tabPage8.Controls.Add(loadAdjListBtn);
+            tabPage8.Controls.Add(adjListShow);
+            tabPage8.Location = new Point(4, 32);
+            tabPage8.Name = "tabPage8";
+            tabPage8.Size = new Size(456, 456);
+            tabPage8.TabIndex = 4;
+            tabPage8.Text = "AdjList";
+            tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // loadAdjListBtn
+            // 
+            loadAdjListBtn.Location = new Point(180, 6);
+            loadAdjListBtn.Name = "loadAdjListBtn";
+            loadAdjListBtn.Size = new Size(113, 29);
+            loadAdjListBtn.TabIndex = 12;
+            loadAdjListBtn.Text = "Load AdjList";
+            loadAdjListBtn.UseVisualStyleBackColor = true;
+            loadAdjListBtn.Click += LoadAdjListBtn_Click;
+            // 
+            // adjListShow
+            // 
+            adjListShow.BackColor = Color.LightGray;
+            adjListShow.Location = new Point(0, 44);
+            adjListShow.Name = "adjListShow";
+            adjListShow.Size = new Size(456, 412);
+            adjListShow.TabIndex = 0;
+            adjListShow.Text = "";
             // 
             // tabPage1
             // 
@@ -655,10 +656,10 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
             tabControl1.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
+            tabPage8.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
