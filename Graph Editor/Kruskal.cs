@@ -27,7 +27,7 @@ namespace Graph_Editor
             }
 
             edgeList.Sort((x, y) => x.Item3.CompareTo(y.Item3));
-            DisjoinSet ds = new DisjoinSet(n);
+            DisjointSet ds = new DisjointSet(n);
             List<(int, int)> MST = new List<(int, int)>();
             foreach (var edge in edgeList)
             {

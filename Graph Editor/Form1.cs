@@ -760,15 +760,9 @@ namespace Graph_Editor
             {
                 nodes[i].FillColor = nodeColor;
             }
-            foreach (var edge in edges.Keys)
-            {
-                if (edge.Item3 != Color.Black)
-                {
-                    edges.Remove(edge);
-                }
-            }
             Board.Invalidate();
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
+            Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
             {
                 case "A*":
@@ -785,13 +779,18 @@ namespace Graph_Editor
                     break;
                 case "Kruskal":
                     await Kruskal.Algorithm(num, edges, nodeColor, visNodeColor, time, Log, Board);
+                    edges = edgesCopy;
                     break;
                 case "Prim":
-                    await Prim.Algorithm(num, adjList, edges, nodeColor, visNodeColor, time, Log, Board);
+                    edgesCopy = new Dictionary<(int, int, Color), int>(edges);
+                    await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, time, Log, Board);
+                    edges = edgesCopy;
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
-                    break;
+                    Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+                    return;
+                    
             }
             MessageBox.Show("Algorithm is completed!", "Success");
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
