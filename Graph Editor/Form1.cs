@@ -178,6 +178,7 @@ namespace Graph_Editor
                 Guna2CircleButton button = (Guna2CircleButton)sender;
                 chosenNode = button;
                 button.FillColor = Color.Gold;
+                ResetColor();
                 ChangeColor();
             }
         }
@@ -724,6 +725,17 @@ namespace Graph_Editor
         }
         async private void Run_Click(object sender, EventArgs e)
         {
+            if(Run.Text == "Close")
+            {
+                for (int i = 0; i < num; ++i)
+                {
+                    nodes[i].FillColor = Color.FromArgb(94, 148, 255);
+                }
+                Board.Invalidate();
+                Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+                Run.Text = "Run";
+                return;
+            }
             LoadAdjList();
             int time = TrackBar.Value * 1000;
             Color nodeColor = Color.FromArgb(94, 148, 255);
@@ -737,11 +749,6 @@ namespace Graph_Editor
                 MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
                 return;
             }
-            for (int i = 0; i < num; ++i)
-            {
-                nodes[i].FillColor = nodeColor;
-            }
-            Board.Invalidate();
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
@@ -764,7 +771,7 @@ namespace Graph_Editor
                     break;
                 case "Prim":
                     edgesCopy = new Dictionary<(int, int, Color), int>(edges);
-                    await Prim.Algorithm(num, adjList, nodes, edges, nodeColor, visNodeColor, time, Log, Board);
+                    await Prim.Algorithm(num, adjList, nodes, edges, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
                     edges = edgesCopy;
                     break;
                 default:
@@ -774,7 +781,8 @@ namespace Graph_Editor
                     
             }
             MessageBox.Show("Algorithm is completed!", "Success");
-            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+            Run.Enabled = true;
+            Run.Text = "Close";
         }
 
         private void LoadAdjListBtn_Click(object sender, EventArgs e)

@@ -45,20 +45,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
-            tabPage2 = new TabPage();
+            AdjacencyMatrix = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
-            tabPage7 = new TabPage();
+            WeightMatrix = new TabPage();
             weiMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
-            tabPage9 = new TabPage();
+            TabLog = new TabPage();
             Log = new RichTextBox();
-            tabPage8 = new TabPage();
-            loadAdjListBtn = new Button();
+            AdjencyList = new TabPage();
             adjListShow = new RichTextBox();
-            tabPage1 = new TabPage();
-            tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
-            tabPage5 = new TabPage();
-            tabPage6 = new TabPage();
+            LoadAdjListBtn = new Button();
             selectNode = new RadioButton();
             addEdges = new RadioButton();
             addNodes = new RadioButton();
@@ -99,10 +94,10 @@
             label2 = new Label();
             label1 = new Label();
             tabControl1.SuspendLayout();
-            tabPage2.SuspendLayout();
-            tabPage7.SuspendLayout();
-            tabPage9.SuspendLayout();
-            tabPage8.SuspendLayout();
+            AdjacencyMatrix.SuspendLayout();
+            WeightMatrix.SuspendLayout();
+            TabLog.SuspendLayout();
+            AdjencyList.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
@@ -114,25 +109,26 @@
             // tabControl1
             // 
             tabControl1.Appearance = TabAppearance.Buttons;
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage7);
-            tabControl1.Controls.Add(tabPage9);
+            tabControl1.Controls.Add(AdjacencyMatrix);
+            tabControl1.Controls.Add(WeightMatrix);
+            tabControl1.Controls.Add(TabLog);
+            tabControl1.Controls.Add(AdjencyList);
             tabControl1.Location = new Point(798, 259);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
             // 
-            // tabPage2
+            // AdjacencyMatrix
             // 
-            tabPage2.BackColor = Color.DarkGray;
-            tabPage2.Controls.Add(adjMatrixPanel);
-            tabPage2.Location = new Point(4, 32);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(456, 456);
-            tabPage2.TabIndex = 0;
-            tabPage2.Text = "Adjacency Matrix";
+            AdjacencyMatrix.BackColor = Color.DarkGray;
+            AdjacencyMatrix.Controls.Add(adjMatrixPanel);
+            AdjacencyMatrix.Location = new Point(4, 32);
+            AdjacencyMatrix.Name = "AdjacencyMatrix";
+            AdjacencyMatrix.Padding = new Padding(3);
+            AdjacencyMatrix.Size = new Size(456, 456);
+            AdjacencyMatrix.TabIndex = 0;
+            AdjacencyMatrix.Text = "Adjacency Matrix";
             // 
             // adjMatrixPanel
             // 
@@ -144,16 +140,16 @@
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
-            // tabPage7
+            // WeightMatrix
             // 
-            tabPage7.BackColor = Color.DarkGray;
-            tabPage7.Controls.Add(weiMatrixPanel);
-            tabPage7.Location = new Point(4, 32);
-            tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(456, 456);
-            tabPage7.TabIndex = 1;
-            tabPage7.Text = "Weight Matrix";
+            WeightMatrix.BackColor = Color.DarkGray;
+            WeightMatrix.Controls.Add(weiMatrixPanel);
+            WeightMatrix.Location = new Point(4, 32);
+            WeightMatrix.Name = "WeightMatrix";
+            WeightMatrix.Padding = new Padding(3);
+            WeightMatrix.Size = new Size(456, 456);
+            WeightMatrix.TabIndex = 1;
+            WeightMatrix.Text = "Weight Matrix";
             // 
             // weiMatrixPanel
             // 
@@ -165,16 +161,16 @@
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
-            // tabPage9
+            // TabLog
             // 
-            tabPage9.Controls.Add(Log);
-            tabPage9.Location = new Point(4, 32);
-            tabPage9.Name = "tabPage9";
-            tabPage9.Padding = new Padding(3);
-            tabPage9.Size = new Size(456, 456);
-            tabPage9.TabIndex = 3;
-            tabPage9.Text = "Log";
-            tabPage9.UseVisualStyleBackColor = true;
+            TabLog.Controls.Add(Log);
+            TabLog.Location = new Point(4, 32);
+            TabLog.Name = "TabLog";
+            TabLog.Padding = new Padding(3);
+            TabLog.Size = new Size(456, 456);
+            TabLog.TabIndex = 3;
+            TabLog.Text = "Log";
+            TabLog.UseVisualStyleBackColor = true;
             // 
             // Log
             // 
@@ -185,70 +181,35 @@
             Log.TabIndex = 0;
             Log.Text = "";
             // 
-            // tabPage8
+            // AdjencyList
             // 
-            tabPage8.Controls.Add(loadAdjListBtn);
-            tabPage8.Controls.Add(adjListShow);
-            tabPage8.Location = new Point(4, 32);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(456, 456);
-            tabPage8.TabIndex = 4;
-            tabPage8.Text = "AdjList";
-            tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // loadAdjListBtn
-            // 
-            loadAdjListBtn.Location = new Point(180, 6);
-            loadAdjListBtn.Name = "loadAdjListBtn";
-            loadAdjListBtn.Size = new Size(113, 29);
-            loadAdjListBtn.TabIndex = 12;
-            loadAdjListBtn.Text = "Load AdjList";
-            loadAdjListBtn.UseVisualStyleBackColor = true;
-            loadAdjListBtn.Click += LoadAdjListBtn_Click;
+            AdjencyList.BackColor = SystemColors.ActiveCaption;
+            AdjencyList.Controls.Add(adjListShow);
+            AdjencyList.Controls.Add(LoadAdjListBtn);
+            AdjencyList.Location = new Point(4, 32);
+            AdjencyList.Name = "AdjencyList";
+            AdjencyList.Size = new Size(456, 456);
+            AdjencyList.TabIndex = 4;
+            AdjencyList.Text = "AdjencyList";
             // 
             // adjListShow
             // 
-            adjListShow.BackColor = Color.LightGray;
+            adjListShow.Dock = DockStyle.Bottom;
             adjListShow.Location = new Point(0, 44);
             adjListShow.Name = "adjListShow";
             adjListShow.Size = new Size(456, 412);
-            adjListShow.TabIndex = 0;
+            adjListShow.TabIndex = 2;
             adjListShow.Text = "";
             // 
-            // tabPage1
+            // LoadAdjListBtn
             // 
-            tabPage1.Location = new Point(0, 0);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(200, 100);
-            tabPage1.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            tabPage3.Location = new Point(0, 0);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(200, 100);
-            tabPage3.TabIndex = 0;
-            // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(0, 0);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(200, 100);
-            tabPage4.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            tabPage5.Location = new Point(0, 0);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(200, 100);
-            tabPage5.TabIndex = 0;
-            // 
-            // tabPage6
-            // 
-            tabPage6.Location = new Point(0, 0);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(200, 100);
-            tabPage6.TabIndex = 0;
+            LoadAdjListBtn.Location = new Point(161, 9);
+            LoadAdjListBtn.Name = "LoadAdjListBtn";
+            LoadAdjListBtn.Size = new Size(132, 29);
+            LoadAdjListBtn.TabIndex = 1;
+            LoadAdjListBtn.Text = "Load AdjencyList";
+            LoadAdjListBtn.UseVisualStyleBackColor = true;
+            LoadAdjListBtn.Click += LoadAdjListBtn_Click;
             // 
             // selectNode
             // 
@@ -670,10 +631,10 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Graph Editor";
             tabControl1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
-            tabPage7.ResumeLayout(false);
-            tabPage9.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
+            AdjacencyMatrix.ResumeLayout(false);
+            WeightMatrix.ResumeLayout(false);
+            TabLog.ResumeLayout(false);
+            AdjencyList.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -688,14 +649,9 @@
         }
 
         #endregion
-        private TabPage tabPage1;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
-        private TabPage tabPage5;
-        private TabPage tabPage6;
         private TabControl tabControl1;
-        private TabPage tabPage2;
-        private TabPage tabPage7;
+        private TabPage AdjacencyMatrix;
+        private TabPage WeightMatrix;
         private Guna.UI2.WinForms.Guna2Panel adjMatrixPanel;
         private Guna.UI2.WinForms.Guna2Panel weiMatrixPanel;
         private RadioButton selectNode;
@@ -714,7 +670,7 @@
         private ToolStripMenuItem saveFile;
         private ToolStripMenuItem loadFile;
         private Guna.UI2.WinForms.Guna2PictureBox Board;
-        private TabPage tabPage9;
+        private TabPage TabLog;
         private Button Reset;
         private RichTextBox Log;
         private ToolStripMenuItem saveGph;
@@ -738,9 +694,9 @@
         private Guna.UI2.WinForms.Guna2Button Color3;
         private Guna.UI2.WinForms.Guna2Button Color2;
         private Guna.UI2.WinForms.Guna2Button Color1;
-        private TabPage tabPage8;
-        private RichTextBox adjListShow;
-        private Button loadAdjListBtn;
         private RadioButton ChoseBtn;
+        private TabPage AdjencyList;
+        private RichTextBox adjListShow;
+        private Button LoadAdjListBtn;
     }
 }

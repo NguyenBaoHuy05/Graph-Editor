@@ -10,7 +10,7 @@ namespace Graph_Editor
     internal class Prim
     {
 
-        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
+        public static async Task Algorithm(int n, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             Log.Clear();
             var pq = new PriorityQueue<(int,int), int>();
@@ -25,7 +25,7 @@ namespace Graph_Editor
                 var node = pq.Dequeue();
                 if (vis[node.Item2]) continue;
                 vis[node.Item2] = true;
-                nodes[node.Item2].FillColor = mstEdgeColor;
+                nodes[node.Item2].FillColor = completedColor;
                 ++cnt;
                 MST.Add((node.Item1, node.Item2));
                 if (node.Item1 != -1)
@@ -48,9 +48,11 @@ namespace Graph_Editor
                         int wt = edges[(min, max, Color.Black)];
                         pq.Enqueue((node.Item2, neighbor), wt);
                         edges[(min, max, edgeColor)] = edges[(min, max, Color.Black)];
+                        nodes[neighbor].FillColor = edgeColor;
                         Board.Invalidate();
                         await Task.Delay(delayMilliseconds);
                         edges.Remove((min, max, edgeColor));
+                        nodes[neighbor].FillColor = Color.FromArgb(94,148,255);
                         Board.Invalidate();
                     }
                 }
