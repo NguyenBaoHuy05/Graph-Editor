@@ -132,20 +132,10 @@ namespace Graph_Editor
             }
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
-                var indices = (ValueTuple<int, int>)btn.Tag;
-                int row = indices.Item1;
-                int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
                 btn.FillColor = Color.Turquoise;
             }
             foreach (Guna2Button btn in weiMatrixPanel.Controls)
             {
-                var indices = (ValueTuple<int, int>)btn.Tag;
-                int row = indices.Item1;
-                int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
                 btn.FillColor = Color.Turquoise;
             }
         }
@@ -161,19 +151,13 @@ namespace Graph_Editor
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
-                int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
-                if (row.ToString() == chosenNode.Text && btn.Text != "0") btn.FillColor = Color.GreenYellow;
+                if (row.ToString() == chosenNode.Text && btn.Text != "0" && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
             foreach (Guna2Button btn in weiMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
-                int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
                 if (row.ToString() == chosenNode.Text && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
@@ -189,17 +173,11 @@ namespace Graph_Editor
         }
         private void Choosebtn(object sender, EventArgs e)
         {
-            Guna2CircleButton button = (Guna2CircleButton)sender;
-            foreach (var node in nodes)
-            {
-                node.FillColor = Color.FromArgb(94, 148, 255);
-            }
-
             if (ChoseBtn.Checked)
             {
+                Guna2CircleButton button = (Guna2CircleButton)sender;
                 chosenNode = button;
                 button.FillColor = Color.Gold;
-                LoadAdjList();
                 ChangeColor();
             }
         }
@@ -346,7 +324,6 @@ namespace Graph_Editor
 
         private void ChangeText()
         {
-            LoadAdjList();
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
@@ -373,7 +350,11 @@ namespace Graph_Editor
                 }
 
             }
-            Chosen();
+            if (ChoseBtn.Checked)
+            {
+                Chosen();
+                LoadAdjList();
+            }
         }
 
         private void btn_MouseUp(object sender, MouseEventArgs e)
