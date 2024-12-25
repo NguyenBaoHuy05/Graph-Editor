@@ -725,7 +725,7 @@ namespace Graph_Editor
         }
         async private void Run_Click(object sender, EventArgs e)
         {
-            if(Run.Text == "Close")
+            if (Run.Text == "Close")
             {
                 for (int i = 0; i < num; ++i)
                 {
@@ -777,25 +777,28 @@ namespace Graph_Editor
                     MessageBox.Show("Vui lòng chọn thuật toán");
                     Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
                     return;
-                    
+
             }
             MessageBox.Show("Algorithm is completed!", "Success");
             Run.Enabled = true;
             Run.Text = "Close";
         }
-
-        private void LoadAdjListBtn_Click(object sender, EventArgs e)
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadAdjList();
-            adjListShow.Clear();
-            for (int i = 0; i < adjList.Count; ++i)
+            int idx = tabControl1.SelectedIndex;
+            if(idx == 3)
             {
-                adjListShow.AppendText(i.ToString() + " -> ");
-                foreach (int j in adjList[i])
+                LoadAdjList();
+                adjListShow.Clear();
+                for (int i = 0; i < adjList.Count; ++i)
                 {
-                    adjListShow.AppendText($"[{j} ]");
+                    adjListShow.AppendText(i.ToString() + " -> ");
+                    foreach (int j in adjList[i])
+                    {
+                        adjListShow.AppendText($"[{j} ]");
+                    }
+                    adjListShow.AppendText("\n");
                 }
-                adjListShow.AppendText("\n");
             }
         }
     }

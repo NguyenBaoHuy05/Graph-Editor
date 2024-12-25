@@ -53,7 +53,6 @@
             Log = new RichTextBox();
             AdjencyList = new TabPage();
             adjListShow = new RichTextBox();
-            LoadAdjListBtn = new Button();
             selectNode = new RadioButton();
             addEdges = new RadioButton();
             addNodes = new RadioButton();
@@ -118,6 +117,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // AdjacencyMatrix
             // 
@@ -185,31 +185,20 @@
             // 
             AdjencyList.BackColor = SystemColors.ActiveCaption;
             AdjencyList.Controls.Add(adjListShow);
-            AdjencyList.Controls.Add(LoadAdjListBtn);
             AdjencyList.Location = new Point(4, 32);
             AdjencyList.Name = "AdjencyList";
             AdjencyList.Size = new Size(456, 456);
             AdjencyList.TabIndex = 4;
-            AdjencyList.Text = "AdjencyList";
+            AdjencyList.Text = "Adjacency List";
             // 
             // adjListShow
             // 
-            adjListShow.Dock = DockStyle.Bottom;
-            adjListShow.Location = new Point(0, 44);
+            adjListShow.Dock = DockStyle.Fill;
+            adjListShow.Location = new Point(0, 0);
             adjListShow.Name = "adjListShow";
-            adjListShow.Size = new Size(456, 412);
+            adjListShow.Size = new Size(456, 456);
             adjListShow.TabIndex = 2;
             adjListShow.Text = "";
-            // 
-            // LoadAdjListBtn
-            // 
-            LoadAdjListBtn.Location = new Point(161, 9);
-            LoadAdjListBtn.Name = "LoadAdjListBtn";
-            LoadAdjListBtn.Size = new Size(132, 29);
-            LoadAdjListBtn.TabIndex = 1;
-            LoadAdjListBtn.Text = "Load AdjencyList";
-            LoadAdjListBtn.UseVisualStyleBackColor = true;
-            LoadAdjListBtn.Click += LoadAdjListBtn_Click;
             // 
             // selectNode
             // 
@@ -313,9 +302,9 @@
             // Reset
             // 
             Reset.BackColor = Color.Cyan;
-            Reset.Location = new Point(456, 7);
+            Reset.Location = new Point(466, 7);
             Reset.Name = "Reset";
-            Reset.Size = new Size(69, 28);
+            Reset.Size = new Size(59, 28);
             Reset.TabIndex = 8;
             Reset.Text = "Reset";
             Reset.UseVisualStyleBackColor = false;
@@ -697,6 +686,5 @@
         private RadioButton ChoseBtn;
         private TabPage AdjencyList;
         private RichTextBox adjListShow;
-        private Button LoadAdjListBtn;
     }
 }
