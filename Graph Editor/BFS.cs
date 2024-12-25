@@ -81,19 +81,21 @@ namespace Graph_Editor
             nodes[end].FillColor = Color.Green;
             int j = end;
             Stack<int> S = new Stack<int>();
-            while (save[j] != start)
+            while (j != -1)
             {
-                S.Push(save[j]);
+                S.Push(j);
                 j = save[j];
             }
-            Log.AppendText($"{start} -> ");
+
             Log.AppendText(string.Join(" -> ", S));
-            Log.AppendText($" -> {end} \n");
             while (S.Count > 0)
             {
                 int node = S.Pop();
-                nodes[node].FillColor = completedColor;
-                await Task.Delay(delayMilliseconds);
+                if (node != start && node != end)
+                {
+                    nodes[node].FillColor = completedColor;
+                    await Task.Delay(delayMilliseconds);
+                }
             }
         }
     }
