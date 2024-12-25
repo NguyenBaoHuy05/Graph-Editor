@@ -484,8 +484,9 @@
             Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
             Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            Color3.Size = new Size(51, 30);
+            Color3.Size = new Size(72, 30);
             Color3.TabIndex = 11;
+            Color3.Text = "Select";
             Color3.Click += btnColor;
             // 
             // Color2
@@ -502,8 +503,9 @@
             Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
             Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            Color2.Size = new Size(51, 30);
+            Color2.Size = new Size(72, 30);
             Color2.TabIndex = 10;
+            Color2.Text = "Select";
             Color2.Click += btnColor;
             // 
             // Color1
@@ -520,8 +522,9 @@
             Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
             Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            Color1.Size = new Size(51, 30);
+            Color1.Size = new Size(72, 30);
             Color1.TabIndex = 9;
+            Color1.Text = "Select";
             Color1.Click += btnColor;
             // 
             // label6
@@ -539,7 +542,7 @@
             label5.Name = "label5";
             label5.Size = new Size(103, 34);
             label5.TabIndex = 7;
-            label5.Text = "Best node";
+            label5.Text = "Best";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -548,7 +551,7 @@
             label4.Name = "label4";
             label4.Size = new Size(107, 34);
             label4.TabIndex = 6;
-            label4.Text = "Visited Node";
+            label4.Text = "Visit";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Algo

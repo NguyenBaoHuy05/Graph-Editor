@@ -50,13 +50,13 @@ namespace Graph_Editor
                             nodes[v].FillColor = visColor;
                         }
                         await Task.Delay(delayMilliseconds);
+                        nodes[v].FillColor = defaultColor;
                         if(await DfsRecursive(v))
                         {
                             return true;
                         } 
                     }
                 }
-                nodes[u].FillColor = defaultColor;
                 return false;
             }
             await DfsRecursive(start);

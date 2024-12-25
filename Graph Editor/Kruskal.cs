@@ -11,7 +11,7 @@ namespace Graph_Editor
     internal class Kruskal
     {
 
-        public static async Task Algorithm(int n, Dictionary<(int, int, Color), int> edges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
+        public static async Task Algorithm(int n, Dictionary<(int, int, Color), int> edges,Color visitedEdges, Color edgeColor, Color mstEdgeColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             Log.Clear();
             int sum = 0;
@@ -34,21 +34,20 @@ namespace Graph_Editor
                 int u = edge.Item1;
                 int v = edge.Item2;
                 int weight = edge.Item3;
-
+                edges[(u, v, visitedEdges)] = edges[(u, v, Color.Black)];
+                Board.Invalidate();
+                await Task.Delay(delayMilliseconds);
+                edges.Remove((u, v, visitedEdges));
                 if (ds.FindUParent(u) != ds.FindUParent(v))
                 {
                     ds.UnionByRank(u, v);
                     MST.Add((u, v));
-                    edges[(u, v, edgeColor)] = edges[(u, v, Color.Black)];
+                    edges[(u, v, mstEdgeColor)] = edges[(u, v, Color.Black)];
+                    Board.Invalidate();
                     sum += edges[(u, v, Color.Black)];
                     Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
-                    edges.Remove((u, v, edgeColor));
-                    edges[(u, v, mstEdgeColor)] = edges[(u, v, Color.Black)];
-                    Board.Invalidate();
                     Log.AppendText($"Cạnh {u} -> {v} với trọng số {weight} đã được thêm vào MST\n");
-
-                    await Task.Delay(delayMilliseconds);
                 }
             }
             if(MST.Count < n-1)

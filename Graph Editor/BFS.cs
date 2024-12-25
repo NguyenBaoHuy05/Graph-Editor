@@ -44,7 +44,7 @@ namespace Graph_Editor
                 {
                     nodes[node].FillColor = bestNodeColor;
                 }
-
+                await Task.Delay(delayMilliseconds);
                 foreach (int neighbor in adjList[node])
                 {
                     if (vis[neighbor]) continue;

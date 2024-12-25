@@ -414,6 +414,11 @@ namespace Graph_Editor
 
         private void loadFile_Click(object sender, EventArgs e)
         {
+            if (num != 0)
+            {
+                MessageBox.Show("Vui lòng reset!", "Dangerous", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Text Files|*.txt|All Files|*.*",
@@ -493,7 +498,7 @@ namespace Graph_Editor
                 // Ghi kích thước ma trận
                 writer.WriteLine(num);
 
-                foreach (Guna2TextBox txt in weiMatrixPanel.Controls)
+                foreach (Guna2Button txt in weiMatrixPanel.Controls)
                 {
                     var indices = (ValueTuple<int, int>)txt.Tag;
                     writer.Write(txt.Text);
@@ -570,6 +575,11 @@ namespace Graph_Editor
 
         private void loadgph_Click(object sender, EventArgs e)
         {
+            if(num != 0)
+            {
+                MessageBox.Show("Vui lòng reset!", "Dangerous", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Text Files|*.gph|All Files|*.*",
@@ -660,9 +670,9 @@ namespace Graph_Editor
 
 
                 string edgeWeight = edges[(edge.Item1, edge.Item2, defaultColor)].ToString();
-                using (System.Drawing.Font font = new System.Drawing.Font("Arial", 10, FontStyle.Bold))
+                using (System.Drawing.Font font = new System.Drawing.Font("Robot", 10, FontStyle.Bold))
                 {
-                    e.Graphics.DrawString(edgeWeight, font, Brushes.Black, midpoint);
+                    e.Graphics.DrawString(edgeWeight, font, Brushes.Chocolate, midpoint);
                 }
             }
         }
@@ -722,6 +732,10 @@ namespace Graph_Editor
                 adjList[edge.Item1].Add(edge.Item2);
                 adjList[edge.Item2].Add(edge.Item1);
             }
+            foreach(var adj in adjList)
+            {
+                adj.Sort();
+            }
         }
         async private void Run_Click(object sender, EventArgs e)
         {
@@ -732,7 +746,7 @@ namespace Graph_Editor
                     nodes[i].FillColor = Color.FromArgb(94, 148, 255);
                 }
                 Board.Invalidate();
-                Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+                Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = true;
                 Run.Text = "Run";
                 return;
             }
@@ -749,7 +763,7 @@ namespace Graph_Editor
                 MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
                 return;
             }
-            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = false;
+            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled= addEdges.Enabled = false;
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
             {
@@ -766,7 +780,7 @@ namespace Graph_Editor
                     await BFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
                     break;
                 case "Kruskal":
-                    await Kruskal.Algorithm(num, edges, nodeColor, visNodeColor, time, Log, Board);
+                    await Kruskal.Algorithm(num, edges, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
                     edges = edgesCopy;
                     break;
                 case "Prim":
@@ -776,7 +790,7 @@ namespace Graph_Editor
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
-                    Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = true;
+                    Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = true;
                     return;
                     
             }
