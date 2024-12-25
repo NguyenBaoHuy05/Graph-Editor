@@ -770,7 +770,6 @@ namespace Graph_Editor
                     edges = edgesCopy;
                     break;
                 case "Prim":
-                    edgesCopy = new Dictionary<(int, int, Color), int>(edges);
                     await Prim.Algorithm(num, adjList, nodes, edges, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
                     edges = edgesCopy;
                     break;
