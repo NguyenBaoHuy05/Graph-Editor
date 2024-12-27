@@ -145,7 +145,7 @@ namespace Graph_Editor
             chosenNode.FillColor = Color.Gold;
             foreach (int i in adjList[int.Parse(chosenNode.Text)])
             {
-                nodes[i].FillColor = Color.GreenYellow;
+                nodes[i].FillColor = Color.GreenYellow;     
             }
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
@@ -692,6 +692,7 @@ namespace Graph_Editor
             adjMatrixPanel.Controls.Clear();
             weiMatrixPanel.Controls.Clear();
             num = 0;
+            chosenNode = null;
         }
 
         private void TrackBar_Value(object sender, EventArgs e)
