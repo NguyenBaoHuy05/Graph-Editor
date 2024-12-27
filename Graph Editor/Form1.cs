@@ -150,15 +150,13 @@ namespace Graph_Editor
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
-                int row = indices.Item1;
-                if (row.ToString() == chosenNode.Text && btn.Text != "0" && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
+                if ((indices.Item1.ToString() == chosenNode.Text || indices.Item2.ToString() == chosenNode.Text) && btn.Text != "0" && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
             foreach (Guna2Button btn in weiMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
-                int row = indices.Item1;
-                if (row.ToString() == chosenNode.Text && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
+                if ((indices.Item1.ToString() == chosenNode.Text || indices.Item2.ToString() == chosenNode.Text) && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
         }
