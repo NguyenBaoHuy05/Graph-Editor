@@ -353,8 +353,8 @@ namespace Graph_Editor
             }
             if (ChoseBtn.Checked)
             {
-                Chosen();
                 LoadAdjList();
+                Chosen();
             }
         }
 
@@ -489,7 +489,6 @@ namespace Graph_Editor
 
         }
 
-
         private void saveFiles(object sender, EventArgs e)
         {
             filePath = "Graph" + num.ToString();
@@ -501,7 +500,8 @@ namespace Graph_Editor
                 foreach (Guna2Button txt in weiMatrixPanel.Controls)
                 {
                     var indices = (ValueTuple<int, int>)txt.Tag;
-                    writer.Write(txt.Text);
+                    string content = txt.Text == "\u221E" ? "0" : txt.Text;
+                    writer.Write(content);
                     if (indices.Item2 == num - 1) writer.WriteLine();
                     if (indices.Item2 < num - 1) writer.Write(" ");
                 }
@@ -719,7 +719,6 @@ namespace Graph_Editor
                 }
             }
         }
-
         private void LoadAdjList()
         {
             adjList = new List<List<int>>();
