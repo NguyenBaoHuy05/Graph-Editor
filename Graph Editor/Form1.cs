@@ -84,14 +84,6 @@ namespace Graph_Editor
 
             Board.Controls.Add(btn);
             nodes.Add(btn);
-
-            StartNode.Maximum = num - 1;
-            EndNode.Maximum = num - 1;
-
-            CreateAdjMatrix();
-            CreateWeiMatrix();
-            ChangeText();
-
         }
 
         private void CreateNodeGph(Point point)
@@ -118,11 +110,6 @@ namespace Graph_Editor
             Board.Controls.Add(btn);
             nodes.Add(btn);
 
-            StartNode.Maximum = num - 1;
-            EndNode.Maximum = num - 1;
-            CreateAdjMatrix();
-            CreateWeiMatrix();
-            ChangeText();
         }
         private void ResetColor()
         {
@@ -473,11 +460,15 @@ namespace Graph_Editor
                         CreateNodeRandom();
                     }
 
-                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
                     Board.Invalidate();
                     CreateAdjMatrix();
                     CreateWeiMatrix();
+
+                    StartNode.Maximum = num - 1;
+                    EndNode.Maximum = num - 1;
+
                     ChangeText();
+                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
                 }
                 catch (Exception ex)
                 {
@@ -631,11 +622,15 @@ namespace Graph_Editor
                         edges[(x, y, defaultColor)] = z;
                     }
 
-                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
                     CreateAdjMatrix();
                     CreateWeiMatrix();
                     ChangeText();
+
+                    StartNode.Maximum = num - 1;
+                    EndNode.Maximum = num - 1;
+
                     Board.Invalidate();
+                    MessageBox.Show("File đã được tải thành công và ma trận đã được xử lý!", "Success");
                 }
                 catch (Exception ex)
                 {
