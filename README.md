@@ -11,12 +11,6 @@ Assign weights to edges and observe algorithm steps in real-time.
 Step through algorithms with clear visual indicators for each state.
 Intuitive, easy-to-use interface suitable for learning and research.
 
-## Installation
-Clone the repository:
-git clone https://github.com/yourusername/graph-algorithm-visualization.git
-Open the solution in Visual Studio.
-Build and run the project.
-
 ## Usage
 Launch the application.
 Use the drag-and-drop interface to add vertices and edges.
