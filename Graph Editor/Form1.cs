@@ -12,7 +12,7 @@ namespace Graph_Editor
         Point startPos = new Point();
         Color defaultColor = Color.Black;
         List<Guna2CircleButton> nodes = new List<Guna2CircleButton>();
-
+        List<Point> F = new List<Point>();
         Guna2CircleButton firstSelectedNode = null;
         Guna2CircleButton chosenNode = null;
         string filePath;
@@ -807,6 +807,67 @@ namespace Graph_Editor
                     adjListShow.AppendText("\n");
                 }
             }
+        }
+        private void ApplyForce(List<List<int>> adjList, List<Guna2CircleButton> nodes, int k, int coolingFactor, int l)
+        {
+            while(k > 0)
+            {
+                double maxx = 0;
+                foreach(Point point in F)
+                {
+                    maxx = Math.Max(maxx, Math.Sqrt(point.X*point.X + point.Y*point.Y));
+                }
+                if (maxx < 0.0001) break;
+                for(int i = 0; i < num; ++i)
+                {
+                    Point repForce = RepulsiveForce(i, 1);
+                    Point attrForce = AttractiveForce(i, 1);
+                    F[i] = new Point(repForce.X + attrForce.X, repForce.Y + attrForce.Y);
+                }
+               
+            }
+        }
+        Point RepulsiveForce(int node, int l)
+        {
+            Point repForce = new Point();
+            repForce.X = 0;
+            repForce.Y = 0; 
+            Guna2CircleButton u = new Guna2CircleButton();
+            u = nodes[node];
+            for(int i = 0; i < num; ++i)
+            {
+                if (i == node) continue;
+                Guna2CircleButton v = new Guna2CircleButton();
+                v = nodes[i];
+                Point vu = new Point();
+                vu.X = v.Location.X - u.Location.X;
+                vu.Y = v.Location.Y - u.Location.Y;
+                double f = l * l / (Math.Sqrt(Math.Pow(vu.X, 2) + Math.Pow(vu.Y, 2)));
+                repForce.X = repForce.X + (int)f * vu.X;
+                repForce.Y = repForce.Y + (int)f * vu.Y;
+            }
+            return repForce;
+        }
+        Point AttractiveForce(int node, int l)
+        {
+            LoadAdjList();
+            Point attrForce = new Point();
+            attrForce.X = 0;
+            attrForce.Y = 0;
+            Guna2CircleButton u = new Guna2CircleButton();
+            u = nodes[node];
+            foreach(int adjNode in adjList[node])
+            {
+                Guna2CircleButton v = new Guna2CircleButton();
+                v = nodes[adjNode];
+                Point uv = new Point();
+                uv.X = u.Location.X - v.Location.X;
+                uv.Y = u.Location.Y - v.Location.Y;
+                double f = (Math.Pow(uv.X,2) +  Math.Pow(uv.Y,2)) / l;
+                attrForce.X = attrForce.X + (int)f * uv.X;
+                attrForce.Y = attrForce.Y + (int)f * uv.Y;
+            }
+            return attrForce;
         }
     }
 }

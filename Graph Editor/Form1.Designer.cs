@@ -323,20 +323,20 @@
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(148, 30);
+            saveFile.Size = new Size(224, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
             // 
             saveGph.Name = "saveGph";
-            saveGph.Size = new Size(196, 30);
+            saveGph.Size = new Size(224, 30);
             saveGph.Text = "Save .gph";
             saveGph.Click += saveGph_Click;
             // 
             // savetxtToolStripMenuItem
             // 
             savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
-            savetxtToolStripMenuItem.Size = new Size(196, 30);
+            savetxtToolStripMenuItem.Size = new Size(224, 30);
             savetxtToolStripMenuItem.Text = "Save .txt";
             savetxtToolStripMenuItem.Click += saveFiles;
             // 
@@ -344,7 +344,7 @@
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(148, 30);
+            loadFile.Size = new Size(224, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
@@ -373,48 +373,48 @@
             // dFS
             // 
             dFS.Name = "dFS";
-            dFS.Size = new Size(171, 30);
+            dFS.Size = new Size(224, 30);
             dFS.Text = "DFS";
             dFS.Click += ChoseAlgorithm;
             // 
             // bFS
             // 
             bFS.Name = "bFS";
-            bFS.Size = new Size(171, 30);
+            bFS.Size = new Size(224, 30);
             bFS.Text = "BFS";
             bFS.Click += ChoseAlgorithm;
             // 
             // dijkstra
             // 
             dijkstra.Name = "dijkstra";
-            dijkstra.Size = new Size(171, 30);
+            dijkstra.Size = new Size(224, 30);
             dijkstra.Text = "Dijkstra";
             dijkstra.Click += ChoseAlgorithm;
             // 
             // aStar
             // 
             aStar.Name = "aStar";
-            aStar.Size = new Size(171, 30);
+            aStar.Size = new Size(224, 30);
             aStar.Text = "A*";
             aStar.Click += ChoseAlgorithm;
             // 
             // prim
             // 
             prim.Name = "prim";
-            prim.Size = new Size(171, 30);
+            prim.Size = new Size(224, 30);
             prim.Text = "Prim";
             prim.Click += ChoseAlgorithm;
             // 
             // kruscal
             // 
             kruscal.Name = "kruscal";
-            kruscal.Size = new Size(171, 30);
+            kruscal.Size = new Size(224, 30);
             kruscal.Text = "Kruskal";
             kruscal.Click += ChoseAlgorithm;
             // 
             // menuStrip1
             // 
-            menuStrip1.BackColor = Color.FromArgb(255, 192, 192);
+            menuStrip1.BackColor = Color.Aqua;
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm });
             menuStrip1.Location = new Point(0, 0);
