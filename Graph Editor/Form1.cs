@@ -849,7 +849,6 @@ namespace Graph_Editor
                 --k;    
             }
         }
-
         private PointF RepulsiveForce(int node, double l, double crep)
         {
             PointF repForce = new PointF();
