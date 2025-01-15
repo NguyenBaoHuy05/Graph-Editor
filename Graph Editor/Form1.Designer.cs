@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -92,6 +93,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
@@ -323,20 +325,20 @@
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(224, 30);
+            saveFile.Size = new Size(148, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
             // 
             saveGph.Name = "saveGph";
-            saveGph.Size = new Size(224, 30);
+            saveGph.Size = new Size(196, 30);
             saveGph.Text = "Save .gph";
             saveGph.Click += saveGph_Click;
             // 
             // savetxtToolStripMenuItem
             // 
             savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
-            savetxtToolStripMenuItem.Size = new Size(224, 30);
+            savetxtToolStripMenuItem.Size = new Size(196, 30);
             savetxtToolStripMenuItem.Text = "Save .txt";
             savetxtToolStripMenuItem.Click += saveFiles;
             // 
@@ -344,7 +346,7 @@
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(224, 30);
+            loadFile.Size = new Size(148, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
@@ -373,42 +375,42 @@
             // dFS
             // 
             dFS.Name = "dFS";
-            dFS.Size = new Size(224, 30);
+            dFS.Size = new Size(171, 30);
             dFS.Text = "DFS";
             dFS.Click += ChoseAlgorithm;
             // 
             // bFS
             // 
             bFS.Name = "bFS";
-            bFS.Size = new Size(224, 30);
+            bFS.Size = new Size(171, 30);
             bFS.Text = "BFS";
             bFS.Click += ChoseAlgorithm;
             // 
             // dijkstra
             // 
             dijkstra.Name = "dijkstra";
-            dijkstra.Size = new Size(224, 30);
+            dijkstra.Size = new Size(171, 30);
             dijkstra.Text = "Dijkstra";
             dijkstra.Click += ChoseAlgorithm;
             // 
             // aStar
             // 
             aStar.Name = "aStar";
-            aStar.Size = new Size(224, 30);
+            aStar.Size = new Size(171, 30);
             aStar.Text = "A*";
             aStar.Click += ChoseAlgorithm;
             // 
             // prim
             // 
             prim.Name = "prim";
-            prim.Size = new Size(224, 30);
+            prim.Size = new Size(171, 30);
             prim.Text = "Prim";
             prim.Click += ChoseAlgorithm;
             // 
             // kruscal
             // 
             kruscal.Name = "kruscal";
-            kruscal.Size = new Size(224, 30);
+            kruscal.Size = new Size(171, 30);
             kruscal.Text = "Kruskal";
             kruscal.Click += ChoseAlgorithm;
             // 
@@ -606,6 +608,12 @@
             label1.Text = "Start Node:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1;
+            timer1.Tick += timer1_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -689,5 +697,6 @@
         private RadioButton ChoseBtn;
         private TabPage AdjencyList;
         private RichTextBox adjListShow;
+        private System.Windows.Forms.Timer timer1;
     }
 }

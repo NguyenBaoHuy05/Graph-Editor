@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Microsoft.Win32;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -12,17 +13,19 @@ namespace Graph_Editor
         Point startPos = new Point();
         Color defaultColor = Color.Black;
         List<Guna2CircleButton> nodes = new List<Guna2CircleButton>();
-        List<Point> F = new List<Point>();
+        List<PointF> F = new List<PointF>();
         Guna2CircleButton firstSelectedNode = null;
         Guna2CircleButton chosenNode = null;
+        Guna2CircleButton draggingNode = null;
         string filePath;
-
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
         List<List<int>> adjList = new List<List<int>>();
+        
         public Form1()
         {
             InitializeComponent();
             Board.Paint += new PaintEventHandler(this.Board_Paint);
+            this.DoubleBuffered = true;
         }
 
         private void CreateNode(Point point)
@@ -52,7 +55,7 @@ namespace Graph_Editor
 
                 StartNode.Maximum = num - 1;
                 EndNode.Maximum = num - 1;
-
+                F.Add(new PointF(0, 0));
 
                 CreateAdjMatrix();
                 CreateWeiMatrix();
@@ -132,7 +135,7 @@ namespace Graph_Editor
             chosenNode.FillColor = Color.Gold;
             foreach (int i in adjList[int.Parse(chosenNode.Text)])
             {
-                nodes[i].FillColor = Color.GreenYellow;     
+                nodes[i].FillColor = Color.GreenYellow;
             }
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
@@ -348,6 +351,7 @@ namespace Graph_Editor
             if (e.Button == MouseButtons.Left && selectNode.Checked)
             {
                 isDragging = false;
+                draggingNode = null;
             }
         }
 
@@ -356,6 +360,7 @@ namespace Graph_Editor
             if (isDragging && selectNode.Checked)
             {
                 Guna2CircleButton btn = (Guna2CircleButton)sender;
+                draggingNode = btn;
                 var newLocation = new Point(
                     btn.Left + e.X - startPos.X,
                     btn.Top + e.Y - startPos.Y
@@ -564,7 +569,7 @@ namespace Graph_Editor
 
         private void loadgph_Click(object sender, EventArgs e)
         {
-            if(num != 0)
+            if (num != 0)
             {
                 MessageBox.Show("Vui lòng reset!", "Dangerous", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -725,7 +730,7 @@ namespace Graph_Editor
                 adjList[edge.Item1].Add(edge.Item2);
                 adjList[edge.Item2].Add(edge.Item1);
             }
-            foreach(var adj in adjList)
+            foreach (var adj in adjList)
             {
                 adj.Sort();
             }
@@ -756,7 +761,7 @@ namespace Graph_Editor
                 MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
                 return;
             }
-            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled= addEdges.Enabled = false;
+            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = false;
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
             {
@@ -793,7 +798,7 @@ namespace Graph_Editor
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idx = tabControl1.SelectedIndex;
-            if(idx == 3)
+            if (idx == 3)
             {
                 LoadAdjList();
                 adjListShow.Clear();
@@ -808,66 +813,88 @@ namespace Graph_Editor
                 }
             }
         }
-        private void ApplyForce(List<List<int>> adjList, List<Guna2CircleButton> nodes, int k, int coolingFactor, int l)
+
+        private void ApplyForce(int k, double coolingFactor, double l)
         {
-            while(k > 0)
+            double maxForce = double.MaxValue;
+            while (k > 0 && maxForce > 0.0001)
             {
-                double maxx = 0;
-                foreach(Point point in F)
+                
+                maxForce = F.Max(f => Math.Sqrt(f.X * f.X + f.Y * f.Y));
+                for (int i = 0; i < num; ++i)
                 {
-                    maxx = Math.Max(maxx, Math.Sqrt(point.X*point.X + point.Y*point.Y));
+                    PointF repForce = RepulsiveForce(i, l, 12);
+                    PointF attrForce = AttractiveForce(i, l, 1, repForce);
+                    F[i] = new PointF(repForce.X + attrForce.X, repForce.Y + attrForce.Y);
                 }
-                if (maxx < 0.0001) break;
-                for(int i = 0; i < num; ++i)
+                
+                for (int i = 0; i < num; ++i)
                 {
-                    Point repForce = RepulsiveForce(i, 1);
-                    Point attrForce = AttractiveForce(i, 1);
-                    F[i] = new Point(repForce.X + attrForce.X, repForce.Y + attrForce.Y);
+                    PointF newLocation = new PointF(
+                        nodes[i].Location.X + (float)(coolingFactor * F[i].X),
+                        nodes[i].Location.Y + (float)(coolingFactor * F[i].Y));
+                    newLocation.X = Math.Max(0, Math.Min(Board.Width - nodes[i].Width, newLocation.X));
+                    newLocation.Y = Math.Max(0, Math.Min(Board.Height - nodes[i].Height, newLocation.Y));
+                    if(draggingNode == null)
+                    {
+                        nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
+                    }
+                    else if(nodes[i].Location != draggingNode.Location)
+                    {
+                        nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
+                    }
+                    Board.Invalidate();
                 }
-               
+                coolingFactor *= 0.9;
+                --k;    
             }
         }
-        Point RepulsiveForce(int node, int l)
+
+        private PointF RepulsiveForce(int node, double l, double crep)
         {
-            Point repForce = new Point();
-            repForce.X = 0;
-            repForce.Y = 0; 
-            Guna2CircleButton u = new Guna2CircleButton();
-            u = nodes[node];
-            for(int i = 0; i < num; ++i)
+            PointF repForce = new PointF();
+            repForce = new PointF(0, 0);
+            Guna2CircleButton u = nodes[node];
+            for (int i = 0; i < num; ++i)
             {
                 if (i == node) continue;
-                Guna2CircleButton v = new Guna2CircleButton();
-                v = nodes[i];
-                Point vu = new Point();
-                vu.X = v.Location.X - u.Location.X;
-                vu.Y = v.Location.Y - u.Location.Y;
-                double f = l * l / (Math.Sqrt(Math.Pow(vu.X, 2) + Math.Pow(vu.Y, 2)));
-                repForce.X = repForce.X + (int)f * vu.X;
-                repForce.Y = repForce.Y + (int)f * vu.Y;
+                Guna2CircleButton v = nodes[i];
+                PointF vu = new PointF(u.Location.X - v.Location.X, u.Location.Y - v.Location.Y);
+                double distance = Math.Sqrt(vu.X * vu.X + vu.Y * vu.Y) / 148;
+                double f = crep / (distance * distance);
+                if(distance < 1.5)
+                {
+                    repForce.X += (float)(f * vu.X);
+                    repForce.Y += (float)(f * vu.Y);
+                }
             }
             return repForce;
         }
-        Point AttractiveForce(int node, int l)
+            
+        private PointF AttractiveForce(int node, double l, double cspring, PointF repForce)
         {
-            LoadAdjList();
-            Point attrForce = new Point();
-            attrForce.X = 0;
-            attrForce.Y = 0;
-            Guna2CircleButton u = new Guna2CircleButton();
-            u = nodes[node];
-            foreach(int adjNode in adjList[node])
+            PointF attrForce = new PointF();
+            attrForce = new PointF(0, 0);
+            Guna2CircleButton u = nodes[node];
+            foreach (int adjNode in adjList[node])
             {
-                Guna2CircleButton v = new Guna2CircleButton();
-                v = nodes[adjNode];
-                Point uv = new Point();
-                uv.X = u.Location.X - v.Location.X;
-                uv.Y = u.Location.Y - v.Location.Y;
-                double f = (Math.Pow(uv.X,2) +  Math.Pow(uv.Y,2)) / l;
-                attrForce.X = attrForce.X + (int)f * uv.X;
-                attrForce.Y = attrForce.Y + (int)f * uv.Y;
+                Guna2CircleButton v = nodes[adjNode];
+                PointF uv = new PointF(v.Location.X - u.Location.X, v.Location.Y - u.Location.Y);
+                double distance = Math.Sqrt(uv.X * uv.X + uv.Y * uv.Y);
+                double f = cspring * Math.Log(distance / l);
+                attrForce.X += (float)(f * uv.X);
+                attrForce.Y += (float)(f * uv.Y);
             }
             return attrForce;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(num > 0)
+            {
+                LoadAdjList();
+                ApplyForce(250, 0.001, 1);
+            }   
         }
     }
 }
