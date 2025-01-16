@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl1 = new TabControl();
             AdjacencyMatrix = new TabPage();
             adjMatrixPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -136,11 +136,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges17;
+            adjMatrixPanel.CustomizableEdges = customizableEdges1;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -157,11 +157,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges19;
+            weiMatrixPanel.CustomizableEdges = customizableEdges3;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -430,12 +430,12 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges21;
+            Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(7, 91);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
             Board.Size = new Size(776, 660);
             Board.TabIndex = 0;
             Board.TabStop = false;
@@ -460,7 +460,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(794, 45);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(468, 189);
+            groupBox1.Size = new Size(468, 197);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Algorithms ";
@@ -468,7 +468,7 @@
             // drawModeRadioBtn
             // 
             drawModeRadioBtn.AutoSize = true;
-            drawModeRadioBtn.Location = new Point(163, 155);
+            drawModeRadioBtn.Location = new Point(163, 163);
             drawModeRadioBtn.Name = "drawModeRadioBtn";
             drawModeRadioBtn.Size = new Size(108, 24);
             drawModeRadioBtn.TabIndex = 13;
@@ -479,7 +479,7 @@
             // forceModeRadioBtn
             // 
             forceModeRadioBtn.AutoSize = true;
-            forceModeRadioBtn.Location = new Point(25, 155);
+            forceModeRadioBtn.Location = new Point(25, 163);
             forceModeRadioBtn.Name = "forceModeRadioBtn";
             forceModeRadioBtn.Size = new Size(109, 24);
             forceModeRadioBtn.TabIndex = 12;
@@ -490,7 +490,7 @@
             // Color3
             // 
             Color3.BorderRadius = 10;
-            Color3.CustomizableEdges = customizableEdges23;
+            Color3.CustomizableEdges = customizableEdges7;
             Color3.DisabledState.BorderColor = Color.DarkGray;
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -500,7 +500,7 @@
             Color3.ForeColor = Color.White;
             Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
-            Color3.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
             Color3.Size = new Size(72, 30);
             Color3.TabIndex = 11;
             Color3.Text = "Select";
@@ -509,7 +509,7 @@
             // Color2
             // 
             Color2.BorderRadius = 10;
-            Color2.CustomizableEdges = customizableEdges25;
+            Color2.CustomizableEdges = customizableEdges9;
             Color2.DisabledState.BorderColor = Color.DarkGray;
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -519,7 +519,7 @@
             Color2.ForeColor = Color.White;
             Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
-            Color2.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
             Color2.Size = new Size(72, 30);
             Color2.TabIndex = 10;
             Color2.Text = "Select";
@@ -528,7 +528,7 @@
             // Color1
             // 
             Color1.BorderRadius = 10;
-            Color1.CustomizableEdges = customizableEdges27;
+            Color1.CustomizableEdges = customizableEdges11;
             Color1.DisabledState.BorderColor = Color.DarkGray;
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -538,7 +538,7 @@
             Color1.ForeColor = Color.White;
             Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
-            Color1.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
             Color1.Size = new Size(72, 30);
             Color1.TabIndex = 9;
             Color1.Text = "Select";
@@ -568,7 +568,7 @@
             label4.Name = "label4";
             label4.Size = new Size(107, 34);
             label4.TabIndex = 6;
-            label4.Text = "Visit";
+            label4.Text = "Visited";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Algo
@@ -584,26 +584,26 @@
             // EndNode
             // 
             EndNode.BackColor = Color.Transparent;
-            EndNode.CustomizableEdges = customizableEdges29;
+            EndNode.CustomizableEdges = customizableEdges13;
             EndNode.Font = new Font("Segoe UI", 9F);
             EndNode.Location = new Point(115, 77);
             EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
-            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
             EndNode.Size = new Size(54, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
             // 
             StartNode.BackColor = Color.Transparent;
-            StartNode.CustomizableEdges = customizableEdges31;
+            StartNode.CustomizableEdges = customizableEdges15;
             StartNode.Font = new Font("Segoe UI", 9F);
             StartNode.Location = new Point(115, 27);
             StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
-            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
             StartNode.Size = new Size(54, 30);
             StartNode.TabIndex = 3;
             // 

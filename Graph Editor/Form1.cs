@@ -20,7 +20,7 @@ namespace Graph_Editor
         string filePath;
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
         List<List<int>> adjList = new List<List<int>>();
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -818,9 +818,9 @@ namespace Graph_Editor
         private void ApplyForce(int k, double coolingFactor, double l)
         {
             double maxForce = double.MaxValue;
-            while (k > 0 && maxForce > 0.0001)
+            while (k > 0 && maxForce > 0.00001)
             {
-                
+
                 maxForce = F.Max(f => Math.Sqrt(f.X * f.X + f.Y * f.Y));
                 Parallel.For(0, num, i =>
                 {
@@ -835,14 +835,13 @@ namespace Graph_Editor
                         nodes[i].Location.Y + (float)(coolingFactor * F[i].Y));
                     newLocation.X = Math.Max(0, Math.Min(Board.Width - nodes[i].Width, newLocation.X));
                     newLocation.Y = Math.Max(0, Math.Min(Board.Height - nodes[i].Height, newLocation.Y));
-                    if(draggingNode == null || nodes[i].Location != draggingNode.Location)
+                    if (draggingNode == null || nodes[i].Location != draggingNode.Location)
                     {
                         nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
                     }
-                    Board.Invalidate();
                 }
-                coolingFactor *= 0.9;
-                --k;    
+                coolingFactor *= 0.5;
+                --k;
             }
         }
         private PointF RepulsiveForce(int node, double l, double crep)
@@ -857,7 +856,7 @@ namespace Graph_Editor
                 PointF vu = new PointF(u.Location.X - v.Location.X, u.Location.Y - v.Location.Y);
                 double distance = Math.Sqrt(vu.X * vu.X + vu.Y * vu.Y) / 148;
                 double f = crep / (distance * distance);
-                if(distance < 1.5)
+                if (distance < 1.5)
                 {
                     repForce.X += (float)(f * vu.X);
                     repForce.Y += (float)(f * vu.Y);
@@ -865,7 +864,7 @@ namespace Graph_Editor
             }
             return repForce;
         }
-            
+
         private PointF AttractiveForce(int node, double l, double cspring, PointF repForce)
         {
             PointF attrForce = new PointF();
@@ -885,11 +884,12 @@ namespace Graph_Editor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(num > 1 && forceModeRadioBtn.Checked)
+            if (num > 1 && forceModeRadioBtn.Checked)
             {
                 LoadAdjList();
                 ApplyForce(250, 0.001, 1);
-            }   
+                Board.Invalidate();
+            }
         }
     }
 }
