@@ -26,6 +26,7 @@ namespace Graph_Editor
             InitializeComponent();
             Board.Paint += new PaintEventHandler(this.Board_Paint);
             this.DoubleBuffered = true;
+            forceModeRadioBtn.Checked = true;
         }
 
         private void CreateNode(Point point)
@@ -821,13 +822,12 @@ namespace Graph_Editor
             {
                 
                 maxForce = F.Max(f => Math.Sqrt(f.X * f.X + f.Y * f.Y));
-                for (int i = 0; i < num; ++i)
+                Parallel.For(0, num, i =>
                 {
                     PointF repForce = RepulsiveForce(i, l, 12);
                     PointF attrForce = AttractiveForce(i, l, 1, repForce);
                     F[i] = new PointF(repForce.X + attrForce.X, repForce.Y + attrForce.Y);
-                }
-                
+                });
                 for (int i = 0; i < num; ++i)
                 {
                     PointF newLocation = new PointF(
@@ -835,11 +835,7 @@ namespace Graph_Editor
                         nodes[i].Location.Y + (float)(coolingFactor * F[i].Y));
                     newLocation.X = Math.Max(0, Math.Min(Board.Width - nodes[i].Width, newLocation.X));
                     newLocation.Y = Math.Max(0, Math.Min(Board.Height - nodes[i].Height, newLocation.Y));
-                    if(draggingNode == null)
-                    {
-                        nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
-                    }
-                    else if(nodes[i].Location != draggingNode.Location)
+                    if(draggingNode == null || nodes[i].Location != draggingNode.Location)
                     {
                         nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
                     }
@@ -889,7 +885,7 @@ namespace Graph_Editor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(num > 0)
+            if(num > 1 && forceModeRadioBtn.Checked)
             {
                 LoadAdjList();
                 ApplyForce(250, 0.001, 1);
