@@ -2,7 +2,7 @@
 
 ## About
 A C# Windows Forms application that simulates and visualizes graph algorithms like DFS, BFS, Dijkstra, A*, Prim, and Kruskal. Users can create graphs, view real-time algorithm execution, and interact with a user-friendly interface for educational purposes.
-![imgapp](https://github.com/user-attachments/assets/a3dc4ea8-e833-40f7-bb63-c4d6b9167a17)
+![project4](https://github.com/user-attachments/assets/6648b561-a78c-4901-b37a-e5a538d593b0)
 
 ## Features
 Visualize common graph algorithms (DFS, BFS, Dijkstra, A*, Prim, Kruskal).
