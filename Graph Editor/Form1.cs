@@ -34,6 +34,7 @@ namespace Graph_Editor
             if (addNodes.Checked)
             {
                 Guna2CircleButton btn = new Guna2CircleButton();
+                btn.BackColor = Color.Transparent;
                 btn.Size = new Size(60, 60);
                 btn.Location = point;
                 btn.Click += Choosebtn;
@@ -643,6 +644,32 @@ namespace Graph_Editor
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Error");
                 }
             }
+        }
+        private void SavePng(object sender, EventArgs e)
+        {
+            Bitmap bitmap = new Bitmap(Board.Width, Board.Height);
+
+            // Vẽ nội dung Panel lên Bitmap
+            Board.DrawToBitmap(bitmap, new Rectangle(0, 0, Board.Width, Board.Height));
+
+            // Lưu ảnh ra file (nếu cần)
+            using (SaveFileDialog saveFileDialogs = new SaveFileDialog())
+            {
+                saveFileDialogs.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp";
+                saveFileDialogs.Title = "Save Captured Image";
+                saveFileDialogs.FileName = "CapturedPanel.png"; // Tên mặc định
+
+                if (saveFileDialogs.ShowDialog() == DialogResult.OK)
+                {
+                    // Lưu file tới đường dẫn mà người dùng chọn
+                    bitmap.Save(saveFileDialogs.FileName);
+
+                    MessageBox.Show($"File đã được lưu tại: {saveFileDialogs.FileName}");
+                }
+            }
+
+            // Giải phóng tài nguyên bitmap
+            bitmap.Dispose();
         }
         private void Board_Paint(object sender, PaintEventArgs e)
         {

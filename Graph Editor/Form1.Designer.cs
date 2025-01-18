@@ -96,6 +96,7 @@
             label2 = new Label();
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            savepngToolStripMenuItem = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
@@ -325,22 +326,22 @@
             // 
             // saveFile
             // 
-            saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem });
+            saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem, savepngToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(148, 30);
+            saveFile.Size = new Size(224, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
             // 
             saveGph.Name = "saveGph";
-            saveGph.Size = new Size(196, 30);
+            saveGph.Size = new Size(224, 30);
             saveGph.Text = "Save .gph";
             saveGph.Click += saveGph_Click;
             // 
             // savetxtToolStripMenuItem
             // 
             savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
-            savetxtToolStripMenuItem.Size = new Size(196, 30);
+            savetxtToolStripMenuItem.Size = new Size(224, 30);
             savetxtToolStripMenuItem.Text = "Save .txt";
             savetxtToolStripMenuItem.Click += saveFiles;
             // 
@@ -348,7 +349,7 @@
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(148, 30);
+            loadFile.Size = new Size(224, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
@@ -433,7 +434,7 @@
             Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
-            Board.Location = new Point(7, 91);
+            Board.Location = new Point(7, 100);
             Board.Name = "Board";
             Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
             Board.Size = new Size(776, 660);
@@ -640,6 +641,13 @@
             timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
             // 
+            // savepngToolStripMenuItem
+            // 
+            savepngToolStripMenuItem.Name = "savepngToolStripMenuItem";
+            savepngToolStripMenuItem.Size = new Size(224, 30);
+            savepngToolStripMenuItem.Text = "Save .png";
+            savepngToolStripMenuItem.Click += SavePng;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -726,5 +734,6 @@
         private System.Windows.Forms.Timer timer1;
         private RadioButton forceModeRadioBtn;
         private RadioButton drawModeRadioBtn;
+        private ToolStripMenuItem savepngToolStripMenuItem;
     }
 }
