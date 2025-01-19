@@ -789,6 +789,8 @@ namespace Graph_Editor
                 MessageBox.Show("Đỉnh xuất phát không được trùng với đỉnh kết thức");
                 return;
             }
+            forceModeRadioBtn.Checked = false;
+            drawModeRadioBtn.Checked = true;
             Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = false;
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
@@ -797,7 +799,8 @@ namespace Graph_Editor
                     await AStar.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
                     break;
                 case "Dijkstra":
-                    await Dijkstra.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    await Dijkstra.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
+                    edges = edgesCopy;
                     break;
                 case "DFS":
                     await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);

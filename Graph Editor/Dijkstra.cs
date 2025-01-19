@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace Graph_Editor
 {
     internal class Dijkstra
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Dictionary<(int, int, Color), int> edges, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board)
         {
             int[] distances = new int[n];
             bool[] completed = new bool[n]; 
@@ -39,7 +40,7 @@ namespace Graph_Editor
                 int current = pq.Dequeue(); 
                 if(current == end)
                 {
-                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, distances);
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, distances, edges, Board);
                     return;
                 }
                 if (current != start && current != end) nodes[current].FillColor = bestNodeColor;
@@ -48,18 +49,22 @@ namespace Graph_Editor
                 {
                     if (completed[neighbor]) continue;
                     if(neighbor != end) nodes[neighbor].FillColor = visColor;
-
                     int min = Math.Min(neighbor, current);
                     int max = Math.Max(neighbor, current);
+                    edges[(min, max, visColor)] = edges[(min, max, Color.Black)];
+                    Board.Invalidate();
+                    await Task.Delay(delayMilliseconds);
                     if (edges[(min, max, Color.Black)] > 0 &&
                        distances[current] + edges[(min, max, Color.Black)] < distances[neighbor])
                     {
                         distances[neighbor] = distances[current] + edges[(min, max, Color.Black)];
                         save[neighbor] = current; 
                         pq.Enqueue(neighbor, distances[neighbor]); 
-                    }
-                    await Task.Delay(delayMilliseconds);
+                    }                    
                     if (neighbor != end) nodes[neighbor].FillColor = defaultColor;
+                    edges.Remove((min, max, visColor));
+                    Board.Invalidate();
+                    await Task.Delay(delayMilliseconds);
                 }
                 completed[current] = true;
             }
@@ -82,7 +87,7 @@ namespace Graph_Editor
                 Log.AppendText(string.Join(" -> ", path) + "\n");
             }
         }
-        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, int[] g)
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, int[] g, Dictionary<(int, int, Color), int> edges, Guna2PictureBox Board)
         {
             Log.Clear();
             Log.AppendText($"Khoảng cách ngắn nhất từ {start} đến {end}: {g[end]}\n");
@@ -105,9 +110,16 @@ namespace Graph_Editor
             while (S.Count > 0)
             {
                 int node = S.Pop();
-                if (node != start && node != end)
+                if (node != end)
                 {
-                    nodes[node].FillColor = completedColor;
+                    if (node != start)
+                    {
+                        nodes[node].FillColor = completedColor;
+                    }
+                    int min = Math.Min(node, S.First());
+                    int max = Math.Max(node, S.First());
+                    edges[(min, max, Color.Yellow)] = edges[(min, max, Color.Black)];
+                    Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
                 }
             }

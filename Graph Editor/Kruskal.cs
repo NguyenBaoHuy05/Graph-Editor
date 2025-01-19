@@ -38,6 +38,8 @@ namespace Graph_Editor
                 Board.Invalidate();
                 await Task.Delay(delayMilliseconds);
                 edges.Remove((u, v, visitedEdges));
+                Board.Invalidate();
+                await Task.Delay(delayMilliseconds);
                 if (ds.FindUParent(u) != ds.FindUParent(v))
                 {
                     ds.UnionByRank(u, v);
