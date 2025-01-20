@@ -804,10 +804,12 @@ namespace Graph_Editor
                     edges = edgesCopy;
                     break;
                 case "DFS":
-                    await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    await DFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log, Board, edges);
+                    edges = edgesCopy;
                     break;
                 case "BFS":
-                    await BFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    await BFS.Algorithm(num, start, end, adjList, nodes, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log, Board, edges);
+                    edges = edgesCopy;
                     break;
                 case "Kruskal":
                     await Kruskal.Algorithm(num, edges, visNodeColor, bestNodeColor, completedColor, time, Log, Board);

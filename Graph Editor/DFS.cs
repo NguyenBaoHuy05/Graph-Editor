@@ -5,12 +5,14 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+using System.Xml.Linq;
 
 namespace Graph_Editor
 {
     internal class DFS
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Color defaultColor, Color visColor, Color bestColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Color defaultColor, Color visColor, Color bestColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board, Dictionary<(int, int, Color), int> edges)
         {
             Log.Clear();
             nodes[start].FillColor = Color.Red;
@@ -31,7 +33,7 @@ namespace Graph_Editor
             {
                 if(u == end)
                 {
-                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log);
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, edges, Board);
                     return true;
                 }
                 if (u != start)
@@ -49,9 +51,15 @@ namespace Graph_Editor
                         {
                             nodes[v].FillColor = visColor;
                         }
+                        int min = Math.Min(u, v);
+                        int max = Math.Max(u, v);
+                        edges[(min, max, visColor)] = edges[(min, max, Color.Black)];
+                        Board.Invalidate();
                         await Task.Delay(delayMilliseconds);
                         nodes[v].FillColor = defaultColor;
-                        if(await DfsRecursive(v))
+                        edges.Remove((min, max, visColor));
+                        Board.Invalidate();
+                        if (await DfsRecursive(v))
                         {
                             return true;
                         } 
@@ -61,7 +69,7 @@ namespace Graph_Editor
             }
             await DfsRecursive(start);
         }
-        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Dictionary<(int, int, Color), int> edges, Guna2PictureBox Board)
         {
             Log.AppendText($"Đường đi từ {start} đến {end} đã được tìm thấy.\n");
             Log.AppendText("Đường đi: ");
@@ -83,9 +91,17 @@ namespace Graph_Editor
             while (S.Count > 0)
             {
                 int node = S.Pop();
-                if (node != start && node != end)
+                if (node != end)
                 {
-                    nodes[node].FillColor = completedColor;
+                    if (node != start)
+                    {
+                        nodes[node].FillColor = completedColor;
+                    }
+                    await Task.Delay(delayMilliseconds);
+                    int min = Math.Min(node, S.First());
+                    int max = Math.Max(node, S.First());
+                    edges[(min, max, Color.FromArgb(0, 255, 136))] = edges[(min, max, Color.Black)];
+                    Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
                 }
             }

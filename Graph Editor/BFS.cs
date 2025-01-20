@@ -10,7 +10,7 @@ namespace Graph_Editor
 {
     class BFS
     {
-        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        public static async Task Algorithm(int n, int start, int end, List<List<int>> adjList, List<Guna2CircleButton> nodes, Color defaultColor, Color visColor, Color bestNodeColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Guna2PictureBox Board, Dictionary<(int, int, Color), int> edges)
         {
             Log.Clear();
             bool[] vis = new bool[n];
@@ -36,7 +36,7 @@ namespace Graph_Editor
                 int node = queue.Dequeue();
                 if (node == end)
                 {
-                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log);
+                    await Reconstruct(n, start, end, save, nodes, defaultColor, completedColor, delayMilliseconds, Log, edges, Board);
                     return;
                 }
 
@@ -56,20 +56,26 @@ namespace Graph_Editor
                     {
                         nodes[neighbor].FillColor = visColor;
                     }
-
+                    int min = Math.Min(node, neighbor);
+                    int max = Math.Max(node, neighbor);
+                    edges[(min, max, visColor)] = edges[(min, max, Color.Black)];
+                    Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
 
                     if (neighbor != end)
                     {
                         nodes[neighbor].FillColor = defaultColor;
                     }
+                    edges.Remove((min, max, visColor));
+                    Board.Invalidate();
+                    await Task.Delay(delayMilliseconds);
                 }
             }
 
             Log.AppendText($"Không có đường đi từ {start} đến {end}\n");
         }
 
-        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log)
+        private static async Task Reconstruct(int n, int start, int end, int[] save, List<Guna2CircleButton> nodes, Color defaultColor, Color completedColor, int delayMilliseconds, RichTextBox Log, Dictionary<(int, int, Color), int> edges, Guna2PictureBox Board)
         {
             Log.AppendText($"Đường đi từ {start} đến {end} đã được tìm thấy.\n");
             Log.AppendText("Đường đi: ");
@@ -91,9 +97,17 @@ namespace Graph_Editor
             while (S.Count > 0)
             {
                 int node = S.Pop();
-                if (node != start && node != end)
+                if (node != end)
                 {
-                    nodes[node].FillColor = completedColor;
+                    if (node != start)
+                    {
+                        nodes[node].FillColor = completedColor;
+                    }
+                    await Task.Delay(delayMilliseconds);
+                    int min = Math.Min(node, S.First());
+                    int max = Math.Max(node, S.First());
+                    edges[(min, max, Color.FromArgb(0, 255, 136))] = edges[(min, max, Color.Black)];
+                    Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
                 }
             }
