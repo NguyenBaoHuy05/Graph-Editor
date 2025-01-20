@@ -685,7 +685,7 @@ namespace Graph_Editor
                 Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
 
 
-                using (Pen pen = new Pen(edge.Item3, 2))
+                using (Pen pen = new Pen(edge.Item3, 3))
                 {
                     pen.StartCap = LineCap.Round;
                     pen.EndCap = LineCap.Round;
@@ -796,7 +796,8 @@ namespace Graph_Editor
             switch (Algo.Text.ToString())
             {
                 case "A*":
-                    await AStar.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log);
+                    await AStar.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log, Board);
+                    edges = edgesCopy;
                     break;
                 case "Dijkstra":
                     await Dijkstra.Algorithm(num, start, end, adjList, nodes, edges, nodeColor, visNodeColor, bestNodeColor, completedColor, time, Log, Board);

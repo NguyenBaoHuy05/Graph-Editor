@@ -116,9 +116,10 @@ namespace Graph_Editor
                     {
                         nodes[node].FillColor = completedColor;
                     }
+                    await Task.Delay(delayMilliseconds);
                     int min = Math.Min(node, S.First());
                     int max = Math.Max(node, S.First());
-                    edges[(min, max, Color.Yellow)] = edges[(min, max, Color.Black)];
+                    edges[(min, max, Color.FromArgb(0, 255, 136))] = edges[(min, max, Color.Black)];
                     Board.Invalidate();
                     await Task.Delay(delayMilliseconds);
                 }

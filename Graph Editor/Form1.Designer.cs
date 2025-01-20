@@ -68,6 +68,7 @@
             saveFile = new ToolStripMenuItem();
             saveGph = new ToolStripMenuItem();
             savetxtToolStripMenuItem = new ToolStripMenuItem();
+            savepngToolStripMenuItem = new ToolStripMenuItem();
             loadFile = new ToolStripMenuItem();
             loadgph = new ToolStripMenuItem();
             loadtxtToolStripMenuItem = new ToolStripMenuItem();
@@ -96,7 +97,6 @@
             label2 = new Label();
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            savepngToolStripMenuItem = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
@@ -328,28 +328,35 @@
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveGph, savetxtToolStripMenuItem, savepngToolStripMenuItem });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(224, 30);
+            saveFile.Size = new Size(148, 30);
             saveFile.Text = "&Save";
             // 
             // saveGph
             // 
             saveGph.Name = "saveGph";
-            saveGph.Size = new Size(224, 30);
+            saveGph.Size = new Size(196, 30);
             saveGph.Text = "Save .gph";
             saveGph.Click += saveGph_Click;
             // 
             // savetxtToolStripMenuItem
             // 
             savetxtToolStripMenuItem.Name = "savetxtToolStripMenuItem";
-            savetxtToolStripMenuItem.Size = new Size(224, 30);
+            savetxtToolStripMenuItem.Size = new Size(196, 30);
             savetxtToolStripMenuItem.Text = "Save .txt";
             savetxtToolStripMenuItem.Click += saveFiles;
+            // 
+            // savepngToolStripMenuItem
+            // 
+            savepngToolStripMenuItem.Name = "savepngToolStripMenuItem";
+            savepngToolStripMenuItem.Size = new Size(196, 30);
+            savepngToolStripMenuItem.Text = "Save .png";
+            savepngToolStripMenuItem.Click += SavePng;
             // 
             // loadFile
             // 
             loadFile.DropDownItems.AddRange(new ToolStripItem[] { loadgph, loadtxtToolStripMenuItem });
             loadFile.Name = "loadFile";
-            loadFile.Size = new Size(224, 30);
+            loadFile.Size = new Size(148, 30);
             loadFile.Text = "&Load";
             // 
             // loadgph
@@ -640,13 +647,6 @@
             timer1.Enabled = true;
             timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
-            // 
-            // savepngToolStripMenuItem
-            // 
-            savepngToolStripMenuItem.Name = "savepngToolStripMenuItem";
-            savepngToolStripMenuItem.Size = new Size(224, 30);
-            savepngToolStripMenuItem.Text = "Save .png";
-            savepngToolStripMenuItem.Click += SavePng;
             // 
             // Form1
             // 
