@@ -413,7 +413,7 @@ namespace Graph_Editor
             }
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Text Files|*.txt|All Files|*.*",
+                Filter = "Text Files|*.txt",
                 Title = "Select a File"
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -487,26 +487,11 @@ namespace Graph_Editor
 
         private void saveFiles(object sender, EventArgs e)
         {
-            filePath = "Graph" + num.ToString();
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                // Ghi kích thước ma trận
-                writer.WriteLine(num);
-
-                foreach (Guna2Button txt in weiMatrixPanel.Controls)
-                {
-                    var indices = (ValueTuple<int, int>)txt.Tag;
-                    string content = txt.Text == "\u221E" ? "0" : txt.Text;
-                    writer.Write(content);
-                    if (indices.Item2 == num - 1) writer.WriteLine();
-                    if (indices.Item2 < num - 1) writer.Write(" ");
-                }
-            }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                FileName = Path.GetFileName(filePath), // Đặt tên mặc định là tên file gốc
-                Filter = "Text Files|*.txt|All Files|*.*",
+                FileName = "Graph" + num.ToString() + ".txt", // Đặt tên mặc định là tên file gốc
+                Filter = "Text Files|*.txt",
                 Title = "Save File To"
             };
 
@@ -516,7 +501,20 @@ namespace Graph_Editor
 
                 try
                 {
-                    File.Copy(filePath, savePath, true);
+                    using (StreamWriter writer = new StreamWriter(savePath))
+                    {
+                        // Ghi kích thước ma trận
+                        writer.WriteLine(num);
+
+                        foreach (Guna2Button txt in weiMatrixPanel.Controls)
+                        {
+                            var indices = (ValueTuple<int, int>)txt.Tag;
+                            string content = txt.Text == "\u221E" ? "0" : txt.Text;
+                            writer.Write(content);
+                            if (indices.Item2 == num - 1) writer.WriteLine();
+                            if (indices.Item2 < num - 1) writer.Write(" ");
+                        }
+                    }
                     MessageBox.Show($"File đã được lưu tại: {savePath}");
                 }
                 catch (Exception ex)
@@ -527,29 +525,11 @@ namespace Graph_Editor
         }
         private void saveGph_Click(object sender, EventArgs e)
         {
-            filePath = "Graph" + num.ToString();
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                // Ghi kích thước ma trận
-                writer.WriteLine(num);
-
-                for (int i = 0; i < nodes.Count; i++)
-                {
-                    writer.Write(nodes[i].Location.X + " " + nodes[i].Location.Y);
-                    writer.WriteLine();
-                }
-                writer.WriteLine(edges.Count);
-                foreach (var edge in edges)
-                {
-                    writer.Write(edge.Key.Item1 + " " + edge.Key.Item2 + " " + edge.Value);
-                    writer.WriteLine();
-                }
-            }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                FileName = Path.GetFileName(filePath), // Đặt tên mặc định là tên file gốc
-                Filter = "Text Files|*.gph|All Files|*.*",
+                FileName = "Graph" + num.ToString() + ".gph", // Đặt tên mặc định là tên file gốc
+                Filter = "Text Files|*.gph",
                 Title = "Save File To"
             };
 
@@ -559,7 +539,23 @@ namespace Graph_Editor
 
                 try
                 {
-                    File.Copy(filePath, savePath, true);
+                    using (StreamWriter writer = new StreamWriter(savePath))
+                    {
+                        // Ghi kích thước ma trận
+                        writer.WriteLine(num);
+
+                        for (int i = 0; i < nodes.Count; i++)
+                        {
+                            writer.Write(nodes[i].Location.X + " " + nodes[i].Location.Y);
+                            writer.WriteLine();
+                        }
+                        writer.WriteLine(edges.Count);
+                        foreach (var edge in edges)
+                        {
+                            writer.Write(edge.Key.Item1 + " " + edge.Key.Item2 + " " + edge.Value);
+                            writer.WriteLine();
+                        }
+                    }
                     MessageBox.Show($"File đã được lưu tại: {savePath}");
                 }
                 catch (Exception ex)
@@ -578,7 +574,7 @@ namespace Graph_Editor
             }
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Text Files|*.gph|All Files|*.*",
+                Filter = "Text Files|*.gph",
                 Title = "Select a File"
             };
 
@@ -920,7 +916,7 @@ namespace Graph_Editor
             if (num > 1 && forceModeRadioBtn.Checked)
             {
                 LoadAdjList();
-                ApplyForce(250, 0.001, 1);
+                ApplyForce(10, 0.001, 1);
                 Board.Invalidate();
             }
         }
