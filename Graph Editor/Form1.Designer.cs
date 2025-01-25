@@ -59,6 +59,8 @@
             addEdges = new RadioButton();
             addNodes = new RadioButton();
             panel1 = new Panel();
+            Undo = new Button();
+            DeleteNodes = new RadioButton();
             ChoseBtn = new RadioButton();
             timeRun = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Run = new Button();
@@ -98,6 +100,7 @@
             label2 = new Label();
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            Redo = new Button();
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
@@ -209,7 +212,7 @@
             // selectNode
             // 
             selectNode.AutoSize = true;
-            selectNode.Location = new Point(115, 10);
+            selectNode.Location = new Point(218, 7);
             selectNode.Name = "selectNode";
             selectNode.Size = new Size(114, 24);
             selectNode.TabIndex = 3;
@@ -220,7 +223,7 @@
             // addEdges
             // 
             addEdges.AutoSize = true;
-            addEdges.Location = new Point(7, 9);
+            addEdges.Location = new Point(115, 33);
             addEdges.Name = "addEdges";
             addEdges.Size = new Size(102, 24);
             addEdges.TabIndex = 2;
@@ -231,7 +234,7 @@
             // addNodes
             // 
             addNodes.AutoSize = true;
-            addNodes.Location = new Point(235, 10);
+            addNodes.Location = new Point(115, 7);
             addNodes.Name = "addNodes";
             addNodes.Size = new Size(102, 24);
             addNodes.TabIndex = 4;
@@ -241,6 +244,9 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(Redo);
+            panel1.Controls.Add(Undo);
+            panel1.Controls.Add(DeleteNodes);
             panel1.Controls.Add(ChoseBtn);
             panel1.Controls.Add(timeRun);
             panel1.Controls.Add(Run);
@@ -250,15 +256,37 @@
             panel1.Controls.Add(addNodes);
             panel1.Controls.Add(addEdges);
             panel1.Controls.Add(selectNode);
-            panel1.Location = new Point(0, 36);
+            panel1.Location = new Point(0, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(788, 49);
+            panel1.Size = new Size(788, 65);
             panel1.TabIndex = 5;
+            // 
+            // Undo
+            // 
+            Undo.BackColor = Color.FromArgb(255, 128, 128);
+            Undo.Location = new Point(23, 0);
+            Undo.Name = "Undo";
+            Undo.Size = new Size(60, 32);
+            Undo.TabIndex = 14;
+            Undo.Text = "Undo";
+            Undo.UseVisualStyleBackColor = false;
+            Undo.Click += Undo_Click;
+            // 
+            // DeleteNodes
+            // 
+            DeleteNodes.AutoSize = true;
+            DeleteNodes.Location = new Point(333, 7);
+            DeleteNodes.Name = "DeleteNodes";
+            DeleteNodes.Size = new Size(118, 24);
+            DeleteNodes.TabIndex = 13;
+            DeleteNodes.TabStop = true;
+            DeleteNodes.Text = "Delete nodes";
+            DeleteNodes.UseVisualStyleBackColor = true;
             // 
             // ChoseBtn
             // 
             ChoseBtn.AutoSize = true;
-            ChoseBtn.Location = new Point(340, 10);
+            ChoseBtn.Location = new Point(218, 33);
             ChoseBtn.Name = "ChoseBtn";
             ChoseBtn.Size = new Size(120, 24);
             ChoseBtn.TabIndex = 12;
@@ -442,10 +470,10 @@
             Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
-            Board.Location = new Point(7, 100);
+            Board.Location = new Point(0, 106);
             Board.Name = "Board";
             Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Board.Size = new Size(776, 660);
+            Board.Size = new Size(788, 654);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
@@ -649,6 +677,17 @@
             timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
             // 
+            // Redo
+            // 
+            Redo.BackColor = Color.FromArgb(255, 128, 128);
+            Redo.Location = new Point(23, 33);
+            Redo.Name = "Redo";
+            Redo.Size = new Size(60, 32);
+            Redo.TabIndex = 15;
+            Redo.Text = "Redo";
+            Redo.UseVisualStyleBackColor = false;
+            Redo.Click += Redo_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -738,5 +777,8 @@
         private RadioButton forceModeRadioBtn;
         private RadioButton drawModeRadioBtn;
         private ToolStripMenuItem savepngToolStripMenuItem;
+        private RadioButton DeleteNodes;
+        private Button Undo;
+        private Button Redo;
     }
 }

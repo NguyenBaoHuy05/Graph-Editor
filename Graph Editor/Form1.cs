@@ -3,6 +3,8 @@ using Microsoft.Win32;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using static Guna.UI2.Native.WinApi;
+
 
 namespace Graph_Editor
 {
@@ -20,7 +22,8 @@ namespace Graph_Editor
         string filePath;
         Dictionary<(int, int, Color), int> edges = new Dictionary<(int, int, Color), int>();
         List<List<int>> adjList = new List<List<int>>();
-
+        Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)> undo = new Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)>();
+        Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)> redo = new Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)>();
         public Form1()
         {
             InitializeComponent();
@@ -51,13 +54,15 @@ namespace Graph_Editor
                 path.AddEllipse(0, 0, btn.Width, btn.Height);
                 btn.Region = new Region(path);
 
+                Undo_Change();
 
                 Board.Controls.Add(btn);
                 nodes.Add(btn);
 
+                F.Add(new PointF(0, 0));
+
                 StartNode.Maximum = num - 1;
                 EndNode.Maximum = num - 1;
-                F.Add(new PointF(0, 0));
 
                 CreateAdjMatrix();
                 CreateWeiMatrix();
@@ -89,6 +94,7 @@ namespace Graph_Editor
 
             Board.Controls.Add(btn);
             nodes.Add(btn);
+            F.Add(new PointF(0, 0));
         }
 
         private void CreateNodeGph(Point point)
@@ -111,9 +117,10 @@ namespace Graph_Editor
             path.AddEllipse(0, 0, btn.Width, btn.Height);
             btn.Region = new Region(path);
 
-
             Board.Controls.Add(btn);
             nodes.Add(btn);
+
+            F.Add(new PointF(0, 0));
 
         }
         private void ResetColor()
@@ -163,13 +170,48 @@ namespace Graph_Editor
         }
         private void Choosebtn(object sender, EventArgs e)
         {
+            Guna2CircleButton button = (Guna2CircleButton)sender;
             if (ChoseBtn.Checked)
             {
-                Guna2CircleButton button = (Guna2CircleButton)sender;
                 chosenNode = button;
                 button.FillColor = Color.Gold;
                 ResetColor();
                 ChangeColor();
+            }
+            else if (DeleteNodes.Checked && num > 0)
+            {
+                Undo_Change();
+                num -= 1;
+                int number = int.Parse(button.Text);
+                foreach (var node in nodes)
+                {
+                    int num3 = int.Parse(node.Text);
+                    if (num3 > number)
+                    {
+                        node.Text = (num3 - 1).ToString();
+                    }
+                }
+                foreach (var edge in edges.Keys.ToList())
+                {
+                    if (edge.Item1 == number || edge.Item2 == number)
+                    {
+                        edges.Remove((edge.Item1, edge.Item2, defaultColor));
+                    }
+                    else if (edge.Item1 > number || edge.Item2 > number)
+                    {
+                        int num1 = (edge.Item1 > number) ? edge.Item1 - 1 : edge.Item1;
+                        int num2 = (edge.Item2 > number) ? edge.Item2 - 1 : edge.Item2;
+                        edges[(num1, num2, defaultColor)] = edges[(edge.Item1, edge.Item2, defaultColor)];
+                        edges.Remove((edge.Item1, edge.Item2, defaultColor));
+
+                    }
+                }
+                nodes.Remove(button);
+                Board.Controls.Remove(button);
+                Board.Invalidate();
+                CreateAdjMatrix();
+                CreateWeiMatrix();
+                ChangeText();
             }
         }
         private void Chosen()
@@ -251,6 +293,7 @@ namespace Graph_Editor
 
         private void btn_ClickAdj(object sender, EventArgs e)
         {
+            Undo_Change();
             Guna2Button btn = (Guna2Button)sender;
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
@@ -273,6 +316,7 @@ namespace Graph_Editor
 
         private void btn_ClickWei(object sender, MouseEventArgs e)
         {
+            Undo_Change();
             Guna2Button btn = (Guna2Button)sender;
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
@@ -395,6 +439,7 @@ namespace Graph_Editor
                         int j = int.Parse(clickedNode.Text);
                         int max = Math.Max(i, j);
                         int min = Math.Min(i, j);
+                        Undo_Change();
                         edges[(min, max, defaultColor)] = 1;
                         firstSelectedNode = null;
                         Board.Invalidate();
@@ -706,6 +751,7 @@ namespace Graph_Editor
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            Undo_Change();
             Board.Controls.Clear();
             adjList.Clear();
             edges.Clear();
@@ -919,6 +965,60 @@ namespace Graph_Editor
                 ApplyForce(10, 0.001, 1);
                 Board.Invalidate();
             }
+        }
+
+        private void Undo_Click(object sender, EventArgs e)
+        {
+            if (undo.Count == 0) return;
+            nodes = new List<Guna2CircleButton>(undo.Peek().Item1);
+            edges = new Dictionary<(int, int, Color), int>(undo.Peek().Item2);
+            Board.Controls.Clear();
+            num = nodes.Count;
+
+            foreach (var node in nodes)
+            {
+                Board.Controls.Add(node);
+            }
+
+            undo.Pop();
+            Board.Invalidate();
+            CreateAdjMatrix();
+            CreateWeiMatrix();
+            ChangeText();
+        }
+        private void Undo_Change(Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)> & undo)
+        {
+            List<Guna2CircleButton> nodes_1 = new List<Guna2CircleButton>();
+            foreach (var node in nodes)
+            {
+                Guna2CircleButton btn = new Guna2CircleButton
+                {
+                    BackColor = Color.Transparent,
+                    Size = new Size(60, 60),
+                    Location = node.Location,
+                    Text = nodes_1.Count.ToString(),
+                    DisabledState = { FillColor = Color.Gray, BorderColor = Color.White, ForeColor = Color.White }
+                };
+
+                btn.Click += Choosebtn;
+                btn.MouseDown += btn_MouseDown;
+                btn.MouseMove += btn_MouseMove;
+                btn.MouseUp += btn_MouseUp;
+
+                // Thiết lập vùng hiển thị hình tròn
+                GraphicsPath path = new GraphicsPath();
+                path.AddEllipse(0, 0, btn.Width, btn.Height);
+                btn.Region = new Region(path);
+
+                nodes_1.Add(btn);
+            }
+            Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
+            undo.Push((nodes_1, edgesCopy));
+        }
+
+        private void Redo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
