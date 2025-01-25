@@ -54,7 +54,7 @@ namespace Graph_Editor
                 path.AddEllipse(0, 0, btn.Width, btn.Height);
                 btn.Region = new Region(path);
 
-                Undo_Change();
+                Undo_Redo();
 
                 Board.Controls.Add(btn);
                 nodes.Add(btn);
@@ -180,7 +180,7 @@ namespace Graph_Editor
             }
             else if (DeleteNodes.Checked && num > 0)
             {
-                Undo_Change();
+                Undo_Redo();
                 num -= 1;
                 int number = int.Parse(button.Text);
                 foreach (var node in nodes)
@@ -293,7 +293,7 @@ namespace Graph_Editor
 
         private void btn_ClickAdj(object sender, EventArgs e)
         {
-            Undo_Change();
+            Undo_Redo();
             Guna2Button btn = (Guna2Button)sender;
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
@@ -316,7 +316,7 @@ namespace Graph_Editor
 
         private void btn_ClickWei(object sender, MouseEventArgs e)
         {
-            Undo_Change();
+            Undo_Redo();
             Guna2Button btn = (Guna2Button)sender;
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
@@ -439,7 +439,7 @@ namespace Graph_Editor
                         int j = int.Parse(clickedNode.Text);
                         int max = Math.Max(i, j);
                         int min = Math.Min(i, j);
-                        Undo_Change();
+                        Undo_Redo();
                         edges[(min, max, defaultColor)] = 1;
                         firstSelectedNode = null;
                         Board.Invalidate();
@@ -751,7 +751,7 @@ namespace Graph_Editor
 
         private void Reset_Click(object sender, EventArgs e)
         {
-            Undo_Change();
+            Undo_Redo();
             Board.Controls.Clear();
             adjList.Clear();
             edges.Clear();
@@ -970,6 +970,7 @@ namespace Graph_Editor
         private void Undo_Click(object sender, EventArgs e)
         {
             if (undo.Count == 0) return;
+            Undo_Redo(1);
             nodes = new List<Guna2CircleButton>(undo.Peek().Item1);
             edges = new Dictionary<(int, int, Color), int>(undo.Peek().Item2);
             Board.Controls.Clear();
@@ -986,7 +987,7 @@ namespace Graph_Editor
             CreateWeiMatrix();
             ChangeText();
         }
-        private void Undo_Change(Stack<(List<Guna2CircleButton>, Dictionary<(int, int, Color), int>)> & undo)
+        private void Undo_Redo(int k = 0)
         {
             List<Guna2CircleButton> nodes_1 = new List<Guna2CircleButton>();
             foreach (var node in nodes)
@@ -1011,14 +1012,36 @@ namespace Graph_Editor
                 btn.Region = new Region(path);
 
                 nodes_1.Add(btn);
+
+                F.Add(new PointF(0, 0));
+
+                StartNode.Maximum = num - 1;
+                EndNode.Maximum = num - 1;
             }
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
-            undo.Push((nodes_1, edgesCopy));
+            if (k == 1) redo.Push((nodes_1, edgesCopy));
+            else undo.Push((nodes_1, edgesCopy));
         }
 
         private void Redo_Click(object sender, EventArgs e)
         {
+            if (redo.Count == 0) return;
+            Undo_Redo();
+            nodes = new List<Guna2CircleButton>(redo.Peek().Item1);
+            edges = new Dictionary<(int, int, Color), int>(redo.Peek().Item2);
+            Board.Controls.Clear();
+            num = nodes.Count;
 
+            foreach (var node in nodes)
+            {
+                Board.Controls.Add(node);
+            }
+
+            redo.Pop();
+            Board.Invalidate();
+            CreateAdjMatrix();
+            CreateWeiMatrix();
+            ChangeText();
         }
     }
 }
