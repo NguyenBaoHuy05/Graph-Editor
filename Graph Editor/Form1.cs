@@ -1,5 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 using Microsoft.Win32;
+using System.Collections.Immutable;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -183,6 +184,8 @@ namespace Graph_Editor
                 Undo_Redo();
                 num -= 1;
                 int number = int.Parse(button.Text);
+                nodes.Remove(button);
+                Board.Controls.Remove(button);
                 foreach (var node in nodes)
                 {
                     int num3 = int.Parse(node.Text);
@@ -191,6 +194,10 @@ namespace Graph_Editor
                         node.Text = (num3 - 1).ToString();
                     }
                 }
+                edges = edges.OrderBy(kvp => kvp.Key.Item1)
+                      .ThenBy(kvp => kvp.Key.Item2)
+                      .ThenBy(kvp => kvp.Key.Item3.ToArgb())
+                      .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
                 foreach (var edge in edges.Keys.ToList())
                 {
                     if (edge.Item1 == number || edge.Item2 == number)
@@ -206,8 +213,6 @@ namespace Graph_Editor
 
                     }
                 }
-                nodes.Remove(button);
-                Board.Controls.Remove(button);
                 Board.Invalidate();
                 CreateAdjMatrix();
                 CreateWeiMatrix();
@@ -807,6 +812,7 @@ namespace Graph_Editor
         }
         async private void Run_Click(object sender, EventArgs e)
         {
+
             drawModeRadioBtn.Checked = true;
             if (Run.Text == "Close")
             {
@@ -815,7 +821,15 @@ namespace Graph_Editor
                     nodes[i].FillColor = Color.FromArgb(94, 148, 255);
                 }
                 Board.Invalidate();
-                Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = true;
+                Reset.Enabled = Undo.Enabled = Redo.Enabled = true;
+                foreach (Control control in toolbar.Controls)
+                {
+                    if (control is RadioButton radio)
+                    {
+                        radio.Enabled = false;
+                    }
+                }
+
                 Run.Text = "Run";
                 return;
             }
@@ -835,10 +849,14 @@ namespace Graph_Editor
             forceModeRadioBtn.Checked = false;
             drawModeRadioBtn.Checked = true;
             Run.Enabled = Undo.Enabled = Redo.Enabled = false;
-            foreach(RadioButton radio in toolbar.Controls)
+            foreach (Control control in toolbar.Controls)
             {
-                radio.Enabled = false;
+                if (control is RadioButton radio)
+                {
+                    radio.Enabled = false;
+                }
             }
+
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
             {
@@ -869,10 +887,14 @@ namespace Graph_Editor
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
                     Run.Enabled = Undo.Enabled = Redo.Enabled = true;
-                    foreach (RadioButton radio in toolbar.Controls)
+                    foreach (Control control in toolbar.Controls)
                     {
-                        radio.Enabled = true;
+                        if (control is RadioButton radio)
+                        {
+                            radio.Enabled = true;
+                        }
                     }
+
                     return;
 
             }
