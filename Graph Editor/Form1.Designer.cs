@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             AdjacencyMatrix = new TabPage();
@@ -58,7 +58,8 @@
             selectNode = new RadioButton();
             addEdges = new RadioButton();
             addNodes = new RadioButton();
-            panel1 = new Panel();
+            toolbar = new Panel();
+            Redo = new Button();
             Undo = new Button();
             DeleteNodes = new RadioButton();
             ChoseBtn = new RadioButton();
@@ -100,13 +101,12 @@
             label2 = new Label();
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            Redo = new Button();
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
             TabLog.SuspendLayout();
             AdjencyList.SuspendLayout();
-            panel1.SuspendLayout();
+            toolbar.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
             groupBox1.SuspendLayout();
@@ -141,11 +141,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges1;
+            adjMatrixPanel.CustomizableEdges = customizableEdges17;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -162,11 +162,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges3;
+            weiMatrixPanel.CustomizableEdges = customizableEdges19;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -242,24 +242,35 @@
             addNodes.Text = "Add nodes";
             addNodes.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // toolbar
             // 
-            panel1.Controls.Add(Redo);
-            panel1.Controls.Add(Undo);
-            panel1.Controls.Add(DeleteNodes);
-            panel1.Controls.Add(ChoseBtn);
-            panel1.Controls.Add(timeRun);
-            panel1.Controls.Add(Run);
-            panel1.Controls.Add(TrackBar);
-            panel1.Controls.Add(guna2vSeparator1);
-            panel1.Controls.Add(Reset);
-            panel1.Controls.Add(addNodes);
-            panel1.Controls.Add(addEdges);
-            panel1.Controls.Add(selectNode);
-            panel1.Location = new Point(0, 35);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(788, 65);
-            panel1.TabIndex = 5;
+            toolbar.Controls.Add(Redo);
+            toolbar.Controls.Add(Undo);
+            toolbar.Controls.Add(DeleteNodes);
+            toolbar.Controls.Add(ChoseBtn);
+            toolbar.Controls.Add(timeRun);
+            toolbar.Controls.Add(Run);
+            toolbar.Controls.Add(TrackBar);
+            toolbar.Controls.Add(guna2vSeparator1);
+            toolbar.Controls.Add(Reset);
+            toolbar.Controls.Add(addNodes);
+            toolbar.Controls.Add(addEdges);
+            toolbar.Controls.Add(selectNode);
+            toolbar.Location = new Point(0, 35);
+            toolbar.Name = "toolbar";
+            toolbar.Size = new Size(788, 65);
+            toolbar.TabIndex = 5;
+            // 
+            // Redo
+            // 
+            Redo.BackColor = Color.FromArgb(255, 128, 128);
+            Redo.Location = new Point(23, 33);
+            Redo.Name = "Redo";
+            Redo.Size = new Size(60, 32);
+            Redo.TabIndex = 15;
+            Redo.Text = "Redo";
+            Redo.UseVisualStyleBackColor = false;
+            Redo.Click += Redo_Click;
             // 
             // Undo
             // 
@@ -467,12 +478,12 @@
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges5;
+            Board.CustomizableEdges = customizableEdges21;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
             Board.Location = new Point(0, 106);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges22;
             Board.Size = new Size(788, 654);
             Board.TabIndex = 0;
             Board.TabStop = false;
@@ -527,7 +538,7 @@
             // Color3
             // 
             Color3.BorderRadius = 10;
-            Color3.CustomizableEdges = customizableEdges7;
+            Color3.CustomizableEdges = customizableEdges23;
             Color3.DisabledState.BorderColor = Color.DarkGray;
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -537,7 +548,7 @@
             Color3.ForeColor = Color.White;
             Color3.Location = new Point(320, 122);
             Color3.Name = "Color3";
-            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges24;
             Color3.Size = new Size(72, 30);
             Color3.TabIndex = 11;
             Color3.Text = "Select";
@@ -546,7 +557,7 @@
             // Color2
             // 
             Color2.BorderRadius = 10;
-            Color2.CustomizableEdges = customizableEdges9;
+            Color2.CustomizableEdges = customizableEdges25;
             Color2.DisabledState.BorderColor = Color.DarkGray;
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -556,7 +567,7 @@
             Color2.ForeColor = Color.White;
             Color2.Location = new Point(320, 73);
             Color2.Name = "Color2";
-            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges26;
             Color2.Size = new Size(72, 30);
             Color2.TabIndex = 10;
             Color2.Text = "Select";
@@ -565,7 +576,7 @@
             // Color1
             // 
             Color1.BorderRadius = 10;
-            Color1.CustomizableEdges = customizableEdges11;
+            Color1.CustomizableEdges = customizableEdges27;
             Color1.DisabledState.BorderColor = Color.DarkGray;
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -575,7 +586,7 @@
             Color1.ForeColor = Color.White;
             Color1.Location = new Point(320, 26);
             Color1.Name = "Color1";
-            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges28;
             Color1.Size = new Size(72, 30);
             Color1.TabIndex = 9;
             Color1.Text = "Select";
@@ -621,26 +632,26 @@
             // EndNode
             // 
             EndNode.BackColor = Color.Transparent;
-            EndNode.CustomizableEdges = customizableEdges13;
+            EndNode.CustomizableEdges = customizableEdges29;
             EndNode.Font = new Font("Segoe UI", 9F);
             EndNode.Location = new Point(115, 77);
             EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
-            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges30;
             EndNode.Size = new Size(54, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
             // 
             StartNode.BackColor = Color.Transparent;
-            StartNode.CustomizableEdges = customizableEdges15;
+            StartNode.CustomizableEdges = customizableEdges31;
             StartNode.Font = new Font("Segoe UI", 9F);
             StartNode.Location = new Point(115, 27);
             StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
-            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges32;
             StartNode.Size = new Size(54, 30);
             StartNode.TabIndex = 3;
             // 
@@ -677,17 +688,6 @@
             timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
             // 
-            // Redo
-            // 
-            Redo.BackColor = Color.FromArgb(255, 128, 128);
-            Redo.Location = new Point(23, 33);
-            Redo.Name = "Redo";
-            Redo.Size = new Size(60, 32);
-            Redo.TabIndex = 15;
-            Redo.Text = "Redo";
-            Redo.UseVisualStyleBackColor = false;
-            Redo.Click += Redo_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -697,7 +697,7 @@
             Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(Board);
-            Controls.Add(panel1);
+            Controls.Add(toolbar);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -711,8 +711,8 @@
             WeightMatrix.ResumeLayout(false);
             TabLog.ResumeLayout(false);
             AdjencyList.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            toolbar.ResumeLayout(false);
+            toolbar.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Board).EndInit();
@@ -733,7 +733,7 @@
         private RadioButton selectNode;
         private RadioButton addEdges;
         private RadioButton addNodes;
-        private Panel panel1;
+        private Panel toolbar;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem Algorithm;
         private ToolStripMenuItem dFS;

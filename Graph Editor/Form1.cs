@@ -807,6 +807,7 @@ namespace Graph_Editor
         }
         async private void Run_Click(object sender, EventArgs e)
         {
+            drawModeRadioBtn.Checked = true;
             if (Run.Text == "Close")
             {
                 for (int i = 0; i < num; ++i)
@@ -833,7 +834,11 @@ namespace Graph_Editor
             }
             forceModeRadioBtn.Checked = false;
             drawModeRadioBtn.Checked = true;
-            Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = false;
+            Run.Enabled = Undo.Enabled = Redo.Enabled = false;
+            foreach(RadioButton radio in toolbar.Controls)
+            {
+                radio.Enabled = false;
+            }
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             switch (Algo.Text.ToString())
             {
@@ -863,7 +868,11 @@ namespace Graph_Editor
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
-                    Run.Enabled = Reset.Enabled = StartNode.Enabled = EndNode.Enabled = ChoseBtn.Enabled = addNodes.Enabled = addEdges.Enabled = true;
+                    Run.Enabled = Undo.Enabled = Redo.Enabled = true;
+                    foreach (RadioButton radio in toolbar.Controls)
+                    {
+                        radio.Enabled = true;
+                    }
                     return;
 
             }
