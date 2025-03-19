@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             AdjacencyMatrix = new TabPage();
@@ -55,14 +55,9 @@
             Log = new RichTextBox();
             AdjencyList = new TabPage();
             adjListShow = new RichTextBox();
-            selectNode = new RadioButton();
-            addEdges = new RadioButton();
-            addNodes = new RadioButton();
-            toolbar = new Panel();
-            Redo = new Button();
-            Undo = new Button();
-            DeleteNodes = new RadioButton();
-            ChoseBtn = new RadioButton();
+            ModeBoard = new Panel();
+            forceModeRadioBtn = new RadioButton();
+            drawModeRadioBtn = new RadioButton();
             timeRun = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Run = new Button();
             TrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
@@ -84,10 +79,10 @@
             prim = new ToolStripMenuItem();
             kruscal = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
+            Undo = new ToolStripMenuItem();
+            Redo = new ToolStripMenuItem();
             Board = new Guna.UI2.WinForms.Guna2PictureBox();
             groupBox1 = new GroupBox();
-            drawModeRadioBtn = new RadioButton();
-            forceModeRadioBtn = new RadioButton();
             Color3 = new Guna.UI2.WinForms.Guna2Button();
             Color2 = new Guna.UI2.WinForms.Guna2Button();
             Color1 = new Guna.UI2.WinForms.Guna2Button();
@@ -100,18 +95,33 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            timer1 = new System.Windows.Forms.Timer(components);
+            direct = new RadioButton();
+            undirect = new RadioButton();
+            ForceModeTimer = new System.Windows.Forms.Timer(components);
+            panel1 = new Panel();
+            Controller = new GroupBox();
+            Work = new GroupBox();
+            addNodes = new RadioButton();
+            DeleteNodes = new RadioButton();
+            selectNode = new RadioButton();
+            ChoseBtn = new RadioButton();
+            addEdges = new RadioButton();
+            runBoard = new GroupBox();
             tabControl1.SuspendLayout();
             AdjacencyMatrix.SuspendLayout();
             WeightMatrix.SuspendLayout();
             TabLog.SuspendLayout();
             AdjencyList.SuspendLayout();
-            toolbar.SuspendLayout();
+            ModeBoard.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Board).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)EndNode).BeginInit();
             ((System.ComponentModel.ISupportInitialize)StartNode).BeginInit();
+            panel1.SuspendLayout();
+            Controller.SuspendLayout();
+            Work.SuspendLayout();
+            runBoard.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -121,7 +131,7 @@
             tabControl1.Controls.Add(WeightMatrix);
             tabControl1.Controls.Add(TabLog);
             tabControl1.Controls.Add(AdjencyList);
-            tabControl1.Location = new Point(798, 259);
+            tabControl1.Location = new Point(802, 439);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(464, 492);
@@ -141,11 +151,11 @@
             // 
             // adjMatrixPanel
             // 
-            adjMatrixPanel.CustomizableEdges = customizableEdges17;
+            adjMatrixPanel.CustomizableEdges = customizableEdges1;
             adjMatrixPanel.Dock = DockStyle.Fill;
             adjMatrixPanel.Location = new Point(3, 3);
             adjMatrixPanel.Name = "adjMatrixPanel";
-            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            adjMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
             adjMatrixPanel.Size = new Size(450, 450);
             adjMatrixPanel.TabIndex = 0;
             // 
@@ -162,11 +172,11 @@
             // 
             // weiMatrixPanel
             // 
-            weiMatrixPanel.CustomizableEdges = customizableEdges19;
+            weiMatrixPanel.CustomizableEdges = customizableEdges3;
             weiMatrixPanel.Dock = DockStyle.Fill;
             weiMatrixPanel.Location = new Point(3, 3);
             weiMatrixPanel.Name = "weiMatrixPanel";
-            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            weiMatrixPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             weiMatrixPanel.Size = new Size(450, 450);
             weiMatrixPanel.TabIndex = 1;
             // 
@@ -209,107 +219,41 @@
             adjListShow.TabIndex = 2;
             adjListShow.Text = "";
             // 
-            // selectNode
+            // ModeBoard
             // 
-            selectNode.AutoSize = true;
-            selectNode.Location = new Point(218, 7);
-            selectNode.Name = "selectNode";
-            selectNode.Size = new Size(114, 24);
-            selectNode.TabIndex = 3;
-            selectNode.TabStop = true;
-            selectNode.Text = "Select nodes";
-            selectNode.UseVisualStyleBackColor = true;
+            ModeBoard.Controls.Add(forceModeRadioBtn);
+            ModeBoard.Controls.Add(drawModeRadioBtn);
+            ModeBoard.Location = new Point(5, 26);
+            ModeBoard.Name = "ModeBoard";
+            ModeBoard.Size = new Size(118, 63);
+            ModeBoard.TabIndex = 17;
             // 
-            // addEdges
+            // forceModeRadioBtn
             // 
-            addEdges.AutoSize = true;
-            addEdges.Location = new Point(115, 33);
-            addEdges.Name = "addEdges";
-            addEdges.Size = new Size(102, 24);
-            addEdges.TabIndex = 2;
-            addEdges.TabStop = true;
-            addEdges.Text = "Add edges";
-            addEdges.UseVisualStyleBackColor = true;
+            forceModeRadioBtn.AutoSize = true;
+            forceModeRadioBtn.Location = new Point(3, 4);
+            forceModeRadioBtn.Name = "forceModeRadioBtn";
+            forceModeRadioBtn.Size = new Size(109, 24);
+            forceModeRadioBtn.TabIndex = 12;
+            forceModeRadioBtn.Text = "Force mode";
+            forceModeRadioBtn.UseVisualStyleBackColor = true;
             // 
-            // addNodes
+            // drawModeRadioBtn
             // 
-            addNodes.AutoSize = true;
-            addNodes.Location = new Point(115, 7);
-            addNodes.Name = "addNodes";
-            addNodes.Size = new Size(102, 24);
-            addNodes.TabIndex = 4;
-            addNodes.TabStop = true;
-            addNodes.Text = "Add nodes";
-            addNodes.UseVisualStyleBackColor = true;
-            // 
-            // toolbar
-            // 
-            toolbar.Controls.Add(Redo);
-            toolbar.Controls.Add(Undo);
-            toolbar.Controls.Add(DeleteNodes);
-            toolbar.Controls.Add(ChoseBtn);
-            toolbar.Controls.Add(timeRun);
-            toolbar.Controls.Add(Run);
-            toolbar.Controls.Add(TrackBar);
-            toolbar.Controls.Add(guna2vSeparator1);
-            toolbar.Controls.Add(Reset);
-            toolbar.Controls.Add(addNodes);
-            toolbar.Controls.Add(addEdges);
-            toolbar.Controls.Add(selectNode);
-            toolbar.Location = new Point(0, 35);
-            toolbar.Name = "toolbar";
-            toolbar.Size = new Size(788, 65);
-            toolbar.TabIndex = 5;
-            // 
-            // Redo
-            // 
-            Redo.BackColor = Color.FromArgb(255, 128, 128);
-            Redo.Location = new Point(23, 33);
-            Redo.Name = "Redo";
-            Redo.Size = new Size(60, 32);
-            Redo.TabIndex = 15;
-            Redo.Text = "Redo";
-            Redo.UseVisualStyleBackColor = false;
-            Redo.Click += Redo_Click;
-            // 
-            // Undo
-            // 
-            Undo.BackColor = Color.FromArgb(255, 128, 128);
-            Undo.Location = new Point(23, 0);
-            Undo.Name = "Undo";
-            Undo.Size = new Size(60, 32);
-            Undo.TabIndex = 14;
-            Undo.Text = "Undo";
-            Undo.UseVisualStyleBackColor = false;
-            Undo.Click += Undo_Click;
-            // 
-            // DeleteNodes
-            // 
-            DeleteNodes.AutoSize = true;
-            DeleteNodes.Location = new Point(333, 7);
-            DeleteNodes.Name = "DeleteNodes";
-            DeleteNodes.Size = new Size(118, 24);
-            DeleteNodes.TabIndex = 13;
-            DeleteNodes.TabStop = true;
-            DeleteNodes.Text = "Delete nodes";
-            DeleteNodes.UseVisualStyleBackColor = true;
-            // 
-            // ChoseBtn
-            // 
-            ChoseBtn.AutoSize = true;
-            ChoseBtn.Location = new Point(218, 33);
-            ChoseBtn.Name = "ChoseBtn";
-            ChoseBtn.Size = new Size(120, 24);
-            ChoseBtn.TabIndex = 12;
-            ChoseBtn.TabStop = true;
-            ChoseBtn.Text = "Choose Node";
-            ChoseBtn.UseVisualStyleBackColor = true;
-            ChoseBtn.CheckedChanged += ChangeChoosebtn;
+            drawModeRadioBtn.AutoSize = true;
+            drawModeRadioBtn.Checked = true;
+            drawModeRadioBtn.Location = new Point(4, 31);
+            drawModeRadioBtn.Name = "drawModeRadioBtn";
+            drawModeRadioBtn.Size = new Size(108, 24);
+            drawModeRadioBtn.TabIndex = 13;
+            drawModeRadioBtn.TabStop = true;
+            drawModeRadioBtn.Text = "Draw mode";
+            drawModeRadioBtn.UseVisualStyleBackColor = true;
             // 
             // timeRun
             // 
             timeRun.BackColor = Color.Transparent;
-            timeRun.Location = new Point(683, 13);
+            timeRun.Location = new Point(242, 36);
             timeRun.Name = "timeRun";
             timeRun.Size = new Size(17, 22);
             timeRun.TabIndex = 11;
@@ -318,7 +262,7 @@
             // Run
             // 
             Run.BackColor = Color.Cyan;
-            Run.Location = new Point(714, 10);
+            Run.Location = new Point(275, 33);
             Run.Name = "Run";
             Run.Size = new Size(69, 28);
             Run.TabIndex = 10;
@@ -328,10 +272,10 @@
             // 
             // TrackBar
             // 
-            TrackBar.Location = new Point(545, 9);
+            TrackBar.Location = new Point(9, 33);
             TrackBar.Maximum = 10;
             TrackBar.Name = "TrackBar";
-            TrackBar.Size = new Size(132, 29);
+            TrackBar.Size = new Size(214, 29);
             TrackBar.TabIndex = 8;
             TrackBar.ThumbColor = Color.FromArgb(160, 113, 255);
             TrackBar.Value = 1;
@@ -339,15 +283,15 @@
             // 
             // guna2vSeparator1
             // 
-            guna2vSeparator1.Location = new Point(524, 5);
+            guna2vSeparator1.Location = new Point(142, 23);
             guna2vSeparator1.Name = "guna2vSeparator1";
-            guna2vSeparator1.Size = new Size(17, 34);
+            guna2vSeparator1.Size = new Size(19, 74);
             guna2vSeparator1.TabIndex = 9;
             // 
             // Reset
             // 
             Reset.BackColor = Color.Cyan;
-            Reset.Location = new Point(466, 7);
+            Reset.Location = new Point(360, 43);
             Reset.Name = "Reset";
             Reset.Size = new Size(59, 28);
             Reset.TabIndex = 8;
@@ -468,23 +412,39 @@
             // 
             menuStrip1.BackColor = Color.Aqua;
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { saveToolStripMenuItem, Algorithm, Undo, Redo });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1274, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
+            // Undo
+            // 
+            Undo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            Undo.Name = "Undo";
+            Undo.Size = new Size(77, 29);
+            Undo.Text = "Undo";
+            Undo.Click += Undo_Click;
+            // 
+            // Redo
+            // 
+            Redo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            Redo.Name = "Redo";
+            Redo.Size = new Size(76, 29);
+            Redo.Text = "Redo";
+            Redo.Click += Redo_Click;
+            // 
             // Board
             // 
             Board.BackColor = Color.PeachPuff;
-            Board.CustomizableEdges = customizableEdges21;
+            Board.CustomizableEdges = customizableEdges5;
             Board.FillColor = Color.Bisque;
             Board.ImageRotate = 0F;
-            Board.Location = new Point(0, 106);
+            Board.Location = new Point(0, 100);
             Board.Name = "Board";
-            Board.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            Board.Size = new Size(788, 654);
+            Board.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            Board.Size = new Size(788, 843);
             Board.TabIndex = 0;
             Board.TabStop = false;
             Board.Paint += Board_Paint;
@@ -492,8 +452,6 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(drawModeRadioBtn);
-            groupBox1.Controls.Add(forceModeRadioBtn);
             groupBox1.Controls.Add(Color3);
             groupBox1.Controls.Add(Color2);
             groupBox1.Controls.Add(Color1);
@@ -506,39 +464,17 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(794, 45);
+            groupBox1.Location = new Point(802, 144);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(468, 197);
+            groupBox1.Size = new Size(460, 180);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Algorithms ";
             // 
-            // drawModeRadioBtn
-            // 
-            drawModeRadioBtn.AutoSize = true;
-            drawModeRadioBtn.Location = new Point(163, 163);
-            drawModeRadioBtn.Name = "drawModeRadioBtn";
-            drawModeRadioBtn.Size = new Size(108, 24);
-            drawModeRadioBtn.TabIndex = 13;
-            drawModeRadioBtn.TabStop = true;
-            drawModeRadioBtn.Text = "Draw mode";
-            drawModeRadioBtn.UseVisualStyleBackColor = true;
-            // 
-            // forceModeRadioBtn
-            // 
-            forceModeRadioBtn.AutoSize = true;
-            forceModeRadioBtn.Location = new Point(25, 163);
-            forceModeRadioBtn.Name = "forceModeRadioBtn";
-            forceModeRadioBtn.Size = new Size(109, 24);
-            forceModeRadioBtn.TabIndex = 12;
-            forceModeRadioBtn.TabStop = true;
-            forceModeRadioBtn.Text = "Force mode";
-            forceModeRadioBtn.UseVisualStyleBackColor = true;
-            // 
             // Color3
             // 
             Color3.BorderRadius = 10;
-            Color3.CustomizableEdges = customizableEdges23;
+            Color3.CustomizableEdges = customizableEdges7;
             Color3.DisabledState.BorderColor = Color.DarkGray;
             Color3.DisabledState.CustomBorderColor = Color.DarkGray;
             Color3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -546,9 +482,9 @@
             Color3.FillColor = Color.Fuchsia;
             Color3.Font = new Font("Segoe UI", 9F);
             Color3.ForeColor = Color.White;
-            Color3.Location = new Point(320, 122);
+            Color3.Location = new Point(320, 129);
             Color3.Name = "Color3";
-            Color3.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            Color3.ShadowDecoration.CustomizableEdges = customizableEdges8;
             Color3.Size = new Size(72, 30);
             Color3.TabIndex = 11;
             Color3.Text = "Select";
@@ -557,7 +493,7 @@
             // Color2
             // 
             Color2.BorderRadius = 10;
-            Color2.CustomizableEdges = customizableEdges25;
+            Color2.CustomizableEdges = customizableEdges9;
             Color2.DisabledState.BorderColor = Color.DarkGray;
             Color2.DisabledState.CustomBorderColor = Color.DarkGray;
             Color2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -565,9 +501,9 @@
             Color2.FillColor = Color.FromArgb(192, 192, 0);
             Color2.Font = new Font("Segoe UI", 9F);
             Color2.ForeColor = Color.White;
-            Color2.Location = new Point(320, 73);
+            Color2.Location = new Point(320, 80);
             Color2.Name = "Color2";
-            Color2.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            Color2.ShadowDecoration.CustomizableEdges = customizableEdges10;
             Color2.Size = new Size(72, 30);
             Color2.TabIndex = 10;
             Color2.Text = "Select";
@@ -576,7 +512,7 @@
             // Color1
             // 
             Color1.BorderRadius = 10;
-            Color1.CustomizableEdges = customizableEdges27;
+            Color1.CustomizableEdges = customizableEdges11;
             Color1.DisabledState.BorderColor = Color.DarkGray;
             Color1.DisabledState.CustomBorderColor = Color.DarkGray;
             Color1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -584,9 +520,9 @@
             Color1.FillColor = Color.FromArgb(255, 128, 0);
             Color1.Font = new Font("Segoe UI", 9F);
             Color1.ForeColor = Color.White;
-            Color1.Location = new Point(320, 26);
+            Color1.Location = new Point(320, 33);
             Color1.Name = "Color1";
-            Color1.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            Color1.ShadowDecoration.CustomizableEdges = customizableEdges12;
             Color1.Size = new Size(72, 30);
             Color1.TabIndex = 9;
             Color1.Text = "Select";
@@ -594,7 +530,7 @@
             // 
             // label6
             // 
-            label6.Location = new Point(198, 118);
+            label6.Location = new Point(198, 125);
             label6.Name = "label6";
             label6.Size = new Size(113, 34);
             label6.TabIndex = 8;
@@ -603,7 +539,7 @@
             // 
             // label5
             // 
-            label5.Location = new Point(198, 73);
+            label5.Location = new Point(198, 80);
             label5.Name = "label5";
             label5.Size = new Size(103, 34);
             label5.TabIndex = 7;
@@ -612,7 +548,7 @@
             // 
             // label4
             // 
-            label4.Location = new Point(198, 23);
+            label4.Location = new Point(198, 30);
             label4.Name = "label4";
             label4.Size = new Size(107, 34);
             label4.TabIndex = 6;
@@ -622,7 +558,7 @@
             // Algo
             // 
             Algo.AutoSize = true;
-            Algo.Location = new Point(115, 125);
+            Algo.Location = new Point(115, 132);
             Algo.Name = "Algo";
             Algo.Size = new Size(45, 20);
             Algo.TabIndex = 5;
@@ -632,32 +568,32 @@
             // EndNode
             // 
             EndNode.BackColor = Color.Transparent;
-            EndNode.CustomizableEdges = customizableEdges29;
+            EndNode.CustomizableEdges = customizableEdges13;
             EndNode.Font = new Font("Segoe UI", 9F);
-            EndNode.Location = new Point(115, 77);
+            EndNode.Location = new Point(115, 84);
             EndNode.Margin = new Padding(3, 4, 3, 4);
             EndNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             EndNode.Name = "EndNode";
-            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            EndNode.ShadowDecoration.CustomizableEdges = customizableEdges14;
             EndNode.Size = new Size(54, 30);
             EndNode.TabIndex = 4;
             // 
             // StartNode
             // 
             StartNode.BackColor = Color.Transparent;
-            StartNode.CustomizableEdges = customizableEdges31;
+            StartNode.CustomizableEdges = customizableEdges15;
             StartNode.Font = new Font("Segoe UI", 9F);
-            StartNode.Location = new Point(115, 27);
+            StartNode.Location = new Point(115, 34);
             StartNode.Margin = new Padding(3, 4, 3, 4);
             StartNode.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             StartNode.Name = "StartNode";
-            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            StartNode.ShadowDecoration.CustomizableEdges = customizableEdges16;
             StartNode.Size = new Size(54, 30);
             StartNode.TabIndex = 3;
             // 
             // label3
             // 
-            label3.Location = new Point(16, 118);
+            label3.Location = new Point(16, 125);
             label3.Name = "label3";
             label3.Size = new Size(93, 34);
             label3.TabIndex = 2;
@@ -666,7 +602,7 @@
             // 
             // label2
             // 
-            label2.Location = new Point(16, 73);
+            label2.Location = new Point(16, 80);
             label2.Name = "label2";
             label2.Size = new Size(93, 34);
             label2.TabIndex = 1;
@@ -675,29 +611,160 @@
             // 
             // label1
             // 
-            label1.Location = new Point(16, 23);
+            label1.Location = new Point(16, 30);
             label1.Name = "label1";
             label1.Size = new Size(93, 34);
             label1.TabIndex = 0;
             label1.Text = "Start Node:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // timer1
+            // direct
             // 
-            timer1.Enabled = true;
-            timer1.Interval = 1;
-            timer1.Tick += timer1_Tick;
+            direct.AutoSize = true;
+            direct.Location = new Point(3, 31);
+            direct.Name = "direct";
+            direct.Size = new Size(131, 24);
+            direct.TabIndex = 13;
+            direct.Text = "Directed Graph";
+            direct.UseVisualStyleBackColor = true;
+            direct.Click += direct_Click;
+            // 
+            // undirect
+            // 
+            undirect.AutoSize = true;
+            undirect.Checked = true;
+            undirect.Location = new Point(3, 4);
+            undirect.Name = "undirect";
+            undirect.RightToLeft = RightToLeft.No;
+            undirect.Size = new Size(147, 24);
+            undirect.TabIndex = 12;
+            undirect.TabStop = true;
+            undirect.Text = "Undirected Graph";
+            undirect.UseVisualStyleBackColor = true;
+            undirect.Click += undirect_Click;
+            // 
+            // ForceModeTimer
+            // 
+            ForceModeTimer.Enabled = true;
+            ForceModeTimer.Interval = 1;
+            ForceModeTimer.Tick += ForceModeTimer_Tick;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(undirect);
+            panel1.Controls.Add(direct);
+            panel1.Location = new Point(178, 26);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(164, 63);
+            panel1.TabIndex = 18;
+            // 
+            // Controller
+            // 
+            Controller.Controls.Add(guna2vSeparator1);
+            Controller.Controls.Add(panel1);
+            Controller.Controls.Add(Reset);
+            Controller.Controls.Add(ModeBoard);
+            Controller.Location = new Point(801, 35);
+            Controller.Name = "Controller";
+            Controller.Size = new Size(458, 103);
+            Controller.TabIndex = 10;
+            Controller.TabStop = false;
+            Controller.Text = "GraphControl";
+            // 
+            // Work
+            // 
+            Work.Controls.Add(addNodes);
+            Work.Controls.Add(DeleteNodes);
+            Work.Controls.Add(selectNode);
+            Work.Controls.Add(ChoseBtn);
+            Work.Controls.Add(addEdges);
+            Work.Location = new Point(7, 36);
+            Work.Name = "Work";
+            Work.Size = new Size(781, 58);
+            Work.TabIndex = 14;
+            Work.TabStop = false;
+            Work.Text = "Work";
+            // 
+            // addNodes
+            // 
+            addNodes.AutoSize = true;
+            addNodes.Location = new Point(12, 22);
+            addNodes.Name = "addNodes";
+            addNodes.Size = new Size(102, 24);
+            addNodes.TabIndex = 4;
+            addNodes.TabStop = true;
+            addNodes.Text = "Add nodes";
+            addNodes.UseVisualStyleBackColor = true;
+            // 
+            // DeleteNodes
+            // 
+            DeleteNodes.AutoSize = true;
+            DeleteNodes.Location = new Point(506, 22);
+            DeleteNodes.Name = "DeleteNodes";
+            DeleteNodes.Size = new Size(118, 24);
+            DeleteNodes.TabIndex = 13;
+            DeleteNodes.TabStop = true;
+            DeleteNodes.Text = "Delete nodes";
+            DeleteNodes.UseVisualStyleBackColor = true;
+            // 
+            // selectNode
+            // 
+            selectNode.AutoSize = true;
+            selectNode.Location = new Point(378, 22);
+            selectNode.Name = "selectNode";
+            selectNode.Size = new Size(114, 24);
+            selectNode.TabIndex = 3;
+            selectNode.TabStop = true;
+            selectNode.Text = "Select nodes";
+            selectNode.UseVisualStyleBackColor = true;
+            // 
+            // ChoseBtn
+            // 
+            ChoseBtn.AutoSize = true;
+            ChoseBtn.Location = new Point(244, 22);
+            ChoseBtn.Name = "ChoseBtn";
+            ChoseBtn.Size = new Size(120, 24);
+            ChoseBtn.TabIndex = 12;
+            ChoseBtn.TabStop = true;
+            ChoseBtn.Text = "Choose Node";
+            ChoseBtn.UseVisualStyleBackColor = true;
+            ChoseBtn.CheckedChanged += ChangeChoosebtn;
+            // 
+            // addEdges
+            // 
+            addEdges.AutoSize = true;
+            addEdges.Location = new Point(128, 22);
+            addEdges.Name = "addEdges";
+            addEdges.Size = new Size(102, 24);
+            addEdges.TabIndex = 2;
+            addEdges.TabStop = true;
+            addEdges.Text = "Add edges";
+            addEdges.UseVisualStyleBackColor = true;
+            // 
+            // runBoard
+            // 
+            runBoard.Controls.Add(TrackBar);
+            runBoard.Controls.Add(Run);
+            runBoard.Controls.Add(timeRun);
+            runBoard.Location = new Point(801, 330);
+            runBoard.Name = "runBoard";
+            runBoard.Size = new Size(461, 85);
+            runBoard.TabIndex = 15;
+            runBoard.TabStop = false;
+            runBoard.Text = "RunBoard";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1274, 772);
+            ClientSize = new Size(1274, 955);
+            Controls.Add(runBoard);
+            Controls.Add(Work);
+            Controls.Add(Controller);
             Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(Board);
-            Controls.Add(toolbar);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -711,8 +778,8 @@
             WeightMatrix.ResumeLayout(false);
             TabLog.ResumeLayout(false);
             AdjencyList.ResumeLayout(false);
-            toolbar.ResumeLayout(false);
-            toolbar.PerformLayout();
+            ModeBoard.ResumeLayout(false);
+            ModeBoard.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Board).EndInit();
@@ -720,6 +787,13 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)EndNode).EndInit();
             ((System.ComponentModel.ISupportInitialize)StartNode).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            Controller.ResumeLayout(false);
+            Work.ResumeLayout(false);
+            Work.PerformLayout();
+            runBoard.ResumeLayout(false);
+            runBoard.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -730,10 +804,6 @@
         private TabPage WeightMatrix;
         private Guna.UI2.WinForms.Guna2Panel adjMatrixPanel;
         private Guna.UI2.WinForms.Guna2Panel weiMatrixPanel;
-        private RadioButton selectNode;
-        private RadioButton addEdges;
-        private RadioButton addNodes;
-        private Panel toolbar;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem Algorithm;
         private ToolStripMenuItem dFS;
@@ -770,15 +840,25 @@
         private Guna.UI2.WinForms.Guna2Button Color3;
         private Guna.UI2.WinForms.Guna2Button Color2;
         private Guna.UI2.WinForms.Guna2Button Color1;
-        private RadioButton ChoseBtn;
         private TabPage AdjencyList;
         private RichTextBox adjListShow;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer ForceModeTimer;
         private RadioButton forceModeRadioBtn;
         private RadioButton drawModeRadioBtn;
         private ToolStripMenuItem savepngToolStripMenuItem;
+        private Panel ModeBoard;
+        private RadioButton direct;
+        private RadioButton undirect;
+        private ToolStripMenuItem Undo;
+        private ToolStripMenuItem Redo;
+        private Panel panel1;
+        private GroupBox Controller;
+        private GroupBox Work;
+        private RadioButton addNodes;
         private RadioButton DeleteNodes;
-        private Button Undo;
-        private Button Redo;
+        private RadioButton selectNode;
+        private RadioButton ChoseBtn;
+        private RadioButton addEdges;
+        private GroupBox runBoard;
     }
 }

@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FCB161ECFEB0418A9C41246497CBEC0E"
+        "MsmKey" = "8:_9B5C74D6AC8946D0A6BDB2145231DB9F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -43,6 +43,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -59,6 +67,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -90,9 +114,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FCB161ECFEB0418A9C41246497CBEC0E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B5C74D6AC8946D0A6BDB2145231DB9F"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\GraphEditor.ico"
+            "SourcePath" = "8:..\\..\\..\\GraphEditor.ico"
             "TargetName" = "8:GraphEditor.ico"
             "Tag" = "8:"
             "Folder" = "8:_0871FCF70CC346C7A0553A56435D3247"
@@ -167,7 +191,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupGraphEditor"
         "ProductCode" = "8:{AEADFDF6-2A92-4638-941F-0D0B55E028E0}"
-        "PackageCode" = "8:{D69B62EA-806C-4D2F-9240-BD7FA1EC80B3}"
+        "PackageCode" = "8:{3EBEF99E-0773-4D5B-885F-97378ADD8920}"
         "UpgradeCode" = "8:{39BF864B-D9E4-4BC0-8B72-75BC862EE113}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -184,7 +208,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Graph Editor is a graph app"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_FCB161ECFEB0418A9C41246497CBEC0E"
+        "ARPPRODUCTICON" = "8:_9B5C74D6AC8946D0A6BDB2145231DB9F"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -287,9 +311,9 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3AB9F1D3CE204D8597B083D6B2C9E9C7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9B9824E963C142ED9AFC03CE13723DC8"
             {
-            "Name" = "8:Graph Editor"
+            "Name" = "8:GraphEditor"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -298,12 +322,12 @@
             "Target" = "8:_4EE6B19812264D40B0FEC6F8430ED660"
             "Folder" = "8:_FAECA842BC02492EB6CC93A99BC9B78E"
             "WorkingFolder" = "8:_0871FCF70CC346C7A0553A56435D3247"
-            "Icon" = "8:_FCB161ECFEB0418A9C41246497CBEC0E"
+            "Icon" = "8:_9B5C74D6AC8946D0A6BDB2145231DB9F"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_955419BC23044A8D91EBF44D281822D7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C3A55B36FDAD400695B36FB5B093C49A"
             {
-            "Name" = "8:Graph Editor"
+            "Name" = "8:GraphEditor"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -312,7 +336,7 @@
             "Target" = "8:_4EE6B19812264D40B0FEC6F8430ED660"
             "Folder" = "8:_8825699786044770B04111383C790826"
             "WorkingFolder" = "8:_0871FCF70CC346C7A0553A56435D3247"
-            "Icon" = "8:_FCB161ECFEB0418A9C41246497CBEC0E"
+            "Icon" = "8:_9B5C74D6AC8946D0A6BDB2145231DB9F"
             "Feature" = "8:"
             }
         }

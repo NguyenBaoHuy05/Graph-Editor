@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net;
 using static Guna.UI2.Native.WinApi;
 
 
@@ -30,7 +31,7 @@ namespace Graph_Editor
             InitializeComponent();
             Board.Paint += new PaintEventHandler(this.Board_Paint);
             this.DoubleBuffered = true;
-            forceModeRadioBtn.Checked = true;
+            forceModeRadioBtn.Checked = false;
         }
 
         private void CreateNode(Point point)
@@ -150,13 +151,13 @@ namespace Graph_Editor
             foreach (Guna2Button btn in adjMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
-                if ((indices.Item1.ToString() == chosenNode.Text || indices.Item2.ToString() == chosenNode.Text) && btn.Text != "0" && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
+                if ((indices.Item1.ToString() == chosenNode.Text || (indices.Item2.ToString() == chosenNode.Text && undirect.Checked)) && btn.Text != "0" && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
             foreach (Guna2Button btn in weiMatrixPanel.Controls)
             {
                 var indices = (ValueTuple<int, int>)btn.Tag;
-                if ((indices.Item1.ToString() == chosenNode.Text || indices.Item2.ToString() == chosenNode.Text) && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
+                if ((indices.Item1.ToString() == chosenNode.Text || (indices.Item2.ToString() == chosenNode.Text && undirect.Checked)) && btn.Text != "\u221E") btn.FillColor = Color.GreenYellow;
                 else btn.FillColor = Color.Turquoise;
             }
         }
@@ -176,8 +177,7 @@ namespace Graph_Editor
             {
                 chosenNode = button;
                 button.FillColor = Color.Gold;
-                ResetColor();
-                ChangeColor();
+                Chosen();
             }
             else if (DeleteNodes.Checked && num > 0)
             {
@@ -303,8 +303,8 @@ namespace Graph_Editor
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
-            int max = Math.Max(row, column);
-            int min = Math.Min(row, column);
+            int max = undirect.Checked ? Math.Max(row, column) : column;
+            int min = undirect.Checked ? Math.Min(row, column) : row;
 
             if (btn.Text == "1")
             {
@@ -326,8 +326,8 @@ namespace Graph_Editor
             var indices = (ValueTuple<int, int>)btn.Tag;
             int row = indices.Item1;
             int column = indices.Item2;
-            int max = Math.Max(row, column);
-            int min = Math.Min(row, column);
+            int max = undirect.Checked ? Math.Max(row, column) : column;
+            int min = undirect.Checked ? Math.Min(row, column) : row;
             if (e.Button == MouseButtons.Left)
             {
 
@@ -369,8 +369,8 @@ namespace Graph_Editor
                 var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
                 int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
+                int max = undirect.Checked ? Math.Max(row, column) : column;
+                int min = undirect.Checked ? Math.Min(row, column) : row;
                 btn.Text = edges.ContainsKey((min, max, defaultColor)) ? "1" : "0";
             }
             foreach (Guna2Button btn in weiMatrixPanel.Controls)
@@ -378,8 +378,8 @@ namespace Graph_Editor
                 var indices = (ValueTuple<int, int>)btn.Tag;
                 int row = indices.Item1;
                 int column = indices.Item2;
-                int max = Math.Max(row, column);
-                int min = Math.Min(row, column);
+                int max = undirect.Checked ? Math.Max(row, column) : column;
+                int min = undirect.Checked ? Math.Min(row, column) : row;
                 if (row == column)
                 {
                     btn.Text = "0";
@@ -397,6 +397,7 @@ namespace Graph_Editor
             }
         }
 
+        #region Chức năng SelectNode
         private void btn_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && selectNode.Checked)
@@ -420,7 +421,6 @@ namespace Graph_Editor
                 Board.Invalidate(); ;
             }
         }
-
         private void btn_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && selectNode.Checked)
@@ -442,8 +442,8 @@ namespace Graph_Editor
                     {
                         int i = int.Parse(firstSelectedNode.Text);
                         int j = int.Parse(clickedNode.Text);
-                        int max = Math.Max(i, j);
-                        int min = Math.Min(i, j);
+                        int max = undirect.Checked ? Math.Max(i, j) : j;
+                        int min = undirect.Checked ? Math.Min(i, j) : i;
                         Undo_Redo();
                         edges[(min, max, defaultColor)] = 1;
                         firstSelectedNode = null;
@@ -453,6 +453,10 @@ namespace Graph_Editor
             }
             ChangeText();
         }
+        #endregion
+        ///
+
+        ///
 
         private void loadFile_Click(object sender, EventArgs e)
         {
@@ -534,7 +538,6 @@ namespace Graph_Editor
             }
 
         }
-
         private void saveFiles(object sender, EventArgs e)
         {
 
@@ -573,7 +576,7 @@ namespace Graph_Editor
                 }
             }
         }
-        private void saveGph_Click(object sender, EventArgs e)
+        private void saveGph_Click(object ssender, EventArgs e)
         {
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -614,7 +617,6 @@ namespace Graph_Editor
                 }
             }
         }
-
         private void loadgph_Click(object sender, EventArgs e)
         {
             if (num != 0)
@@ -695,7 +697,6 @@ namespace Graph_Editor
         {
             Bitmap bitmap = new Bitmap(Board.Width, Board.Height);
 
-            // Vẽ nội dung Panel lên Bitmap
             Board.DrawToBitmap(bitmap, new Rectangle(0, 0, Board.Width, Board.Height));
 
             // Lưu ảnh ra file (nếu cần)
@@ -717,6 +718,11 @@ namespace Graph_Editor
             // Giải phóng tài nguyên bitmap
             bitmap.Dispose();
         }
+
+        ///
+
+        ///
+
         private void Board_Paint(object sender, PaintEventArgs e)
         {
             //Board.OnPaint(e);
@@ -724,21 +730,61 @@ namespace Graph_Editor
             foreach (var edge in edges.Keys)
             {
 
-                if (edge.Item1 > edge.Item2) continue;
+                if (edge.Item1 > edge.Item2 && undirect.Checked) continue;
                 var node1 = nodes[edge.Item1];
                 var node2 = nodes[edge.Item2];
-                Point point1 = new Point(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
-                Point point2 = new Point(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
+                PointF point1 = new PointF(node1.Left + node1.Width / 2, node1.Top + node1.Height / 2);
+                PointF point2 = new PointF(node2.Left + node2.Width / 2, node2.Top + node2.Height / 2);
 
 
                 using (Pen pen = new Pen(edge.Item3, 3))
                 {
                     pen.StartCap = LineCap.Round;
                     pen.EndCap = LineCap.Round;
-                    e.Graphics.DrawLine(pen, point1, point2);
+
+                    // Tính toán vector hướng từ point1 đến point2
+                    float deltaX = point2.X - point1.X;
+                    float deltaY = point2.Y - point1.Y;
+
+                    // Tính toán độ dài của vector hướng
+                    float vectorLength = (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                    // Chuẩn hóa vector hướng
+                    float normalizedDeltaX = deltaX / vectorLength;
+                    float normalizedDeltaY = deltaY / vectorLength;
+
+                    // Tính toán endPoint mới, thụt vào 30 pixel (bán kính hình tròn)
+                    float radius = 30; // Bán kính hình tròn
+                    PointF endPoint = new PointF(
+                        point2.X - radius * normalizedDeltaX,
+                        point2.Y - radius * normalizedDeltaY
+                    );
+
+                    // Tính toán góc của vector
+                    float angle = (float)Math.Atan2(endPoint.Y - point1.Y, endPoint.X - point1.X);
+
+                    if (direct.Checked)
+                    {
+                        // Tính toán tọa độ của hai điểm tạo mũi tên
+                        float arrowSize = 10; // Kích thước mũi tên
+                        PointF arrowPoint1 = new PointF(
+                            endPoint.X - arrowSize * (float)Math.Cos(angle - Math.PI / 6),
+                            endPoint.Y - arrowSize * (float)Math.Sin(angle - Math.PI / 6)
+                        );
+                        PointF arrowPoint2 = new PointF(
+                            endPoint.X - arrowSize * (float)Math.Cos(angle + Math.PI / 6),
+                            endPoint.Y - arrowSize * (float)Math.Sin(angle + Math.PI / 6)
+                        );
+
+                        // Vẽ hai đường thẳng tạo mũi tên
+                        e.Graphics.DrawLine(pen, endPoint, arrowPoint1);
+                        e.Graphics.DrawLine(pen, endPoint, arrowPoint2);
+                    }
+
+                    // Vẽ đường thẳng chính
+                    e.Graphics.DrawLine(pen, point1, endPoint); // Vẽ đến endPoint mới
                 }
-                //Them canh
-                Point midpoint = new Point((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2);
+                PointF midpoint = new PointF((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2);
 
 
                 string edgeWeight = edges[(edge.Item1, edge.Item2, defaultColor)].ToString();
@@ -753,6 +799,10 @@ namespace Graph_Editor
         {
             CreateNode(e.Location);
         }
+
+        ///
+
+        ///
 
         private void Reset_Click(object sender, EventArgs e)
         {
@@ -802,8 +852,15 @@ namespace Graph_Editor
             }
             foreach (var edge in edges.Keys)
             {
-                adjList[edge.Item1].Add(edge.Item2);
-                adjList[edge.Item2].Add(edge.Item1);
+                if (undirect.Checked)
+                {
+                    adjList[edge.Item1].Add(edge.Item2);
+                    adjList[edge.Item2].Add(edge.Item1);
+                }
+                else
+                {
+                    adjList[edge.Item1].Add(edge.Item2);
+                }
             }
             foreach (var adj in adjList)
             {
@@ -822,7 +879,7 @@ namespace Graph_Editor
                 }
                 Board.Invalidate();
                 Reset.Enabled = Undo.Enabled = Redo.Enabled = true;
-                foreach (Control control in toolbar.Controls)
+                foreach (Control control in Work.Controls)
                 {
                     if (control is RadioButton radio)
                     {
@@ -849,7 +906,7 @@ namespace Graph_Editor
             forceModeRadioBtn.Checked = false;
             drawModeRadioBtn.Checked = true;
             Run.Enabled = Undo.Enabled = Redo.Enabled = false;
-            foreach (Control control in toolbar.Controls)
+            foreach (Control control in Work.Controls)
             {
                 if (control is RadioButton radio)
                 {
@@ -887,7 +944,7 @@ namespace Graph_Editor
                 default:
                     MessageBox.Show("Vui lòng chọn thuật toán");
                     Run.Enabled = Undo.Enabled = Redo.Enabled = true;
-                    foreach (Control control in toolbar.Controls)
+                    foreach (Control control in Work.Controls)
                     {
                         if (control is RadioButton radio)
                         {
@@ -921,83 +978,23 @@ namespace Graph_Editor
             }
         }
 
-        private void ApplyForce(int k, double coolingFactor, double l)
-        {
-            double maxForce = double.MaxValue;
-            while (k > 0 && maxForce > 0.00001)
-            {
+        ///
 
-                maxForce = F.Max(f => Math.Sqrt(f.X * f.X + f.Y * f.Y));
-                Parallel.For(0, num, i =>
-                {
-                    PointF repForce = RepulsiveForce(i, l, 12);
-                    PointF attrForce = AttractiveForce(i, l, 1, repForce);
-                    F[i] = new PointF(repForce.X + attrForce.X, repForce.Y + attrForce.Y);
-                });
-                for (int i = 0; i < num; ++i)
-                {
-                    PointF newLocation = new PointF(
-                        nodes[i].Location.X + (float)(coolingFactor * F[i].X),
-                        nodes[i].Location.Y + (float)(coolingFactor * F[i].Y));
-                    newLocation.X = Math.Max(0, Math.Min(Board.Width - nodes[i].Width, newLocation.X));
-                    newLocation.Y = Math.Max(0, Math.Min(Board.Height - nodes[i].Height, newLocation.Y));
-                    if (draggingNode == null || nodes[i].Location != draggingNode.Location)
-                    {
-                        nodes[i].Location = new Point((int)Math.Round(newLocation.X), (int)Math.Round(newLocation.Y));
-                    }
-                }
-                coolingFactor *= 0.5;
-                --k;
-            }
-        }
-        private PointF RepulsiveForce(int node, double l, double crep)
-        {
-            PointF repForce = new PointF();
-            repForce = new PointF(0, 0);
-            Guna2CircleButton u = nodes[node];
-            for (int i = 0; i < num; ++i)
-            {
-                if (i == node) continue;
-                Guna2CircleButton v = nodes[i];
-                PointF vu = new PointF(u.Location.X - v.Location.X, u.Location.Y - v.Location.Y);
-                double distance = Math.Sqrt(vu.X * vu.X + vu.Y * vu.Y) / 148;
-                double f = crep / (distance * distance);
-                if (distance < 1.5)
-                {
-                    repForce.X += (float)(f * vu.X);
-                    repForce.Y += (float)(f * vu.Y);
-                }
-            }
-            return repForce;
-        }
-
-        private PointF AttractiveForce(int node, double l, double cspring, PointF repForce)
-        {
-            PointF attrForce = new PointF();
-            attrForce = new PointF(0, 0);
-            Guna2CircleButton u = nodes[node];
-            foreach (int adjNode in adjList[node])
-            {
-                Guna2CircleButton v = nodes[adjNode];
-                PointF uv = new PointF(v.Location.X - u.Location.X, v.Location.Y - u.Location.Y);
-                double distance = Math.Sqrt(uv.X * uv.X + uv.Y * uv.Y);
-                double f = cspring * Math.Log(distance / l);
-                attrForce.X += (float)(f * uv.X);
-                attrForce.Y += (float)(f * uv.Y);
-            }
-            return attrForce;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        ///
+        private void ForceModeTimer_Tick(object sender, EventArgs e)
         {
             if (num > 1 && forceModeRadioBtn.Checked)
             {
                 LoadAdjList();
-                ApplyForce(10, 0.001, 1);
+                ForceMode.ApplyForce(10, 0.001, 1, F, nodes,edges, num, Board, draggingNode, adjList);
                 Board.Invalidate();
             }
         }
 
+
+        ///
+     
+        ///
         private void Undo_Click(object sender, EventArgs e)
         {
             if (undo.Count == 0) return;
@@ -1051,7 +1048,11 @@ namespace Graph_Editor
             }
             Dictionary<(int, int, Color), int> edgesCopy = new Dictionary<(int, int, Color), int>(edges);
             if (k == 1) redo.Push((nodes_1, edgesCopy));
-            else undo.Push((nodes_1, edgesCopy));
+            else
+            {
+                undo.Push((nodes_1, edgesCopy));
+                redo.Clear();
+            }
         }
 
         private void Redo_Click(object sender, EventArgs e)
@@ -1074,5 +1075,31 @@ namespace Graph_Editor
             CreateWeiMatrix();
             ChangeText();
         }
+        /*
+         
+         */
+        #region Vohuong Cohuong
+        private void undirect_Click(object sender, EventArgs e)
+        {
+            if (num != 0)
+            {
+                MessageBox.Show("Vui lòng reset!", "Dangerous", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                undirect.Checked = false;
+                direct.Checked = true;
+                return;
+            }
+        }
+
+        private void direct_Click(object sender, EventArgs e)
+        {
+            if (num != 0)
+            {
+                MessageBox.Show("Vui lòng reset!", "Dangerous", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                direct.Checked = false;
+                undirect.Checked = true;
+                return;
+            }
+        }
+        #endregion
     }
 }
